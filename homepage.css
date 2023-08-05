@@ -1,0 +1,183 @@
+body
+{
+	background: #6eb41e url('/images/homepage/homepage_bground.gif');
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* HEADER CONTENT */
+
+#header
+{
+	width: 100%;
+	margin: 0 auto;
+	padding: 5px 0 0 0;
+	text-align: center;
+}
+
+#header #headerbuttons
+{
+	width: 760px;
+	margin: 0 auto;
+	text-align: right;
+}
+
+
+/* USED IN THE GROWN UP CONTENT BELOW THE FLASH */
+
+#footer
+{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 0;
+}
+
+#footer #banners
+{
+	width: 760px;
+	height: 80px;
+	margin: 5px auto 0 auto;
+	text-align: center;
+	font: 10px verdana, arial, sans-serif;
+	color: #fff;
+}
+
+#footer #banners #sponsorship
+{
+	float: left;
+	width: 235px;
+}
+
+#footer #banners #localization
+{
+	width: 117px;
+	margin-left: 640px;
+}
+
+#footer #banners #localization a:link,
+#footer #banners #localization a:visited,
+#footer #banners #localization a:hover,
+#footer #banners #localization a:active
+{
+	color: #336600;
+}
+
+#footer #banners #localization img
+{
+	border-top: 10px #fff solid;
+	border-right: 17px #fff solid;
+	border-bottom: 10px #fff solid;
+	border-left: 17px #fff solid;
+}
+
+table#othersites
+{
+	width: 760px;
+	margin: 10px auto 0 auto;
+	text-align: center;
+}
+
+table#othersites td,
+table#othersites td a:link,
+table#othersites td a:visited,
+table#othersites td a:hover,
+table#othersites td a:active
+{
+	font: 11px verdana, arial, sans-serif;
+	color: #336600;
+}
+
+table#othersites td #pbsteachersource
+{
+	text-align: center;
+	background: url('/images/homepage/footer_tsource_bground.gif') no-repeat;
+	height: 115px;
+	width: 238px;
+}
+
+table#othersites td #pbsteachersource #pbsteachersourcegutter
+{
+	padding: 18px 20px 0 20px;
+}
+
+table#othersites td #pbsteachersource #pbsteachersourceteaser
+{
+	margin: 4px 0 0 0;
+}
+
+table#othersites td #pbsparents
+{
+	text-align: center;
+	background: url('/images/homepage/footer_parents_bground.gif') no-repeat;
+	height: 115px;
+	width: 326px;
+}
+
+table#othersites td #pbsparents #pbsparentsgutter
+{
+	padding: 20px 30px 0 30px;
+}
+
+table#othersites td #pbsparents #parentscontent
+{
+	margin: 5px 0 0 0;
+}
+
+table#othersites td #pbsparents #parentscontent #parentsthumbnail
+{
+	background: url('/images/homepage/parents/index_bground.gif') no-repeat;
+	width: 37px;
+	height: 36px;
+	padding: 5px 0 0 5px;
+	text-align: left;
+	float: left;
+}
+
+table#othersites td #pbsparents #parentscontent #parentsteaser
+{
+	margin-left: 46px;
+	text-align: left;
+}
+
+
+table#othersites td #shoppbs
+{
+	text-align: center;
+	background: url('/images/homepage/footer_shoppbs_bground.gif') no-repeat;
+	height: 115px;
+	width: 197px;
+}
+
+table#othersites td #shoppbs #shoppbsgutter
+{
+	padding: 14px 20px 0 20px;
+}
+
+table#othersites td #shoppbs #shoppbsteaser
+{
+	margin: 6px 0 0 0;
+}
+
+
+/* COPYRIGHT */
+
+#copyright
+{
+	margin: 0;
+	padding: 18px 0 20px 0;
+}
+
+#copyright,
+#copyright a:link,
+#copyright a:visited,
+#copyright a:hover,
+#copyright a:active
+{
+	font: 10px verdana, arial, sans-serif;
+	color: #336600;
+}
+/*
