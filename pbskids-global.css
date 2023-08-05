@@ -1,0 +1,55 @@
+html
+{
+	height: 100%;
+}
+
+/* This table is used as a container to dynamically center all the content on the page */
+
+table.centeringcontainer
+{
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+table.centeringcontainer td#centeringcell
+{
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+}
+
+
+/* Used to keep the Footer text consistent across the shell */
+
+.pbskidsfooter
+{
+	font: 11px verdana, sans-serif;
+	text-align: right;
+	margin: 0 auto;
+	width: 760px;
+}
+
+.pbskidsfooter a:link,
+.pbskidsfooter a:visited,
+.pbskidsfooter a:active
+{
+	text-decoration: underline;
+}
+
+.pbskidsfooter a:hover
+{
+	text-decoration: none;
+}
+
+.pbskidsfooter form
+{
+	margin-bottom: 10px;
+}
+
+.pbskidsfooter select
+{
+	margin-bottom: 5px;
+}
+/*
