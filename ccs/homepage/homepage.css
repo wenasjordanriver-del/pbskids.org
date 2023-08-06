@@ -94,7 +94,7 @@ table#othersites td a:active
 table#othersites td #pbsteachersource
 {
 	text-align: center;
-	background: url('/images/homepage/footer_tsource_bground.gif') no-repeat;
+	background: url('/PBS-Kids-2006/images/homepage/footer_tsource_bground.gif') no-repeat;
 	height: 115px;
 	width: 238px;
 }
@@ -112,7 +112,7 @@ table#othersites td #pbsteachersource #pbsteachersourceteaser
 table#othersites td #pbsparents
 {
 	text-align: center;
-	background: url('/images/homepage/footer_parents_bground.gif') no-repeat;
+	background: url('/PBS-KIds-2006/images/homepage/footer_parents_bground.gif') no-repeat;
 	height: 115px;
 	width: 326px;
 }
@@ -129,7 +129,7 @@ table#othersites td #pbsparents #parentscontent
 
 table#othersites td #pbsparents #parentscontent #parentsthumbnail
 {
-	background: url('/images/homepage/parents/index_bground.gif') no-repeat;
+	background: url('/PBS-Kids-2006/images/homepage/parents/index_bground.gif') no-repeat;
 	width: 37px;
 	height: 36px;
 	padding: 5px 0 0 5px;
@@ -147,7 +147,7 @@ table#othersites td #pbsparents #parentscontent #parentsteaser
 table#othersites td #shoppbs
 {
 	text-align: center;
-	background: url('/images/homepage/footer_shoppbs_bground.gif') no-repeat;
+	background: url('/PBS-Kids-2006/images/homepage/footer_shoppbs_bground.gif') no-repeat;
 	height: 115px;
 	width: 197px;
 }
