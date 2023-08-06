@@ -80,7 +80,9 @@
 		// <![CDATA[
 
 		var fo = new FlashObject("/PBS-Kids-2006/swfs/homepage.swf", "homepage", "100%", "360", "7", "#ccffff");
-		fo.addVariable("allowScriptAccess", "sameDomain");
+		fo.addParam("allowScriptAccess", "always");
+		so.addParam("wmode", "transparent");
+		
 		fo.write("flashcontent");
 
 		// ]]>
