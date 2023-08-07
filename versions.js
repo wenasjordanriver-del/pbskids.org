@@ -15,7 +15,7 @@ if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; re
   var expirationdate = "December 31, 2006";
   
   // Flash Version Detector  v1.1.5
-  // http://www.dithered.com/javascript/flash_detect/index.html
+  // https://web.archive.org/web/20050713010203/http://www.dithered.com/javascript/flash_detect/index.html
   
   var flashVersion = 0;
 
