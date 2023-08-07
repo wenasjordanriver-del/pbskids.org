@@ -79,7 +79,9 @@
 	<script type="text/javascript">
 		// <![CDATA[
 
-		var fo = new FlashObject("/swfs/homepage.swf", "homepage", "100%", "360", "7", "#ccffff");
+		<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+		
+                var fo = new FlashObject("/swfs/homepage.swf", "homepage", "100%", "360", "7", "#ccffff");
 		fo.addVariable("allowScriptAccess", "sameDomain");
 		fo.write("flashcontent");
 
