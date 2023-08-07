@@ -1,0 +1,193 @@
+body {font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+.fineprint {font-size: 11px; color: #000;}
+a.fineprint:link {text-decoration: underline;}
+a.fineprint:visited {text-decoration: underline;}
+a.fineprint:hover {text-decoration: none;}
+
+/* HOMEPAGE */
+
+.programlist {font-size: 12px; color: #FFF; font-weight: bold; line-height: 16px;}
+a.programlist {color: #FFF; text-decoration: none;}
+a:link.programlist {color: #FFF; text-decoration: none;}
+a:visited.programlist {color: #FFF; text-decoration: none;}
+a:hover.programlist {color: #3996B5; text-decoration: none; background: #B5E3FB; padding: 3px 3px 3px 3px;}
+
+.magictitle {font-size: 11px; color: #FFF; font-weight: bold;}
+a.magictitle:link {text-decoration: none;}
+a.magictitle:visited {text-decoration: none;}
+a.magictitle:hover {text-decoration: none;}
+
+.magicteaser {font-size: 11px; color: #FFF;}
+a.magicteaser:link {text-decoration: none;}
+a.magicteaser:visited {text-decoration: none;}
+a.magicteaser:hover {text-decoration: none;}
+
+.sharequestion {font-size: 11px; color: #25718C;}
+a.sharequestion:link {text-decoration: none;}
+a.sharequestion:visited {text-decoration: none;}
+a.sharequestion:hover {text-decoration: none;}
+
+.figurequestion {font-size: 11px; color: #6B8209;}
+a.figurequestion:link {text-decoration: none;}
+a.figurequestion:visited {text-decoration: none;}
+a.figurequestion:hover {text-decoration: none;}
+
+.thelatesttitle {font-size: 10px; color: #FFF; font-weight: bold;}
+a.thelatesttitle:link {text-decoration: none;}
+a.thelatesttitle:visited {text-decoration: none;}
+a.thelatesttitle:hover {text-decoration: none;}
+
+.thelatestteaser {font-size: 10px; color: #FFF;}
+a.thelatestteaser:link {text-decoration: none;}
+a.thelatestteaser:visited {text-decoration: none;}
+a.thelatestteaser:hover {text-decoration: none;}
+
+.homefineprint {font-size: 11px; color: #8CAD10;}
+a.homefineprint:link {text-decoration: underline;}
+a.homefineprint:visited {text-decoration: underline;}
+a.homefineprint:hover {text-decoration: none;}
+
+.homestation {font-size: 9px; color: #8B9783;}
+a.homestation:link {text-decoration: none;}
+a.homestation:visited {text-decoration: none;}
+a.homestation:hover {text-decoration: underline;}
+
+.parentslinks {font-size: 12px; color: #8CAD10; font-weight: bold;}
+a.parentslinks:link {text-decoration: none;}
+a.parentslinks:visited {text-decoration: none;}
+a.parentslinks:hover {text-decoration: none;}
+
+/* GAMES */
+
+.gamesmagictitle {font-size: 13px; color: #A44E03; font-weight: bold;}
+a.gamesmagictitle:link {text-decoration: none;}
+a.gamesmagictitle:visited {text-decoration: none;}
+a.gamesmagictitle:hover {text-decoration: none;}
+
+.gamesmagicteaser {font-size: 12px; color: #A44E03;}
+a.gamesmagicteaser:link {text-decoration: none;}
+a.gamesmagicteaser:visited {text-decoration: none;}
+a.gamesmagicteaser:hover {text-decoration: none;}
+
+.gamesrandomtitle {font-size: 12px; color: #82A20A; font-weight: bold;}
+a.gamesrandomtitle:link {text-decoration: none;}
+a.gamesrandomtitle:visited {text-decoration: none;}
+a.gamesrandomtitle:hover {text-decoration: none;}
+
+.gamesrandomteaser {font-size: 12px; color: #82A20A;}
+a.gamesrandomteaser:link {text-decoration: none;}
+a.gamesrandomteaser:visited {text-decoration: none;}
+a.gamesrandomteaser:hover {text-decoration: none;}
+
+/* SHARE */
+
+.sharegallerytitle {font-size: 12px; color: #86AA17; font-weight: bold;}
+a.sharegallerytitle:link {text-decoration: none;}
+a.sharegallerytitle:visited {text-decoration: none;}
+a.sharegallerytitle:hover {text-decoration: none;}
+
+.sharegalleryteaser {font-size: 11px; color: #86AA17;}
+a.sharegalleryteaser:link {text-decoration: none;}
+a.sharegalleryteaser:visited {text-decoration: none;}
+a.sharegalleryteaser:hover {text-decoration: none;}
+
+.shareecardtitle {font-size: 12px; color: #FFF; font-weight: bold;}
+a.shareecardtitle:link {text-decoration: none;}
+a.shareecardtitle:visited {text-decoration: none;}
+a.shareecardtitle:hover {text-decoration: none;}
+
+.sharefeaturetitle {font-size: 11px; color: #FFF; font-weight: bold;}
+a.sharefeaturetitle:link {text-decoration: none;}
+a.sharefeaturetitle:visited {text-decoration: none;}
+a.sharefeaturetitle:hover {text-decoration: none;}
+
+.sharefeatureteaser {font-size: 11px; color: #FFF;}
+a.sharefeatureteaser:link {text-decoration: none;}
+a.sharefeatureteaser:visited {text-decoration: none;}
+a.sharefeatureteaser:hover {text-decoration: none;}
+
+.sharespeech {font-size: 16px; color: #000000;}
+a.sharespeech:link {text-decoration: none;}
+a.sharespeech:visited {text-decoration: none;}
+a.sharespeech:hover {text-decoration: none;}
+
+.sharequote {font-size: 14px; color: #FFF;}
+a.sharequote:link {text-decoration: none;}
+a.sharequote:visited {text-decoration: none;}
+a.sharequote:hover {text-decoration: none;}
+
+.sharename {font-size: 11px; color: #FFF;}
+a.sharename:link {text-decoration: none;}
+a.sharename:visited {text-decoration: none;}
+a.sharename:hover {text-decoration: none;}
+
+/* GO FIGURE */
+
+.figurefactid {font-size: 12px; color: #FFF;}
+
+.figureanswer {font-size: 18px; color: #FFF; line-height: 18px;}
+a.figureanswer:link {text-decoration: none;}
+a.figureanswer:visited {text-decoration: none;}
+a.figureanswer:hover {text-decoration: none;}
+
+.figurefeaturetitle {font-size: 11px; color: #608804; font-weight: bold;}
+a.figurefeaturetitle:link {text-decoration: none;}
+a.figurefeaturetitle:visited {text-decoration: none;}
+a.figurefeaturetitle:hover {text-decoration: none;}
+
+.figurefeatureteaser {font-size: 11px; color: #608804;}
+a.figurefeatureteaser:link {text-decoration: none;}
+a.figurefeatureteaser:visited {text-decoration: none;}
+a.figurefeatureteaser:hover {text-decoration: none;}
+
+.figurelist {font-size: 12px; color: #FFF; font-weight: bold; line-height: 19px;}
+a.figurelist:link {text-decoration: none;}
+a.figurelist:visited {text-decoration: none;}
+a.figurelist:hover {text-decoration: underline;}
+
+/* ALL GAMES & ALL SHARE */
+
+.allgametop {font-size: 10px; color: #4D7721;}
+a.allgametop:link {text-decoration: none;}
+a.allgametop:visited {text-decoration: none;}
+a.allgametop:hover {text-decoration: underline;}
+
+.allgametitle {font-size: 20px; color: #FFF;}
+a.allgametitle:link {text-decoration: none;}
+a.allgametitle:visited {text-decoration: none;}
+a.allgametitle:hover {text-decoration: none;}
+
+.allgameactivity {font-size: 12px; color: #4D7721; line-height: 18px;}
+a.allgameactivity:link {text-decoration: underline;}
+a.allgameactivity:visited {text-decoration: underline;}
+a.allgameactivity:hover {text-decoration: none;}
+
+.allgamesecondary {font-size: 12px; color: #4D7721; line-height: 18px; font-weight: bold;}
+a.allgamesecondary:link {text-decoration: underline;}
+a.allgamesecondary:visited {text-decoration: underline;}
+a.allgamesecondary:hover {text-decoration: none;}
+
+.allgamedesc {font-size: 12px; color: #FFF;}
+
+
+/* MORE */
+
+.moreshow {font-weight: bold; font-size: 11px; color: #4d7721;}
+a.moreshow:link {text-decoration: none;}
+a.moreshow:visited {text-decoration: none;}
+a.moreshow:hover {text-decoration: underline;}
+
+.moresearch {font-size: 14px; color: #4D7721; line-height: 18px; padding: 8px;}
+
+.moretitle {font-size: 14px; font-weight: bold; color: #FFF; padding: 5px 5px 5px 10px;}
+
+
+/* SEARCH RESULTS */
+
+.searchresults {font-size: 12px; color: #fff;}
+a.searchresults:link {font-size: 12px; color: #fff;}
+a.searchresults:visited {font-size: 12px; color: #fff;}
+a.searchresults:hover {font-size: 12px; color: #fff;}
+
+/*
