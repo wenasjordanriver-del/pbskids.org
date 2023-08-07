@@ -82,6 +82,17 @@
 		var fo = new FlashObject("src:'/PBS-Kids-2006/swfs/homepage.swf/", "homepage", "100%", "360", "7", "#ccffff");
 		fo.addVariable("allowScriptAccess", "sameDomain");
 		fo.write("flashcontent");
+		
+		swfobject.embedSWF = function(url, cont, width, height){
+    var ruffle = window.RufflePlayer.newest(),
+        player = Object.assign(document.getElementById(cont).appendChild(ruffle.createPlayer()), {
+            width: width,
+            height: height,
+            style: 'width: ' + width + 'px; height: ' + height + 'px',
+        });
+    
+    player.load({ url: url });
+}
 
 	</script>
 	<!-- END FlashObject code -->
