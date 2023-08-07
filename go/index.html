@@ -1,0 +1,436 @@
+
+
+<title>PBS KIDS GO!</title>
+<link rel="stylesheet" href="/web/20061116024509cs_/http://pbskids.org/go/go.css" type="text/css">
+<script language="javascript" src="/web/20061116024509js_/http://pbskids.org/go/go.js" type="text/javascript"></script>
+<script language="javascript" src="/web/20061116024509js_/http://pbskids.org/go/divlogic.js" type="text/javascript"></script>
+
+<style type="text/css">
+#magicboxtext          {
+           position:relative; width:225px; height:44px; z-index:100; text-align:right;
+}
+
+#feature0 {
+        position:absolute; left:0; top:3px; z-index:1; width:225px; height:42px;
+}
+
+#feature1, #feature2, #feature3, #arthur, #buster, #mayaandmiguel, #zoom, #cyberchase, #dragonflytv, #itsmylife, #dontbuyit, #backyardjungle, #eekoworld, #fetch, #wordgirl {
+           position:absolute; visibility:hidden; left:0; top:3px; z-index:1; width:225px; height:42px;
+}
+
+</style>
+
+<script language="javascript">
+
+featureboxes = new Array("feature0","feature1","feature2","feature3");
+programboxes = new Array("arthur","buster","mayaandmiguel","zoom","cyberchase","dragonflytv","itsmylife","dontbuyit","backyardjungle", "eekoworld", "fetch", "wordgirl");
+
+featureURLs = new Array('https://web.archive.org/web/20061116024509/http://pbskids.org/arthur/games/dontwakekate/index.html', 'https://web.archive.org/web/20061116024509/http://pbskids.org/fetch/games/linkovision/index.html', 'https://web.archive.org/web/20061116024509/http://pbskids.org/dragonflytv/games/flashsniffer_balance.html', 'https://web.archive.org/web/20061116024509/http://pbskids.org/mayaandmiguel/english/games/petshopmatchup/index.html');
+
+var linkholder=featureURLs[0];
+var current_magicbox_id = "feature0";
+var current_feature_num = 0;
+
+var preloadflag = "false";
+
+function newImage(arg) {
+           rslt = new Image();
+           rslt.src = arg;
+           return rslt;
+}
+
+
+function preLoad() {
+feature0Image = newImage('program_images/big-arthur-dontwakekate.gif');feature1Image = newImage('program_images/big-fetch-linkovision.gif');feature2Image = newImage('program_images/big-dragonflytv-weebitworld.gif');feature3Image = newImage('program_images/big-mayaandmiguel-petshopmatchup.gif');
+           preloadflag = "true";
+           arthurImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-arthur-10thseason.gif");
+           busterImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-buster.gif");
+           mayaandmiguelImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-mayaandmiguel.gif");
+           zoomImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-zoom.gif");
+           cyberchaseImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-cyberchase.gif");
+           dragonflytvImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-dragonflytv.gif");
+           itsmylifeImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-itsmylife.gif");
+           dontbuyitImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-dontbuyit.gif");
+           backyardjungleImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-backyardjungle.gif");
+	     eekoworldImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-eekoworld.gif");
+	     fetchImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-fetch.gif");
+	     wordgirlImage = newImage("https://web.archive.org/web/20061116024509/http://www-tc.pbskids.org/go/program_images/big-wordgirl.gif");
+}
+
+
+function swapdiv(arg) {
+           if (current_magicbox_id) {
+                       var oldbox = getElemRefs(current_magicbox_id);
+                       if (oldbox.css) {
+                               oldbox.css.visibility = "hidden";
+                       }
+           }
+           var newbox = getElemRefs(arg);
+           if (newbox.css) {
+                       newbox.css.visibility = "visible";
+           }
+}
+
+
+function swapimage(arg) {
+           var holder= arg + "Image.src";
+           document.magicboximage.src = eval(holder);
+}
+
+var timeoutID = null;
+
+function switch_magicbox(arg) {
+                       if (preloadflag == "true") {
+                               clearTimeout(timeoutID);
+                               swapimage(arg);
+                               swapdiv(arg);
+                               current_magicbox_id = arg;
+                       }
+                       return true;
+}
+
+
+function timed_magicbox() {
+           change_feature(99);
+}
+
+function start_magicbox() {
+           change_feature(0);
+}
+
+function change_feature(arg) {
+           var proglist=programboxes.toString();
+           if (proglist.indexOf(current_magicbox_id) > 0) {
+                       switch_magicbox("feature0");
+                       current_feature_num = 0;
+           } else {
+                       if (arg == -1) {
+                               arg = current_feature_num - 1;
+                               if (arg < 0) {
+                                           arg = 3;
+                               }
+                       }
+                       if (arg == 99) {
+                               arg = current_feature_num + 1;
+                               if (arg > 3) {
+                                           arg = 0;
+                               }
+                       }
+                       var thisfeature = featureboxes[arg];
+                       linkholder = featureURLs[arg];
+                       current_feature_num = arg;
+                       switch_magicbox(thisfeature);
+           }
+           timeoutID = setTimeout("timed_magicbox()", 5000);
+}
+
+
+
+
+function setuppage() {
+           preLoad();
+           start_magicbox();
+}
+
+
+
+</script>
+<!--Start-2005-PBSKids.org-Survey-->
+<!-- Questions to mcramer@pbs.org -->
+
+<script type="text/javascript" src="/web/20061116024509js_/http://pbskids.org/includes/javascript/global.js"></script>
+<script type="text/javascript" src="/web/20061116024509js_/http://pbskids.org/survey/global/survscript.js"></script>
+<script type="text/javascript">
+  // pbsprivate_open_survey('/survey/200510/?return=' + window.location.pathname, 'pbsol.survey.2005', 10);
+</script>
+
+<!--End-2005-PBSKids.org-Survey-->
+
+</head>
+<body bgcolor="#FFFFFF" background="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-background.gif" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="setuppage()"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20061116024509/http%3A//pbskids.org/go/"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="/_static/images/toolbar/wayback-toolbar-logo-100.png, /_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, /_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://pbskids.org/go/" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20061116024509" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;">
+                    <a class="t" href="/web/20061116024509*/http://pbskids.org/go/" title="See a list of every capture for this URL">2,519 captures</a>
+          <div class="r" title="Timespan for captures of this URL">25 Aug 2004 - 15 Jul 2023</div>
+          </div>
+        <div class="k">
+          <a href="" id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="700" height="27" border="0"></canvas>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          
+
+<!-- BIG TABLE START -->
+<table width="750" cellpadding="0" cellspacing="0" border="0" align="center">
+<tr>
+<td width="314">
+
+<!-- PROGRAMS TABLE START -->
+<table width="314" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td colspan="4"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-preschool-off.gif" width="61" height="61" border="0" alt="to pbskids.org" onmouseover="activate('preschool')" onmouseout="deactivate('preschool')" name="preschool"></a><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-preschool-right.gif" width="56" height="61" border="0" alt=""><br><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-kid-back.gif" width="117" height="116" border="0" alt=""></td>
+<td width="197" rowspan="2" bgcolor="#52ADDE">
+
+<!-- LIST TABLE START -->
+<table width="197" cellpadding="0" cellspacing="0" border="0">
+<tr><td><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-logo-go.gif" width="197" height="143" border="0" alt="PBS KIDS GO!"></td></tr>
+<tr><td align="right" height="216">
+<div style="padding-right: 10px;">
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/arthur/" onmouseover="switch_magicbox('arthur');" onmouseout="change_feature(0)" class="programlist">Arthur</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/backyardjungle/" onmouseover="switch_magicbox('backyardjungle');" onmouseout="change_feature(0)" class="programlist">Backyard Jungle</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/cyberchase/" onmouseover="switch_magicbox('cyberchase');" onmouseout="change_feature(0)" class="programlist">Cyberchase</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/dontbuyit/" onmouseover="switch_magicbox('dontbuyit');" onmouseout="change_feature(0)" class="programlist">Don't Buy It</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/dragonflytv/" onmouseover="switch_magicbox('dragonflytv');" onmouseout="change_feature(0)" class="programlist">DragonflyTV</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/eekoworld/" onmouseover="switch_magicbox('eekoworld');" onmouseout="change_feature(0)" class="programlist">EekoWorld</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/fetch/" onmouseover="switch_magicbox('fetch');" onmouseout="change_feature(0)" class="programlist">Fetch!</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/itsmylife/" onmouseover="switch_magicbox('itsmylife');" onmouseout="change_feature(0)" class="programlist">It's My Life</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/mayaandmiguel/" onmouseover="switch_magicbox('mayaandmiguel');" onmouseout="change_feature(0)" class="programlist">Maya &amp; Miguel</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/buster/" onmouseover="switch_magicbox('buster');" onmouseout="change_feature(0)" class="programlist">Postcards from Buster</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/wordgirl/" onmouseover="switch_magicbox('wordgirl');" onmouseout="change_feature(0)" class="programlist">WordGirl</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/zoom/" onmouseover="switch_magicbox('zoom');" onmouseout="change_feature(0)" class="programlist">ZOOM</a><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/go/more.html" class="programlist">More &raquo;</a><br>
+</div>
+</td></tr>
+<tr><td><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-menu.gif" width="197" height="31" border="0" usemap="#menu" alt=""><br><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-kid-peek.gif" width="197" height="59" border="0" alt=""></td></tr>
+<tr><td><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-lightgreen1.gif" width="197" height="99" border="0" alt=""></td></tr>
+</table>
+<!-- LIST TABLE END -->
+</td>
+</tr>
+<tr>
+<td><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="8" height="371" border="0"></td>
+<td bgcolor="#C6E74A"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="12" height="371" border="0"></td>
+<td valign="top" bgcolor="#C6E74A">
+<img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="70" height="13" border="0"><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/arthur/"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-block-arthur.gif" width="70" height="40" border="0" alt="Arthur"></a><br>
+<img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="70" height="10" border="0"><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/mayaandmiguel/"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-block-mayaandmiguel.gif" width="70" height="40" border="0" alt="Maya &amp; Miguel"></a><br>
+<img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="70" height="10" border="0"><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/cyberchase/"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-block-cyberchase.gif" width="70" height="40" border="0" alt="Cyberchase"></a><br>
+<img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="70" height="10" border="0"><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/buster/"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-block-buster.gif" width="70" height="40" border="0" alt="Postcards from Buster"></a><br>
+<img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="70" height="10" border="0"><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/fetch/"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-block-fetch.gif" width="70" height="40" border="0" alt="FETCH!"></a><br>
+<img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="70" height="10" border="0"><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/zoom/"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-block-zoom.gif" width="70" height="40" border="0" alt="ZOOM"></a><br>
+<img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="70" height="10" border="0"><br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/dragonflytv/"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-block-dragonflytv.gif" width="70" height="40" border="0" alt="DragonflyTV"></a><br>
+</td>
+<td><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-lightgreen2.gif" width="27" height="371" border="0" alt=""></td>
+</tr>
+<tr>
+<td><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="8" height="299" border="0"></td>
+<td bgcolor="#C6E74A"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="12" height="299" border="0"></td>
+<td colspan="3" bgcolor="#C6E74A" valign="top" align="right" class="homefineprint" width="302">
+<table width="265" cellpadding="0" cellspacing="0" border="0">
+<form name="tochoice" method="post" action="/web/20061116024509/http://pbskids.org/perl/redirect">
+<tr><td><select name="selected" class="fineprint" style="width: 225px;">
+        <option value="http://pbskids.org/everything.html">Everything PBS KIDS
+		<option value="http://pbskidsgo.org/africa/">Africa Kids
+		<option value="http://pbskidsgo.org/aaworld/">African American World for Kids
+		<option value="http://pbskidsgo.org/wayback/">American Experience: WayBack	
+        <option value="http://pbskidsgo.org/arthur/">Arthur
+        <option value="http://pbskids.org/barney/">Barney
+<option value="http://pbskidsgo.org/backyardjungle/">Backyard Jungle
+       <option value="http://pbskids.org/berenstainbears/">Berenstain Bears
+     
+        <option value="http://pbskids.org/lions/">Between the Lions
+	<option value="http://www.pbskids.org/bigapplehistory/">Big Apple History
+        <option value="http://pbskids.org/boohbah/">Boohbah
+	<option value="http://pbskids.org/caillou/">Caillou
+	<option value="http://pbskids.org/clifford/">Clifford the Big Red Dog
+	<option value="http://pbskidsgo.org/cyberchase/">Cyberchase
+	<option value="http://pbskidsgo.org/democracy/">Democracy Project
+	<option value="http://pbskidsgo.org/dontbuyit">Don't Buy It
+	<option value="http://pbskids.org/dragontales/">Dragon Tales
+	<option value="http://pbskidsgo.org/dragonflytv/">DragonflyTV
+	<option value="http://pbskidsgo.org/eekoworld/">EekoWorld
+        <option value="http://pbskidsgo.org/fetch/">Fetch!
+        <option value="http://pbskids.org/georgeshrinks/">George Shrinks
+		<option value="http://pbskidsgo.org/historydetectives">History Detectives
+	<option value="http://pbskids.org/bigbigworld">It's a Big Big World
+	<option value="http://pbskidsgo.org/itsmylife">It's My Life
+
+<option value="http://pbskids.org/jakers/">Jakers!
+	<option value="http://pbskids.org/jayjay/">Jay Jay The Jet Plane
+	<option value="http://pbskids.org/jazz/">Jazz
+<option value="http://www.pbs.org/kratts/">Kratts' Creatures
+	<option value="http://pbskidsgo.org/mayaandmiguel/">Maya &amp; Miguel
+        <option value="http://pbskids.org/rogers/">Mister Rogers' Neighborhood
+		<option value="http://pbskidsgo.org/stantonanthony/">Not For Ourselves Alone
+<option value="http://pbskidsgo.org/buster/">Postcards from Buster
+	<option value="http://pbskids.org/readingrainbow/">Reading Rainbow
+	<option value="http://pbskids.org/sagwa/">Sagwa The Chinese Siamese Cat
+        <option value="http://pbskids.org/sesame/">Sesame Street
+        	<option value="http://pbskids.org/shareastory">Share a Story
+<option value="http://pbskids.org/teletubbies/">Teletubbies
+       <option value="http://www.pbskids.org/wordgirl">WordGirl
+       <option value="http://www.pbs.org/wonders/Kids/kids.htm">Wonders of the African World
+<option value="http://pbskids.org/zoboo/">Zoboomafoo
+        <option value="http://pbskidsgo.org/zoom/">ZOOM
+	<option value="">
+	<option value="http://pbskids.org/">PBS KIDS
+	<option value="http://pbskidsgo.org/">PBS KIDS GO!
+
+</select></td>
+<td><input type="image" src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-button-go.gif" alt="go" border="0"></td>
+</tr>
+</form>
+</table>
+<br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/cgi-registry/kidsbridge.cgi?context=pbskidsgo_parents" class="parentslinks">PARENTS</a> &middot; <a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/cgi-registry/kidsbridge.cgi?context=pbskidsgo_teachersource" class="parentslinks">TEACHERS</a><br>
+<br>
+<a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/privacy/" class="homefineprint">Privacy Policy</a> | <a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/privacy/termsofuse.html" class="homefineprint">Terms of Use</a> | <a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/cgi-registry/kidsbridge.cgi?context=pbskidsgo_pbs" class="homefineprint">pbs.org</a><br>
+&copy; 1995-2006 <br>
+</td>
+</tr>
+</table>
+<!-- PROGRAMS TABLE END -->
+
+</td>
+<td width="43"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-center.gif" width="43" height="847" border="0" alt=""></td>
+<td width="393">
+
+<!-- MAGIC TABLE START -->
+<table width="393" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td colspan="2" width="258" height="18"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-magic-top2.gif" width="258" height="18" border="0" alt=""></td>
+<td valign="bottom" height="94" rowspan="2">
+
+<table width="90" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-magic-right2.gif" width="45" height="103" border="0" alt=""></td>
+<td valign="top" align="center">
+<img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="90" height="4" border="0"><br>
+</td>
+</tr>
+<tr>
+<td colspan="2"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-magic-buttons.gif" width="78" height="94" border="0" usemap="#magicbuttons"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-kid-point2.gif" width="57" height="94" border="0" alt=""></td>
+</tr>
+</table></td>
+</tr>
+<tr><td valign="bottom"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-magic-left.gif" width="33" height="135" border="0" alt=""><br><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-kid-bend.gif" width="33" height="44" border="0" alt=""></td>
+<td bgcolor="#EF7308" valign="top"><a href="javascript://" onclick="this.href = eval(&quot;linkholder&quot;)"><img name="magicboximage" src="/web/20061116024509im_/http://pbskids.org/go/program_images/big-arthur-dontwakekate.gif" width="225" height="135" border="0" alt=""></a><br>
+<div id="magicboxtext">
+<div id="feature0"><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/arthur/games/dontwakekate/index.html" class="magictitle">ARTHUR</a><br><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/arthur/games/dontwakekate/index.html" class="magicteaser">Shh! Don’t wake Baby Kate</a></div><div id="feature1"><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/fetch/games/linkovision/index.html" class="magictitle">FETCH! with Ruff Ruffman</a><br><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/fetch/games/linkovision/index.html" class="magicteaser">Make links and earn bones</a></div><div id="feature2"><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/dragonflytv/games/flashsniffer_balance.html" class="magictitle">DragonflyTV</a><br><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/dragonflytv/games/flashsniffer_balance.html" class="magicteaser">Grow a colony of creatures</a></div><div id="feature3"><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/mayaandmiguel/english/games/petshopmatchup/index.html" class="magictitle">Maya &amp; Miguel</a><br><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/mayaandmiguel/english/games/petshopmatchup/index.html" class="magicteaser">Can you out-match Tito?</a></div>
+<div id="arthur"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/arthur/" class="magictitle">Arthur</a><br></div>
+<div id="buster"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/buster/" class="magictitle">Postcards from Buster</a><br></div>
+<div id="mayaandmiguel"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/mayaandmiguel/" class="magictitle">Maya &amp; Miguel</a><br></div>
+<div id="zoom"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/zoom/" class="magictitle">ZOOM</a><br></div>
+<div id="cyberchase"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/cyberchase/" class="magictitle">Cyberchase</a><br></div>
+<div id="dragonflytv"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/dragonflytv/" class="magictitle">DragonflyTV</a><br></div>
+<div id="itsmylife"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/itsmylife/" class="magictitle">It's My Life</a><br></div>
+<div id="dontbuyit"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/dontbuyit/" class="magictitle">Don't Buy It</a><br></div>
+<div id="backyardjungle"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/backyardjungle/" class="magictitle">Backyard Jungle</a><br></div>
+<div id="eekoworld"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/eekoworld/" class="magictitle">EekoWorld</a><br></div>
+<div id="fetch"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/fetch/" class="magictitle">Fetch!</a><br></div>
+<div id="wordgirl"><a href="/web/20061116024509/http://pbskids.org/pkgohp/redir/wordgirl/" class="magictitle">WordGirl</a><br></div>
+</div></td></tr>
+</table>
+<!-- MAGIC TABLE END -->
+
+<!-- GO FIGURE/GAMES TABLE START -->
+<table width="393" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td colspan="2" bgcolor="#9CCE21"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="220" height="10" border="0"></td>
+<td rowspan="3"><a href="games.html"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-button-games.gif" width="173" height="88" border="0" alt="Games"></a></td>
+</tr>
+<tr bgcolor="#9CCE21">
+<td width="55"><a href="figure.html"><img src="/web/20061116024509im_/http://pbskids.org/go/program_images/tall-jazz-neworleans.gif" width="55" height="70" border="0" alt="Go Figure"></a></td><td width="165" style="padding-left: 8px;"><a href="figure.html" class="figurequestion">What kind of music is known as swing, cool and bebop?</a><br><a href="figure.html"><img src="/web/20061116024509im_/http://pbskids.org/go/images/home-button-figure.gif" width="94" height="20" border="0" alt="Go Figure"></a></td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#9CCE21"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="220" height="8" border="0"></td>
+</tr>
+</table>
+<!-- GO FIGURE/GAMES TABLE END -->
+
+<!-- SHARE TABLE START -->
+<table width="393" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td rowspan="3"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-minibox-off.gif" onmouseover="activate('minibox')" onmouseout="deactivate('minibox')" name="minibox" width="118" height="74" border="0" alt=""></td>
+<td colspan="2" bgcolor="#52ADDE"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="249" height="14" border="0"></td>
+<td rowspan="3"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-share-right.gif" width="26" height="74" border="0" alt=""></td>
+</tr>
+<tr bgcolor="#52ADDE">
+<td width="54"><a href="share.html"><img src="/web/20061116024509im_/http://pbskids.org/go/images/home-shareicon-exclaim.gif" width="54" height="36" border="0" alt="exclamation point"></a></td><td width="195"><a href="share.html" class="sharequestion">If you could be a superhero, what powers would you have?</a></td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#52ADDE" align="right"><a href="share.html"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-button-share.gif" width="65" height="24" border="0" alt="Share"></a></td>
+</tr>
+</table>
+<!-- SHARE TABLE END -->
+
+<!-- LATEST TABLE START -->
+<table width="393" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td rowspan="8"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-slide.gif" width="49" height="488" border="0" alt=""></td>
+<td colspan="2" bgcolor="#9CCE21"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-text-thelatest.gif" width="287" height="42" border="0" alt="The Latest"></td>
+<td rowspan="8"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/home-latest-right.gif" width="31" height="488" border="0" alt=""></td>
+<td rowspan="8"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="26" height="488" border="0"></td>
+</tr>
+<tr bgcolor="#9CCE21"><td bgcolor="#FFFFFF" width="95">
+<a href="https://web.archive.org/web/20061116024509/http://pbskids.org/buster/blog/index.html"><img src="/web/20061116024509im_/http://pbskids.org/go/program_images/small-buster-blog.gif" width="95" height="50" border="0" alt="Postcards from Buster - Buster's Blog"></a></td><td width="192" style="padding-left: 5px;"><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/buster/blog/index.html" class="thelatesttitle">Postcards from Buster</a><br><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/buster/blog/index.html" class="thelatestteaser">See where Buster is this week</a><br></td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#9CCE21"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="287" height="12" border="0"></td>
+</tr>
+<tr bgcolor="#9CCE21"><td bgcolor="#FFFFFF" width="95">
+<a href="https://web.archive.org/web/20061116024509/http://pbskids.org/historydetectives/games/eyespy/index.html"><img src="/web/20061116024509im_/http://pbskids.org/go/program_images/small-historydetectives-eyespy.gif" width="95" height="50" border="0" alt="History Detectives - Eye Spy"></a></td><td width="192" style="padding-left: 5px;"><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/historydetectives/games/eyespy/index.html" class="thelatesttitle">History Detectives</a><br><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/historydetectives/games/eyespy/index.html" class="thelatestteaser">What could the mystery object be?</a><br></td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#9CCE21"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="287" height="12" border="0"></td>
+</tr>
+<tr bgcolor="#9CCE21"><td bgcolor="#FFFFFF" width="95">
+<a href="https://web.archive.org/web/20061116024509/http://pbskids.org/wayback/fair/quiz/index.html"><img src="/web/20061116024509im_/http://pbskids.org/go/program_images/small-wayback-fair-unequityquiz.gif" width="95" height="50" border="0" alt="American Experience: WayBack - Inequity"></a></td><td width="192" style="padding-left: 5px;"><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/wayback/fair/quiz/index.html" class="thelatesttitle">American Experience: WayBack</a><br><a href="https://web.archive.org/web/20061116024509/http://pbskids.org/wayback/fair/quiz/index.html" class="thelatestteaser">Think you know what's fair and what's not?</a><br></td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#9CCE21"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="287" height="45" border="0"></td>
+</tr>
+<tr>
+<td colspan="2"><img src="https://web.archive.org/web/20061116024509im_/http://www-tc.pbskids.org/go/images/blank.gif" alt="" width="1" height="227" border="0"></td>
+</tr>
+</table>
+<!-- LATEST TABLE END -->
+
+</td>
+</tr>
+</table>
+<!-- BIG TABLE END -->
+
+
+
+<map name="magicbuttons">
+<area shape="rect" alt="Up" coords="22,0,74,35" href="#" onclick="change_feature(99);">
+<area shape="rect" alt="Down" coords="22,46,74,81" href="#" onclick="change_feature(-1);">
+</map>
+
+<map name="menu">
+<area shape="rect" alt="Help" coords="88,0,125,19" href="/web/20061116024509/http://pbskids.org/pkgohp/redir/help/">
+<area shape="rect" alt="Search" coords="132,0,182,19" href="/web/20061116024509/http://pbskids.org/pkgohp/redir/go/more.html">
+<area shape="rect" alt="TV Times" coords="24,0,83,20" href="/web/20061116024509/http://pbskids.org/pkgohp/redir/tvschedules">
+</map>
+
