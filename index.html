@@ -78,17 +78,12 @@
 	<!-- FlashObject code -->
 	<script type="text/javascript">
 		// <![CDATA[
-<script>
-    window.RufflePlayer = window.RufflePlayer || {};
-    window.addEventListener("load", (event) => {
-        const ruffle = window.RufflePlayer.newest();
-        const player = ruffle.createPlayer();
-        const container = document.getElementById("container");
-        container.appendChild(player);
-        player.load("/PBS-Kids-2006/swfs/homepage.swf");
-    });
-</script>
-<script src="path/to/ruffle/ruffle.js"></script>
+
+		var fo = new FlashObject("/swfs/homepage.swf", "homepage", "100%", "360", "7", "#ccffff");
+		fo.addVariable("allowScriptAccess", "sameDomain");
+		fo.write("flashcontent");
+
+		// ]]>
 		
 	
 </script>
