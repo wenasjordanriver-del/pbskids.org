@@ -1,0 +1,237 @@
+BODY, DIV, LAYER, TABLE, SPAN, TBODY, TR, TD, P, H4
+{
+	font-family: "Comic Sans MS", serif;
+	font-size: 14px;
+}
+
+body
+{
+	background-color: #FFF;
+	margin: 0px;
+	padding: 0px;
+}
+
+a { color: #009; }
+a:visited { color: #909; }
+a:hover { color: #F00; }
+UL { margin-top: 0em; }
+
+DL
+{
+	font-size: 14px;
+	margin-left: 1em;
+	margin-top: 0em;
+}
+
+img
+{
+	margin: 0;
+	border: 0;
+}
+
+#print
+{
+	background-image: url(/web/20061103031535im_/http://pbskids.org/arthur/images/backgrounds/print_background.gif);
+	background-repeat: repeat-y;
+}
+
+PRE { font-family: monospace; }
+H1 { font-size: 150%; }
+H2 { font-size: 125%; }
+H3 { font-size: 110%; }
+H4 { font-weight: bold; }
+H5 { font-size: 75%; }
+A:link { color: #000099; }
+A:active { color: #FF0000; }
+
+STRONG
+{
+	font-style: normal;
+	font-weight: bold;
+}
+
+.dlink { visibility: hidden; }
+.nowrap { white-space: nowrap; }
+.margin { margin-left: 15px; }
+.marginsmall { margin-left: 10px; }
+
+.blockquote
+{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.footer { text-align: center; }
+
+.textlink
+{
+	text-align: right;
+	font-size: smaller;
+}
+
+.copyright
+{
+	font-size: 10px;
+	text-align: center;
+}
+
+.bibliography
+{
+	font-family: "Comic Sans MS", serif;
+	text-indent: -1em;
+	margin-left: 1em;
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
+/* page breaks */
+.pagebreak { page-break-after: always; }
+
+/* print instructions Jan 06 MM*/
+
+#print_inst {
+	width:600px;
+	text-align: center; 
+}
+
+div.promo
+{
+	width: 93px;
+	height: 95px;
+	float: left;
+	text-align: center;
+}
+
+div.promo-txt
+{
+	width: 93px;
+	height: 50px;
+	float: left;
+	text-align: center;
+}
+
+
+div.promo-head
+{
+vertical-align: bottom; 
+width: 643px;
+}
+
+
+/* new styles for book recommendations 8/24/00 jf */
+.holiday
+{
+	font-weight: bold;
+	font-size: medium;
+	text-align: center;
+}
+
+.category
+{
+	font-weight: bold;
+	font-size: medium;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.bookTitle { font-weight: bold; }
+
+/* .bookAuthor - none jf 8/31 */
+.asterisk
+{
+	font-size: small;
+	text-decoration: underline;
+	vertical-align: super;
+}
+
+/* grownups index kl */
+p.gufirst { margin: 14px 10px 0 22px; }
+p.closer { margin: 9px 10px 0 22px; }
+p.farther { margin: 32px 10px 0 22px; }
+p.wider { margin: 9px 10px 0 15px; }
+
+/* health_tips and other pages (note n4 hacks) kl */
+#content, div.indent { margin: 0 40px; }
+
+#content ol
+{
+	margin-left: -20px;
+	padding: 0;
+}
+
+div#content ol { margin-left: 24px; }
+#content p.first { margin-top: -12px; }
+div#content p.first { margin: 0 0 1em; }
+#content h4 { margin: 1em 0 0; }
+div#content h4 { margin: 2.8em 0 0; }
+
+.tm
+{
+	font-weight: normal;
+	color: #333;
+}
+
+.mini { font-size: 11px; }
+.nohand { cursor: default; }
+
+a.radio-label
+{
+	color: black;
+	text-decoration: none;
+}
+
+div#teacherguide h4
+{
+	font-weight: bold;
+	vertical-align: bottom;
+	padding: 5px 0px 0px 0px;
+	margin: 5px 0px 0px 0px;
+}
+
+div#masthead h4
+{
+	font-weight: bold;
+	vertical-align: bottom;
+	padding: 0px 0px 10px 0px;
+	margin: 0px;
+}
+
+div#teacherguide h3
+{
+	font-weight: bold;
+	vertical-align: bottom;
+	padding: 0px;
+	margin: 0px;
+}
+
+.xtrapadding
+{
+	width: 65%;
+	margin: 0 0 0 20%;
+}
+
+.unbold { font-weight: normal; }
+
+/* Tower of cows */
+#l-col
+{
+	position: relative;
+	float: left;
+	text-align: center;
+	width: 121px;
+}
+
+#r-col
+{
+	position: relative;
+	float: left;
+	width: 508px;
+	padding-right: 10px;
+}
+
+table.funders img{
+	padding-right: 20px;
+	border: 0;
+}
+
+/*
