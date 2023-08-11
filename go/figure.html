@@ -1,0 +1,348 @@
+
+
+<title>PBS KIDS GO! . Go Figure</title>
+<link rel="stylesheet" href="/PBS-Kids-2006/go/go.css" type="text/css">
+<script language="javascript" src="/PBS-Kids-2006/go/go.js" type="text/javascript"></script>
+<script language="javascript" src="/PBS-Kids-2006/go/divlogic.js" type="text/javascript"></script>
+
+<style type="text/css">
+#magicfact	{ 
+	position:relative; width:357px; height:133px; z-index:100; 
+}
+
+#fact0 {
+        position:absolute; left:0; top:0px; z-index:1; width:357px; height:133px;
+}
+
+#fact0a, #fact1, #fact2, #fact3, #fact1a, #fact2a, #fact3a, #fact4, #fact4a  { 
+	position:absolute; visibility:hidden; left:0; top:0px; z-index:1; width:357px; height:133px;
+}
+
+</style>
+
+<script language="javascript">
+
+//now its time for the fact swapper
+
+var current_fact_num = 0;
+var current_fact_layer = 0;
+var highest_numbered_fact = 4;
+
+function swap_fact(arg) {
+	var old_fact = "fact" + current_fact_layer;
+        var oldbox = getElemRefs(old_fact);
+	if (oldbox.css) {
+		oldbox.css.visibility = "hidden";
+	}
+	var new_fact = "fact" + arg;
+        var newbox = getElemRefs(new_fact);
+        if (newbox.css) {
+                newbox.css.visibility = "visible";
+        }
+	current_fact_layer = arg;
+}
+
+
+
+
+function change_fact(arg) {
+	var new_fact_num = 0;
+	var new_fact_layer = 0;
+	if (arg == "down") {
+		new_fact_layer = current_fact_num - 1;
+		if (new_fact_layer < 0) {
+			new_fact_layer = highest_numbered_fact;
+		}
+		new_fact_num = new_fact_layer;
+	}
+	if (arg == "up") {
+		new_fact_layer = current_fact_num + 1;
+		if (new_fact_layer > highest_numbered_fact) {
+			new_fact_layer = 0;
+		}
+		new_fact_num = new_fact_layer;
+        } 
+	if (arg == "answer") {
+		new_fact_layer = current_fact_num + "a";
+		new_fact_num = current_fact_num;
+	}
+	swap_fact(new_fact_layer);
+	current_fact_num = new_fact_num;
+}
+
+//ok, now for the site list
+
+site_names = new Array("africa","aaworld","wayback","bigapplehistory","democracy","dontbuyit", "eekoworld", "historydetectives", "jazz", "stantonanthony","wonders"); 
+
+var linkholder= "/" + site_names[0];
+var current_site_name = "africa";
+var current_site_num = 0;
+
+var preloadflag = "false";
+
+function newImage(arg) {
+	rslt = new Image();
+	rslt.src = arg;
+	return rslt;
+}
+
+
+function preLoad() {
+	preloadflag = "true";
+	africaImage = newImage("/PBS-Kids-2006/program_images/small-africa.gif");
+	aaworldImage = newImage("/PBS-Kids-2006/program_images/small-aaworld.gif");
+	bigapplehistoryImage = newImage("/PBS-Kids-2006/program_images/small-bigapplehistory-skyline.gif");	
+	waybackImage = newImage("program_images/small-wayback.gif");
+	democracyImage = newImage("program_images/small-democracy.gif");
+	dontbuyitImage = newImage("program_images/small-dontbuyit.gif");
+	eekoworldImage = newImage("program_images/small-eekoworld.gif");
+	historydetectivesImage = newImage("program_images/small-historydetectives.gif");
+	jazzImage = newImage("program_images/small-jazz.gif");
+	stantonanthonyImage = newImage("program_images/small-stantonanthony.gif");
+	wondersImage = newImage("program_images/small-wonders.gif");
+	timed_siteimage();
+}
+
+
+function swap_siteimage(arg) {
+	var holder= arg + "Image.src";
+	document.siteimage.src = eval(holder);
+	linkholder = "/" + arg;
+}
+
+var siteimage_timeoutID = null;
+
+function switch_siteimage(arg,num) {
+	clearTimeout(siteimage_timeoutID);
+	if (preloadflag == "true") {
+		swap_siteimage(arg);
+		current_site_name = arg;
+		current_site_num = num;
+	}	
+	return true;
+}
+
+
+function rotate_siteimage() {
+	var newnum = current_site_num + 1;
+	if (newnum >= site_names.length) {
+		newnum = 0;
+	}
+	var newname = site_names[newnum];
+	switch_siteimage(newname,newnum);
+	timed_siteimage();
+}
+
+function timed_siteimage() {
+	clearTimeout(siteimage_timeoutID);
+	siteimage_timeoutID = setTimeout("rotate_siteimage()", 2000);
+}
+
+
+</script>
+</head>
+<body bgcolor="#FFFFFF" background="/web/20061116024946im_/http://pbskids.org/go/images/figure-background.gif" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" onload="preLoad()"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20061116024946/http%3A//pbskids.org/go/figure.html"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="/_static/images/toolbar/wayback-toolbar-logo-100.png, /_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, /_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://pbskids.org/go/figure.html" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20061116024946" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;">
+                    <a class="t" href="/web/20061116024946*/http://pbskids.org/go/figure.html" title="See a list of every capture for this URL">285 captures</a>
+          <div class="r" title="Timespan for captures of this URL">12 Oct 2004 - 04 Mar 2021</div>
+          </div>
+        <div class="k">
+          <a href="" id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="700" height="27" border="0"></canvas>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+          <tr class="m">
+            <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20060925143002/http://pbskids.org/go/figure.html" title="25 Sep 2006"><strong>Sep</strong></a></td>
+            <td class="c" id="displayMonthEl" title="You are here: 02:49:46 Nov 16, 2006">NOV</td>
+            <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20061217133005/http://pbskids.org:80/go/figure.html" title="17 Dec 2006"><strong>Dec</strong></a></td>
+          </tr>
+          <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+          <tr class="d">
+            <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20061108101019/http://pbskids.org:80/go/figure.html" title="10:10:19 Nov 08, 2006"><img src="/_static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a></td>
+            <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 02:49:46 Nov 16, 2006">16</td>
+            <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20061129060428/http://pbskids.org:80/go/figure.html" title="06:04:28 Nov 29, 2006"><img src="/_static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0" /></a></td>
+          </tr>
+          <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+          <tr class="y">
+            <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20051029193721/http://pbskids.org:80/go/figure.html" title="29 Oct 2005"><strong>2005</strong></a></td>
+            <td class="c" id="displayYearEl" title="You are here: 02:49:46 Nov 16, 2006">2006</td>
+            <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20071118144558/http://pbskids.org:80/go/figure.html" title="18 Nov 2007"><strong>2007</strong></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        </span>
+                <a class="xxs" href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+        <a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20061116024946/http://web.archive.org/screenshot/http://pbskids.org/go/figure.html"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+        <a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20061116024946/http://pbskids.org:80/go/figure.html" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+        <a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20061116024946/http://pbskids.org:80/go/figure.html" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+        <a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-notice" source="api"></div>
+                <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+            <div style="display:inline-block;vertical-align:top;width:50%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls);"></span>
+		Organization: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/33_crawl)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/33_crawl" target="_new"><span class="wm-title">33_crawl</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  this data is currently not publicly accessible.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20061116024946/http://pbskids.org:80/go/figure.html</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(700,27,25,2,"web","http://pbskids.org/go/figure.html","20061116024946",1996,"/_static/",["/_static/css/banner-styles.css?v=S1zqJCYt","/_static/css/iconochive.css?v=qtvMKcIJ"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+ 
+<!-- BIG TABLE START -->
+<table width="750" cellpadding="0" cellspacing="0" border="0" align="center">
+<tr><td colspan="2"><a href="index.html"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-logo-go.gif" width="100" height="88" border="0" alt="PBS KIDS GO!"></a><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-header.gif" width="211" height="88" border="0" alt="Go Figure"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-top.gif" width="149" height="88" border="0" usemap="#nav"></td><td rowspan="3" valign="top"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-middle.gif" width="20" height="588" border="0"></td><td rowspan="3">
+<!-- BLUE TABLE START -->
+<table width="249" cellpadding="0" cellspacing="0" border="0">
+<tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-text-getthefacts.gif" width="249" height="88" border="0" alt="Get the facts"></td></tr>
+<tr><td bgcolor="#52ADDE" height="392" valign="top" class="figurelist">
+<a href="javascript://" onclick="this.href = eval(&quot;linkholder&quot;)"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/small-africa.gif" width="95" height="50" border="0" alt="" name="siteimage"></a><br>
+<img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="95" height="8" border="0"><br>
+. <a href="/web/20061116024946/http://pbskids.org/africa/" class="figurelist" onmouseover="switch_siteimage('africa',0)" onmouseout="timed_siteimage()">Africa</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/aaworld/" class="figurelist" onmouseover="switch_siteimage('aaworld',1)" onmouseout="timed_siteimage()">African American World for Kids</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/wayback/" class="figurelist" onmouseover="switch_siteimage('wayback',2)" onmouseout="timed_siteimage()">American Experience: WayBack</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/bigapplehistory/" class="figurelist" onmouseover="switch_siteimage('bigapplehistory',3)" onmouseout="timed_siteimage()">Big Apple History</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/democracy/" class="figurelist" onmouseover="switch_siteimage('democracy',4)" onmouseout="timed_siteimage()">Democracy Project</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/dontbuyit/" class="figurelist" onmouseover="switch_siteimage('dontbuyit',5)" onmouseout="timed_siteimage()">Don't Buy It</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/eekoworld/" class="figurelist" onmouseover="switch_siteimage('eekoworld',6)" onmouseout="timed_siteimage()">EekoWorld</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/historydetectives/" class="figurelist" onmouseover="switch_siteimage('historydetectives',7)" onmouseout="timed_siteimage()">History Detectives Kids</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/jazz/" class="figurelist" onmouseover="switch_siteimage('jazz',8)" onmouseout="timed_siteimage()">Jazz</a><br>
+. <a href="/web/20061116024946/http://pbskids.org/stantonanthony/" class="figurelist" onmouseover="switch_siteimage('stantonanthony',8)" onmouseout="timed_siteimage()">Not for Ourselves Alone</a><br>
+. <a href="https://web.archive.org/web/20061116024946/http://www.pbs.org/wonders/Kids/kids.htm" class="figurelist" onmouseover="switch_siteimage('wonders',10)" onmouseout="timed_siteimage()">Wonders for the African World</a><br>
+</td></tr>
+<tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="249" height="108" border="0"></td></tr>
+</table>
+<!-- BLUE TABLE END -->
+</td><td rowspan="3" valign="top"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-right.gif" width="21" height="588" border="0"></td></tr>
+<tr><td colspan="2">
+<!-- ORANGE TABLE START -->
+
+<table width="460" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td rowspan="3"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-left.gif" width="33" height="146" border="0"></td><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="357" height="12" border="0"></td><td rowspan="3"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-buttons.gif" width="70" height="146" border="0" usemap="#buttons"></td>
+</tr>
+<tr>
+<td bgcolor="#EA720F" width="67">
+<div id="magicfact">
+<div id="fact0"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt=""><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/jazz/"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-jazz-neworleans.gif" width="55" height="70" border="0" alt="Jazz"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><a href="#" onclick="change_fact('answer')" class="figureanswer">What kind of music is known as swing, cool and bebop?</a></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F" align="right"><a href="#" onclick="change_fact('answer')"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button.gif" width="150" height="64" border="0" alt="GO!"></a></td></tr></table></div><div id="fact0a"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt="Jazz"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/jazz/"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-jazz-neworleans.gif" width="55" height="70" border="0" alt="Jazz"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><span class="figurefactid">FACT 161</span><br><span class="figureanswer">They are all types of jazz music.</span></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/jazz/"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button-jazz.gif" width="290" height="64" border="0" alt="Jazz"></a></td></tr></table></div>
+<div id="fact1"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt=""><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/wayback/"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-wayback-crashes.gif" width="55" height="70" border="0" alt="American Experience: WayBack"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><a href="#" onclick="change_fact('answer')" class="figureanswer">With no traffic lights, how did early 20th century drivers avoid crashes?</a></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F" align="right"><a href="#" onclick="change_fact('answer')"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button.gif" width="150" height="64" border="0" alt="GO!"></a></td></tr></table></div><div id="fact1a"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt="American Experience: WayBack"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/wayback/"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-wayback-crashes.gif" width="55" height="70" border="0" alt="American Experience: WayBack"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><span class="figurefactid">FACT 155</span><br><span class="figureanswer">They shouted, banged gongs and even let off fireworks at each intersection.</span></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/wayback/"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button-wayback.gif" width="290" height="64" border="0" alt="American Experience: WayBack"></a></td></tr></table></div><div id="fact2"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt=""><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/bigapplehistory"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-bigapplehistory-ditch.gif" width="55" height="70" border="0" alt="Big Apple History"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><a href="#" onclick="change_fact('answer')" class="figureanswer">Where can you find the 
+world’s longest ditch?
+
+</a></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F" align="right"><a href="#" onclick="change_fact('answer')"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button.gif" width="150" height="64" border="0" alt="GO!"></a></td></tr></table></div><div id="fact2a"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt="Big Apple History"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/bigapplehistory"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-bigapplehistory-ditch.gif" width="55" height="70" border="0" alt="Big Apple History"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><span class="figurefactid">FACT 158</span><br><span class="figureanswer">The Erie Canal. It is 363 miles long, 40 feet wide and 4 feet deep!
+</span></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/bigapplehistory"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button-bigapplehistory.gif" width="290" height="64" border="0" alt="Big Apple History"></a></td></tr></table></div><div id="fact3"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt=""><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/buster/"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-buster-firstsecond.gif" width="55" height="70" border="0" alt="Postcards from Buster"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><a href="#" onclick="change_fact('answer')" class="figureanswer">Would you rather be in a first line parade or a 
+second line parade?
+</a></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F" align="right"><a href="#" onclick="change_fact('answer')"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button.gif" width="150" height="64" border="0" alt="GO!"></a></td></tr></table></div><div id="fact3a"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt="Postcards from Buster"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/buster/"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-buster-firstsecond.gif" width="55" height="70" border="0" alt="Postcards from Buster"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><span class="figurefactid">FACT 140</span><br><span class="figureanswer">A second line parade is 
+very special. It celebrates a person’s life.
+
+</span></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/buster/"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button-buster.gif" width="290" height="64" border="0" alt="Postcards from Buster"></a></td></tr></table></div><div id="fact4"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt=""><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/dontbuyit"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-dontbuyit-actionfigure.gif" width="55" height="70" border="0" alt="Don't Buy It"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><a href="#" onclick="change_fact('answer')" class="figureanswer">Why doesn’t my 
+super-action toy look the same as on TV?
+</a></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F" align="right"><a href="#" onclick="change_fact('answer')"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button.gif" width="150" height="64" border="0" alt="GO!"></a></td></tr></table></div><div id="fact4a"><table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/blank.gif" width="12" height="70" border="0" alt="Don't Buy It"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/dontbuyit"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/tall-dontbuyit-actionfigure.gif" width="55" height="70" border="0" alt="Don't Buy It"></a></td><td bgcolor="#EA720F" style="padding: 0 8px 0 8px;"><span class="figurefactid">FACT 144</span><br><span class="figureanswer">Ads can make it look 
+cooler by showing items 
+you buy separately.
+</span></td></tr><tr><td bgcolor="#EA720F"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-dog-off.gif" width="67" height="64" border="0" onmouseover="activate('figuredog')" onmouseout="deactivate('figuredog')" name="figuredog" alt=""></td><td bgcolor="#EA720F"><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/dontbuyit"><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-fact-button-dontbuyit.gif" width="290" height="64" border="0" alt="Don't Buy It"></a></td></tr></table></div>
+</div></td></tr>
+</table>
+
+<!-- ORANGE TABLE END -->
+</td></tr>
+<tr><td bgcolor="#99CA22" valign="top" style="padding: 15px 0px 0px 15px;" width="186">
+<a href="https://web.archive.org/web/20061116024946/http://pbskids.org/bigapplehistory"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/small-bigapplehistory-skyline.gif" width="95" height="50" border="0" alt="Big Apple History - Big Apple History"></a><br><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/bigapplehistory" class="figurefeaturetitle">Big Apple History</a><br><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/bigapplehistory" class="figurefeatureteaser">Take a ride through New York City history</a><br><br><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/dontbuyit/advertisingtricks/betheaddetective_1.html"><img src="/web/20061116024946im_/http://pbskids.org/go/program_images/small-dontbuyit-addetective.gif" width="95" height="50" border="0" alt="Don't Buy It - Be the Ad Detective"></a><br><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/dontbuyit/advertisingtricks/betheaddetective_1.html" class="figurefeaturetitle">Don't Buy It</a><br><a href="https://web.archive.org/web/20061116024946/http://pbskids.org/dontbuyit/advertisingtricks/betheaddetective_1.html" class="figurefeatureteaser">Can you spot the ad?</a><br>
+</td><td><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-kid-pull.gif" width="274" height="143" border="0"><br><img src="/web/20061116024946im_/http://pbskids.org/go/images/figure-bottom.gif" width="274" height="211" border="0" usemap="#license"></td></tr>
+</td>
+</tr>
+</table>
+<!-- BIG TABLE END -->
+<br>
+<div align="center" class="fineprint"><a href="/web/20061116024946/http://pbskids.org/go/games.html" class="fineprint">Games</a> | <a href="/web/20061116024946/http://pbskids.org/go/figure.html" class="fineprint">Go Figure</a> | <a href="/web/20061116024946/http://pbskids.org/go/share.html" class="fineprint">Share</a> | <a href="/web/20061116024946/http://pbskids.org/help/" class="fineprint">Help</a> | <a href="/web/20061116024946/http://pbskids.org/tvschedules" class="fineprint">TV Times</a><br>
+Copyright &copy; 1995 - 2006 Public Broadcasting Service (PBS). All rights reserved.</div><br>
+<map name="buttons">
+<area shape="rect" alt="Down" coords="10,83,49,113" href="#" onclick="change_fact('down')">
+<area shape="rect" alt="Up" coords="10,46,49,76" href="#" onclick="change_fact('up')">
+</map>
+<map name="license">
+<area shape="rect" alt="Get Your Web License" coords="68,10,252,75" href="/web/20061116024946/http://pbskids.org/license">
+</map>
+<map name="nav">
+<area shape="rect" alt="Share" coords="74,0,148,25" href="share.html">
+<area shape="rect" alt="Games" coords="0,0,73,26" href="games.html">
+</map>
+</body>
+</html>
