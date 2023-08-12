@@ -94,7 +94,16 @@ document.write(unescape("%3Cscript src='" + GA_jshost + "google-analytics.com/ga
 </td>
 </tr>
 	
-		var fo = new FlashObject("/PBS-Kids-2006/swfs/homepage.swf", "homepage", "100%", "360", "7", "#ccffff");
+		var fo = new FlashObject("/PBS-Kids-2006/swfs/homepage.swf", "homepage", "100%", "360", "7", "#ccffff"); <!DOCTYPE html>
+<html>
+<head>
+   <title>Flash Content</title>
+</head>
+<body>
+   <embed src="/PBS-Kids-2006/swfs/homepage.swf" width="500" height="300">
+   <p>Your browser does not support Flash.</p>
+</body>
+</html>
 		fo.addVariable("allowScriptAccess", "sameDomain");
 		fo.write("flashcontent");
 
