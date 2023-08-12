@@ -1,0 +1,339 @@
+/* *******************
+ ******************** 
+ *		season		*
+ * 		six			*
+ * 		redesign	*
+ *		styles		*
+ ******************** 
+ ****************** */
+
+a.contenttop { color: #000000; }
+
+a:hover {
+	text-decoration: none;
+}
+
+
+img.block
+{
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+img.header
+{
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+
+img.subhead
+{
+	display: block;
+	margin: 0px;
+	padding: 15px;
+}
+
+/******************** 
+ * 		activity	*
+ * 		index		*
+ *		styles		*
+ *******************/
+
+img.indexcategory
+{
+/*	margin: 0px;
+	padding: 10px 0px 5px 0px;
+reversing this for Opera below:
+*/ 
+margin:10px 0px 5px 0px;
+padding:0;
+
+}
+
+div.linkcell a
+{
+	font-family: verdana;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 150%;
+}
+
+div.linkcell a:link { color: #FFFFFF; }
+div.linkcell a:visited { color: #4F880C; }
+div.linkcell a:hover { color: #CCFF33; }
+div.linkcell a:active { color: #CCFF33; }
+
+div#subnav a:link { color: #FFF; }
+div#subnav a:visited { color: #690; }
+div#subnav a:hover a:active { color: #CF3; }
+div.backtotop a:link { color: #FFF; }
+div.backtotop a:visited { color: #FFF; }
+div.backtotop a:active { color: #CF3; }
+
+
+
+div#limelight a:link { color: #fff; }
+div#limelight a:visited { color: #360; }
+div#limelight a:hover { color: #c30; text-decoration: none}
+div#limelight a:active { color: #c30; }
+
+
+/******************** 
+ * 		sidebar		*
+ *		styles		*
+ *******************/
+
+
+/** for some reason, everything that had called for div#today a.whatson was yanked late 4/15. I'm putting it back. KB **/
+
+div#today a.selectstation, div#today a.selectstation:link
+{
+	color: #FFFF99;
+	text-decoration: underline;
+}
+div#today a.whatson, div#today a.whatson:link
+{
+	color: #FFFF99;
+	text-decoration: underline;
+	font-size	: 11px;
+	font-weight: bold;
+}
+
+div#today a.selectstation, div#today a.selectstation:link
+{
+	font-size	: 10px;
+}
+
+div#today a.whatson:visited, div#today a.selectstation:visited
+{
+	color: #ff0;
+	text-decoration: underline;
+}
+
+div#today a.whatson:hover, div#today a.whatson:active, div#today a.selectstation:hover, div#today a.selectstation:active
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+
+div.sidebarbutton a.orange { color: #F63; }
+
+img.sidebarbuttonimage {
+	display: block;
+	text-align: center;
+	padding: 0px 10px 0px 0px;
+}
+
+
+.relatedcarrot { margin: 0px 0px 0px -15px; }
+
+.relatedcarrot2 { margin: 0px 0px 0px -15px; }
+
+td.relatedblue a:link {
+	color: #9ff;
+	font-weight: bold;	
+	display: block;
+	margin: 0px 0px 0px 15px;
+	padding: 0px 0px 0px 0px;
+}
+
+td.relatedblue a:visited {
+	color: #0cf;
+	font-weight: bold;	
+	display: block;
+	margin: 0px 0px 0px 15px;
+	padding: 0px 0px 0px 0px;
+}
+
+td.relatedblue a:hover, td.relatedblue a:active { color: #fff; }
+
+/**/
+td.newcastblue a:link {
+	color: #9ff;
+	font-weight: bold;	
+	display: block;
+	margin: 0px 0px 0px 15px;
+	padding: 0px 0px 0px 0px;
+}
+
+td.newcastblue a:visited {
+	color: #0cf;
+	font-weight: bold;	
+	display: block;
+	margin: 0px 0px 0px 15px;
+	padding: 0px 0px 0px 0px;
+}
+
+td.newcastblue a:hover, td.newcastblue a:active { color: #fff; }
+
+/**/
+
+td.relatedpink a:link {
+	color: #FFF;
+	padding: 0px;
+	margin: 0px;
+	font-weight: bold;	
+}
+
+/* db added 03/23/04 : changed order **/
+td.relatedpink a:visited { color: #F9C; }
+td.relatedpink a:hover, td.relatedpink a:active { color: #FF6; }
+
+
+/* a.relatedlink { */
+/* } */
+/*  */
+/* a.relatedlink:link { */
+/* /* 	display: block; */
+/* /* 	margin: 0px 0px 0px 15px; */
+/* /* 	padding: 0px 0px 0px 0px; */
+/* 	color:#FFF; */
+/* } */
+/*  */
+/* a.relatedlink:visited {  */
+/* /* 	display: block; */
+/* /* 	margin: 0px 0px 0px 15px; */
+/* /* 	padding: 0px 0px 0px 0px; */
+/* 	color:#999;	 */
+/* } */
+/*  */
+/* a.relatedlink:hover { */
+/* /* 	display: block; */
+/* /* 	margin: 0px 0px 0px 15px; */
+/* /* 	padding: 0px 0px 0px 0px; */
+/* 	text-decoration: none; */
+/* } */
+
+
+/******************** 
+ * 		activity	*
+ * 		index		*
+ *		styles		*
+ *******************/
+
+div.bucketbutton a {
+	font-weight: bold;
+	font-size: 11px;
+	font-family: verdana, sans-serif;
+}
+
+div.bucketbutton a.purpleplugin:link, div.bucketbutton a.purpleplugin:visited, div.bucketbutton span.purpleplugin {
+	color:#CB9ACB;
+	font-weight: normal;
+	font-size: 10px;
+}
+
+div.bucketbutton a.greenplugin:link, div.bucketbutton a.greenplugin:visited, div.bucketbutton span.greenplugin  {
+/*	color:#3D7000;*/
+color:#003300;
+	font-weight: normal;
+	font-size: 10px;
+}
+
+div.bucketbutton a.orangeplugin:link, div.bucketbutton a.orangeplugin:visited, div.bucketbutton span.orangeplugin {
+	color:#C00;
+	font-weight: normal;
+	font-size: 10px;
+}
+
+div.bucketbutton a:link { color: #FFF; }
+div.bucketbutton a:visited { color: #FFF; }
+div.bucketbutton a:hover { color: #CF3; }
+div.bucketbutton a:active { color: #CF3; }
+
+
+/******************** 
+ * 		footer		*
+ * 		link		*
+ *		styles		*
+ *******************/
+
+a.footerlink { color: #33CCFF; }
+a.footerlink:link { color: #33CCFF; }
+a.footerlink:visited { color: #3399CC; }
+a.footerlink:hover { color: #FF9900 }
+a.footerlink:active { color: #FF9900; }
+
+/** sidebar **/
+div.sidebarbutton a {
+	color: #F60;
+	font-size: 10px;
+	font-weight: bold;
+	font-family: verdana, sans-serif;
+	text-decoration:underline;
+}
+
+div.sidebarbutton a:link {
+	color: #F60;
+	font-size: 10px;
+	font-weight: bold;
+	font-family: verdana, sans-serif;
+	text-decoration:underline;
+}
+
+div.sidebarbutton a:visited {
+	color: #F60;
+	font-size: 10px;
+	font-weight: bold;
+	font-family: verdana, sans-serif;
+}
+
+div.sidebarbutton a:hover {
+	color: #F90;
+	text-decoration: none;
+	font-size: 10px;
+	font-weight: bold;
+	font-family: verdana, sans-serif;
+}
+div.sidebarbutton a:active {
+	color: #F90;
+	text-decoration: none;
+	font-size: 10px;
+	font-weight: bold;
+	font-family: verdana, sans-serif;
+}
+
+div.sidebarbutton a.orgbckcir { color: #f60; }
+div.sidebarbutton a.orgbckcir:link { color: #f60; }
+div.sidebarbutton a.orgbckcir:visited { color: #f60; }
+div.sidebarbutton a.orgbckcir:hover { color: #f90 }
+div.sidebarbutton a.orgbckcir:active { color: #f90; }
+
+div.sidebarbutton a.grnbckcir { color: #9c3; }
+div.sidebarbutton a.grnbckcir:link { color: #9c3; }
+div.sidebarbutton a.grnbckcir:visited { color: #9c3; }
+div.sidebarbutton a.grnbckcir:hover { color: #cf6 }
+div.sidebarbutton a.grnbckcir:active { color: #cf6; }
+
+div.sidebarbutton a.rasbckcir { color: #c39; }
+div.sidebarbutton a.rasbckcir:link { color: #c39; }
+div.sidebarbutton a.rasbckcir:visited { color: #c39; }
+div.sidebarbutton a.rasbckcir:hover { color: #f63 }
+div.sidebarbutton a.rasbckcir:active { color: #f63; }
+
+div.sidebarbutton a.sendit { color: #f90; }
+div.sidebarbutton a.sendit:link { color: #f90; }
+div.sidebarbutton a.sendit:visited { color: #f90; }
+div.sidebarbutton a.sendit:hover { color: #fc0 }
+div.sidebarbutton a.sendit:active { color: #fc0; }
+
+div.sidebarbutton a.printfr { color: #6cc; }
+div.sidebarbutton a.printfr:link { color: #6cc; }
+div.sidebarbutton a.printfr:visited { color: #6cc; }
+div.sidebarbutton a.printfr:hover { color: #9ff }
+div.sidebarbutton a.printfr:active { color: #9ff; }
+
+/******************** 
+ * 		unknown		*
+ *		styles		*
+ *******************/
+
+img.featureicon { }
+
+
+/*****************
+*   activities    *
+*****************/
