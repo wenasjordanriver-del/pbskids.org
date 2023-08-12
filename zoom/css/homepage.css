@@ -1,0 +1,391 @@
+/********************
+ ******************** 
+ *		season		*
+ * 		six			*
+ * 		redesign	*
+ *		styles		*
+ ******************** 
+ *******************/
+
+body {
+	background-image: url(/PBS-Kids-2006/zoom/images/bgcolors/circles.gif);
+	background-repeat: repeat;
+	background-attachment: fixed;
+	background-color: #000000;
+}
+
+/******************** 
+ * 		main div	*
+ *		styles		*
+ *******************/
+
+div.main {
+	margin: 0px;
+	padding: 0px;
+	width: 745px;
+}
+
+div.nav {
+	margin: 0px 0px 0px 15px;
+	width: 730px;
+	padding: 0px 0px 0px 15px;
+}
+
+div.content { width: 730px; }
+
+div.footer {
+	margin: 500px 0px 0px 0px;
+	width: 715px;
+	padding: 0px;
+}
+
+div.homefooter {
+	margin: 0px 0px 0px 0px;
+	width: 730px;
+	padding: 0px;
+	border-color: #3399CC;
+	border-width: 1px 0px 0px 0px;
+	border-style: dotted none none none;
+}
+
+/************
+ *	inside	*
+ *	content	*
+ *	div		*
+ ***********/
+
+/************
+ *	left	*
+ *	side	*
+ ***********/
+
+div.homeincidentals { padding: 0 0px 0 0; }
+
+div.limelight {
+	background-image: url(/PBS-Kids-2006/zoom/images/homepage/limelight.gif);
+	width: 160px;
+	height: 140px;
+	margin: 0px 0px 0px 15px;
+}
+
+div.limelight p {
+	padding: 55px 15px 30px 10px;
+	font-family: verdana;
+	font-size: 11px;
+	color: #336600;
+}
+
+div.limelight a:link {
+	text-decoration: underline;
+	font-family: verdana;
+	font-size: 11px;
+	color: #336600;
+	font-weight: bold;
+}
+
+div.limelight a:hover {
+	text-decoration: none;
+	font-family: verdana;
+	font-size: 11px;
+	color: #C30;
+	font-weight: bold;
+}
+
+
+/*	end incremental testing	*/
+.submissioncount {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+td.todaybg {
+	background-image: url(/PBS-Kids-2006/zoom/images/homepage/toz_spacer.gif);
+	background-position: top;
+	background-repeat: repeat-y;
+}
+
+div.today p {
+	padding: 0px 15px 0px 15px;
+	font-family: verdana;
+	text-align: center;
+	color: #993300;
+	font-size: 10px;
+}
+
+a.whatson:link {
+	color: #FF9;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 11px;
+}
+
+a.whatson:hover {
+	color: #FFF;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 11px;
+}
+
+a.whatson:visited {
+	color: #FF0;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 11px;
+}
+
+a.selectstation:link {
+	color: #FF9;
+	text-decoration: underline;
+	font-size: 10px;
+}
+
+a.selectstation:hover {
+	color: #FFF;
+	text-decoration: none;
+	font-size: 10px;
+}
+
+a.selectstation:visited {
+	color: #FF0;
+	text-decoration: underline;
+	font-size: 10px;
+}
+
+div.today span.presented {
+font-size:10px;
+}
+
+
+/************
+ *	center	*
+ ***********/
+
+div.maincontent {
+	width: 400px;
+	padding: 0px;
+}
+
+/************
+ *	marquee	*
+ ***********/
+
+/* for netscape 4; should be overridden in homeimport.css */
+div.homeincidentals {float:left; }
+td.marqueebg { background-color: #CC3300; }
+
+span.marqueeattribution {
+	font-family: verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+p.marqueetext {
+	margin: 0px 5px 0px 13px;
+	padding: 0px;
+	font-family: verdana;
+	font-size: 12px;
+	font-weight: regular;
+	vertical-align: top;
+	color: #FFFF00;
+}
+
+span.marqueelink {
+	text-align: right;
+	padding: 0px 0px 0px 60px;
+}
+
+a.marqueelink:link {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #FFFF00;
+
+}
+
+a.marqueelink:visited {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #FC0;
+}
+
+a.marqueelink:hover {
+	font-weight: bold;
+	text-decoration: none;
+	color: #FFF;
+}
+
+/************
+ *	hilites	*
+ ***********/
+
+/* div.hilites is overridden in homeimport.css, so I'm commenting this out - KB 4/21 */
+/*div.hilites { margin: 0px 0px 0px 165px; }*/
+td.hilitebg { background-color: #333399; }
+
+td.hiliteborder {
+border-left:1px dotted #fff;
+}
+
+
+p.hilitetextborder {
+	padding: 0px 0px 0px 25px;
+	font-family: verdana;
+	font-size: 11px;
+	vertical-align: top;
+	color: #00CCFF;
+	width: 150px;
+/*	border-left: #FFFFFF;
+	border-width: 0 0 0 1px;
+	border-style: none none none dotted;*/
+}
+
+p.hilitetextnoborder {
+	padding: 0px 0px 0px 25px;
+	font-family: verdana;
+	font-size: 11px;
+	vertical-align: top;
+	color: #00CCFF;
+	width: 150px;
+}
+
+/* div.starblock { */
+/* 	padding: 0 0px 0 30px; */
+/* 	font-family: verdana; */
+/* 	font-size: 11px; */
+/* 	vertical-align: top; */
+/* 	color: #00CCFF; */
+/* 	width: 120px; */
+/* } */
+
+/* img.starbullet { */
+/* 	margin: 0 10px 0 -10px; */
+/* 	padding: 0 10px 0 -10px; */
+/* } */
+
+a.hilitelink:hover {
+	color: #FFF;
+	font-weight: bold;
+	margin: 0;
+	text-decoration: none;
+}
+
+a.hilitelink:visited {
+	color: #0CF;
+	font-weight: bold;
+	margin: 0;
+}
+
+a.hilitepluginlink:link {
+	font-family: verdana;
+	font-size: 10px;
+	color: #09F;
+	font-weight: regular;
+}
+
+img.hilitecarrot { margin: 0px 0px 0px -15px; }
+
+/************
+ *	right	*
+ *	side	*
+ ***********/
+
+div.soundout { margin: -450px 0px 0px 0px; }
+td.soundoutbackground { background-color: #CC3399; }
+
+p.soundoutcontent {
+	color: #FFFFFF;
+	font-size: 11px;
+	font-family: verdana;
+}
+
+span.question {
+	color: #64031E;
+	font-size: 11px;
+	font-family: verdana;
+	font-weight: bold;
+	margin: 0 0 -10px 0;
+}
+
+a.resultslink:link{
+	color: #FC0;
+	font-size: 11px;
+	font-family: verdana;
+	margin: 0px;
+	padding: 0px;
+}
+
+a.resultslink:hover{
+	color: #FF0;
+	text-decoration: none;
+}
+
+a.resultslink:visited {
+	color: #FC0;
+	font-size: 11px;
+	font-family: verdana;
+	margin: 0px;
+	padding: 0px;
+}
+
+a.resultslink:active {
+	color: #FF0;
+	text-decoration: none;
+}
+
+
+
+div.answers {
+	padding: 0px;
+	margin: 0px;
+}
+
+span.answer {
+/*margin:5px 0px 0px 20px;*/
+}
+
+
+
+div.buttons {
+	text-align: center;
+	padding: 10px 0px 10px 0px;
+	margin: 0px;
+/*	height: 20px; */
+}
+
+input.surveybtn {
+	background-color: #F60;
+	color: #FFF;
+	font-family: verdana, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 0px 4px 2px 4px;
+	margin: 0px 0px 10px 0px;
+}
+
+
+
+/********************
+ *		footer 		*
+ *******************/
+
+.homefootertext {
+	color: #3399CC;
+	font-family: verdana;
+	font-size: 10px;
+}
+
+/********************
+ *		misc 		*
+ *******************/
+
+a.skipnav {
+	display: none;
+	visibility: none;
+	font-size: 0.1em;
+	width: 0px;
+	height: 0px;
+	line-height: 1px;
+}
+
+td.orange { background-color: #FF6600; }
+td.purple { background-color: #663399; }
+td.green { background-color: #669900; }
