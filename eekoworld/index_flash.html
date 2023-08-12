@@ -1,0 +1,121 @@
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>EekoWorld | PBS KIDS GO!</title>
+
+<script language="JavaScript">
+<!--
+	var browser = navigator.appName;
+	var version = parseFloat(navigator.appVersion);
+
+	if (browser == "Netscape" && version <5) {
+		document.write("<LINK REL=stylesheet HREF=\"incl/stylesNN.css\" TYPE=\"text/css\">");
+	} else {
+		document.write("<LINK REL=stylesheet HREF=\"incl/styles.css\" TYPE=\"text/css\">");
+	}
+// -->
+</script>
+
+</head>
+
+<script language="JavaScript">
+<!--
+//
+//this function calls the flash movie
+//
+function flashObj() { 
+	if(navigator.appName == 'Netscape'){ 
+		return document.embeds[0] 
+	}else{ 
+		// use the name/ID of the embeded swf 
+		return window['flash']
+	} 
+} 
+//
+//  Function to correct for 2.x Mac date bug.  Call this function to
+//  fix a date object prior to passing it to SetCookie.
+//  IMPORTANT:  This function should only be called *once* for
+//  any given date object!  See example at the end of this document.
+//
+function FixCookieDate (date) {
+  var base = new Date(0);
+  var skew = base.getTime(); // dawn of (Unix) time - should be 0
+  if (skew > 0)  // Except on the Mac - ahead of its time
+    date.setTime (date.getTime() - skew);
+}
+//
+//
+//this function sets the cookie which expires one hour from the time it is set
+//using the Date object and its methods
+//
+function setCookie(name){
+	//var mycookie = name+"="+flashObj().GetVariable('cookieValue')+";";
+	// set the cookie expiration date
+	var howlong = new Date(); // Setting "howlong" variable to current time
+	FixCookieDate (howlong); // Correct for Mac date bug - call only once for given Date object!
+	howlong.setTime(howlong.getTime() + 3600000); //adding 1 hour to "howlong"
+	howlong = howlong.toGMTString(); // translating "howlong" to GMT format
+	//
+	//mycookie = mycookie+"expires="+howlong; 
+	document.cookie = name+"="+flashObj().GetVariable('cookieValue')+";"+"expires="+howlong;
+	//alert("The cookie \n"+document.cookie);
+}
+
+// -->
+</script>
+
+<body bgcolor="#ffffff">
+
+
+
+<div align="center">
+
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="https://web.archive.org/web/20060925102946oe_/http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="760" height="445" id="flash" align="top">
+<param name="allowScriptAccess" value="sameDomain"/>
+<param name="movie" value="flash/core.swf"/>
+
+
+
+           <param name="FlashVars" value="PBSID=(none)&amp;PBSUserName=(none)"/>
+
+
+
+<embed src="/PBS-Kids-2006/eekoworld/flash/core.swf" flashvars="PBSID=(none)&amp;PBSUserName=(none)" menu="false" quality="high" bgcolor="#ffffff" width="760" height="445" name="flash" swliveconnect="true" align="top" allowscriptaccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"/>
+
+<param name="menu" value="false"/>
+<param name="quality" value="high"/>
+<param name="bgcolor" value="#ffffff"/>
+</object>
+
+</div>
+
+<table cellpadding="5" cellspacing="0" border="0" align="center">
+<tr>
+<td align="right">Made possible by <a href="/web/20060925102946/http://pbskids.org/cgi-registry/kidsbridge.cgi?context=eekoworld_cpb"><img src="/PBS-Kids-2006/eekoworld/images/logo_cbp.gif" width="45" height="46" alt="Corporation for Public Broadcasting" border="0" hspace="10" align="absmiddle"></a></td>
+
+<td align="center">Produced by <a href="/web/20060925102946/http://pbskids.org/cgi-registry/kidsbridge.cgi?context=eekoworld_bean"><img src="/PBS-Kids-2006/eekoworld/images/logo_beancreative.gif" width="127" height="51" alt="Bean Creative" border="0" hspace="10" align="absmiddle"></a></td>
+
+<td align="left">
+</td>
+</tr>
+
+<tr>
+<td align="right">&nbsp;</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">
+</td>
+</tr>
+
+<tr>
+<td colspan="3" align="center">Copyright &copy; 2005 <a href="/web/20060925102946/http://pbskids.org/cgi-registry/kidsbridge.cgi?context=eekoworld_pbs">PBS INTERACTIVE, Inc</a>. All rights reserved.</td>
+</tr>
+
+<tr>
+<td colspan="3" align="center"><strong>Technical note: </strong> If you are using Flash Player 8, you may experience some difficulty viewing some of the interactive stories.<br/>
+This is due to a bug in the player, not a problem with EekoWorld. </td>
+</tr>
+</table>
+
+
+</body>
+</html>
