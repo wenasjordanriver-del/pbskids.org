@@ -1,0 +1,119 @@
+/********************
+ ******************** 
+ *		season		*
+ * 		six			*
+ * 		redesign	*
+ *		styles		*
+ ******************** 
+ *******************/
+
+/************************ 
+ *		sidebar			*
+ *		styles			*
+ ***********************/
+
+.incidentalorange p
+{
+	margin: 0px 15px 0px 15px;
+	text-align: center;
+	color: #993300;
+	font-size: 10px;
+	font-family: verdana, sans;
+}
+div#today p
+{
+	font-size: 10px;
+}
+
+.relatedblue p
+{
+	margin: 0px 15px 0px 15px;
+	text-align: left;
+	color: #0CF;
+	font-size: 11px;
+	font-family: verdana, sans-serif;
+}
+
+.newcastblue p
+{
+	margin: 0px 15px 0px 15px;
+	text-align: left;
+	color: #0CF;
+	font-size: 11px;
+	font-family: verdana, sans-serif;
+}
+
+.relatedpink ul li
+{
+	font-size: 11px;
+	font-family: verdana, sans-serif;
+	font-weight: bold;
+	margin: 0 0 5px 30px;  /* db changed to margin bottom */
+	text-align: left;
+}
+
+p.relatedblurb
+{
+	padding: 0px 0px 0px 30px;
+	margin: 0px;
+}
+
+p.relatedtitle
+{
+font-weight:bold;
+padding-left:12px;
+display:block;
+}
+
+/******************** 
+ * 		bucket		*
+ * 		page		*
+ *		styles		*
+ *******************/
+
+div.bucketbutton
+{
+	font-size: 11px;
+	font-family: verdana, sans-serif;
+}
+
+div.bucketbutton .blurb {
+	color: #FFFF66;
+	/*display:block;
+	padding: 0px 0px 0px 10px;*/
+}
+
+
+/******************** 
+ * 		footer		*
+ *		styles		*
+ *******************/
+
+.footertopline p {
+	color: #F63;
+	font-family: verdana;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.footerbottomline p {
+	margin: 5px 0px 0px 0px;
+	color: #F63;
+	font-family: verdana;
+	font-size: 10px;
+	text-align: center;
+}
+
+/******************** 
+ *		form		*
+ *		styles		*
+ *******************/
+
+select option, input, textarea
+{
+/*	font-family: Andale Mono, monospace;*/
+	font-family: "andale mono", "lucida console", monaco, monospace;
+}
+
+.white { color: #FFF; }
