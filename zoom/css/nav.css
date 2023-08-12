@@ -1,0 +1,37 @@
+.searchfield { text-align: center; }
+td.searchheight { height: 21px; }
+
+.searchbutton
+{
+	margin: 0 5px 0 5px;
+	padding: 0px 5px 0px 5px;
+}
+
+input#words
+{
+	width: 144px;
+	font-family: "Andale Mono", "Lucida Console", "Monaco", "monospace";
+	font-size: 10px;
+/*	height: 14px;*/
+}
+
+input#submit
+{
+	width: 64px;
+	font-family: verdana, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	height: 21px;
+	vertical-align: bottom;
+	line-height: 100%;
+}
+
+img.block
+{
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	clear: none;
+	border-width: 0px;
+	text-align: left;
+}
