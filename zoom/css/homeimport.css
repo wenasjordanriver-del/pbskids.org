@@ -1,0 +1,453 @@
+/********************
+ ******************** 
+ *		season		*
+ * 		six			*
+ * 		redesign	*
+ *		styles		*
+ ******************** 
+ *******************/
+
+body {
+	background-image: url(/PBS-Kids-2006/zoom/images/bgcolors/circles.gif);
+	background-repeat: repeat;
+	background-attachment: fixed;
+	background-color: #000000;
+}
+
+/******************** 
+ * 		main div	*
+ *		styles		*
+ *******************/
+
+div.main {
+	margin: 0px;
+	padding: 0px;
+	width: 745px;
+}
+
+div.nav {
+	width: 730px;
+	position: absolute;
+	left: 15px;
+	top: 0px;
+	z-index: 1;
+	padding: 0px;
+	margin: 0px;
+}
+
+div.content {
+	width: 730px;
+	/* 	padding: 0px; */
+	/* 	/* screws up rollovers in NN4.x on the mac */
+	/* 	position: relative; */
+	/* 	left: 100px; */
+	/* 	/* end screw-up */
+	/* 	z-index: 100; */
+	/* 	margin: 10px 0px 0px 0px; */
+}
+
+div.footer {
+	margin: 20px 0px 0px 0px;
+	width: 715px;
+	padding: 0px;
+	position: absolute;
+	top: 600px;
+	left: 15px;
+	z-index: 1;
+}
+
+div.homefooter {
+	margin: 20px 0px 0px 0px;
+	width: 730px;
+	padding: 0px;
+	position: absolute;
+	top: 700px;
+	left: 15px;
+	z-index: 1;
+	border-color: #3399CC;
+	border-width: 1px 0px 0px 0px;
+	border-style: dotted none none none;
+}
+
+/************
+ *	inside	*
+ *	content	*
+ *	div		*
+ ***********/
+
+/************
+ *	left	*
+ *	side	*
+ ***********/
+
+div.homeincidentals {
+	/* 	width: 50px; */
+	float: left;
+	position: absolute;
+	top: 140px;
+	left: 15px;
+	z-index: 2;
+	padding: 0 0px 0 0;
+	margin: 0px;
+}
+
+div.limelight {
+	position: absolute;
+	top: 20px;
+	background-image: url(/PBS-Kids-2006/zoom/images/homepage/limelight.gif);
+	width: 160px;
+	height: 140px;
+	z-index: 5;
+	margin: 0px;
+}
+
+div.limelight p {
+	padding: 55px 15px 30px 10px;
+	font-family: verdana;
+	font-size: 11px;
+	color: #336600;
+}
+
+div.limelight a {
+	text-decoration: underline;
+	font-family: verdana;
+	font-size: 11px;
+	color: #336600;
+	font-weight: bold;
+}
+
+.submissioncount { font-weight: bold; }
+
+div.today {
+	width: 160px;
+	position: absolute;
+	top: 170px;
+	margin: -25px 0px 0px 0px;
+	z-index: 10;
+}
+
+div.today td.todaybg {
+	background-image: url(/PBS-Kids-2006/zoom/images/homepage/toz_spacer.gif);
+	background-position: top;
+	background-repeat: repeat-y;
+}
+
+td.todaybg p {
+font-size:10px;
+}
+
+div.today p {
+	padding: 0px 15px 0px 15px;
+	font-family: verdana;
+	font-size: 11px;
+	text-align: center;
+	color: #993300;
+}
+/* this a.whatson bit was yanked late 4/15 - why? KB 
+div.today a.whatson {
+	color: #FFFF99;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+div.today a.selectstation {
+	color: #FFFF99;
+	text-decoration: underline;
+}*/
+
+/************
+ *	center	*
+ ***********/
+
+div.maincontent {
+	width: 400px;
+	padding: 0px;
+	position: absolute;
+	left: 175px;
+	top: 150px;
+	z-index: 100;
+	/* 	margin: 10px 0px 0px 0px; */
+}
+
+/************
+ *	marquee	*
+ ***********/
+
+div.marquee { margin: 0px; }
+div.marquee td.marqueebg { background-color: #CC3300; }
+
+span.marqueeattribution {
+	font-family: verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+div.marquee p.marqueetext {
+	margin: 0px 5px 0px 13px;
+	padding: 0px;
+	font-family: verdana;
+	font-size: 12px;
+	font-weight: regular;
+	vertical-align: top;
+	color: #FFFF00;
+}
+
+div.marquee span.marqueelink {
+	padding: 0px 0px 0px 0px;
+	display: block;
+}
+
+div.marquee a.marqueelink:link {
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: underline;
+	color: #FFFF00;
+
+}
+
+div.marquee a.marqueelink:visited {
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: underline;
+	color: #FC0;
+/*	padding: 0px 0px 0px 0px;
+	display: block;*/
+}
+
+div.marquee a.marqueelink:hover {
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #FFF;
+/*	padding: 0px 0px 0px 0px;
+	display: block;*/
+}
+
+
+/************
+ *	hilites	*
+ ***********/
+
+div.hilites {
+	position: absolute;
+	top: 155px;
+	left: 0px;
+	/* 	border-width: 1px; */
+	/* 	border-color: #FFF; */
+	/* 	border-style: dotted; */
+	margin: 0px;
+	padding: 0px;
+}
+
+div.hilites td.hilitebg { background-color: #333399; }
+
+td.hiliteborder {
+border-left:1px dotted #fff;
+}
+
+
+p.hilitetextborder {
+	/* 	padding: 0px 0px 0px 25px; */
+	font-family: verdana;
+	font-size: 11px;
+	vertical-align: top;
+	color: #00CCFF;
+	width: 150px;
+/*	border-left: #FFFFFF;
+	border-width: 0 0 0 1px;
+	border-style: none none none dotted;*/
+}
+
+p.hilitetextnoborder {
+	/* 	padding: 0px 0px 0px 25px; */
+	font-family: verdana;
+	font-size: 11px;
+	vertical-align: top;
+	color: #00CCFF;
+	width: 150px;
+}
+
+div.starblock {
+	/* 	padding: 0 0px 0 30px; */
+	font-family: verdana;
+	font-size: 11px;
+	vertical-align: top;
+	color: #00CCFF;
+	width: 120px;
+}
+
+img.starbullet {
+	margin: 0 10px 0 -10px;
+	padding: 0 10px 0 -10px;
+}
+
+a.hilitelink:link {
+	font-family: verdana;
+	font-size: 11px;
+	vertical-align: top;
+	color: #9FF;
+	width: 150px;
+	font-weight: bold;
+	margin: 0;
+	display: block;
+}
+
+a.hilitelink:hover {
+	color: #FFF;
+	font-weight: bold;
+	margin: 0;
+	text-decoration: none;
+	display: block;
+}
+
+a.hilitelink:visited {
+	color: #0CF;
+	font-weight: bold;
+	margin: 0;
+	display: block;
+}
+
+
+/************
+ *	right	*
+ *	side	*
+ ***********/
+
+div.soundout {
+	width: 170px;
+	float: left;
+	position: absolute;
+	top: 140px;
+	left: 560px;
+	z-index: 3;
+	margin: 0px;
+}
+
+td.soundoutbackground {
+	background-color: #CC3399;
+	padding: 0px 15px 0px 15px;
+}
+
+p.soundoutcontent {
+	color: #FFFFFF;
+	font-size: 11px;
+	font-family: verdana;
+}
+
+td.soundoutbackground span.question {
+	color: #64031E;
+	font-size: 11px;
+	font-family: verdana;
+	font-weight: bold;
+}
+
+td.soundoutbackground span.question a {
+	color: #FC0;
+}
+
+
+td.soundoutbackground span.answer {
+	color: #FFFFFF;
+	font-size: 11px;
+	font-family: verdana;
+}
+
+a.resultslink:link{
+	color: #FC0;
+	font-size: 11px;
+	font-family: verdana;
+	margin: 0px;
+	padding: 0px;
+}
+
+a.resultslink:hover{
+	color: #FF0;
+	text-decoration: none;
+}
+
+a.resultslink:visited {
+	color: #FC0;
+	font-size: 11px;
+	font-family: verdana;
+	margin: 0px;
+	padding: 0px;
+}
+
+a.resultslink:active {
+	color: #FF0;
+	text-decoration: none;
+}
+
+div.answers {
+	padding: 5px 0px 0px 0px;
+	margin: 5px 0px 0px 0px;
+}
+
+div.buttons {
+	text-align: center;
+	padding: 10px 0px 10px 0px;
+	margin: 0px;
+}
+
+span.answer {
+	color: #FFFFFF;
+	font-size: 11px;
+	font-family: verdana;
+	display: block;
+/*	margin: 5px 0px 0px 20px; */
+margin: 0px 0px 5px 20px;
+}
+
+
+span.answer input {
+/* this negative margin seems to mess up safari 
+	margin: 0px 0px 0px -20px; */
+	margin: 0px 0px 0px 0px;
+}
+
+div.answers input.rad {
+float:left;
+clear:left;
+margin:0;
+}
+
+
+/********************
+ *		footer 		*
+ *******************/
+
+.homefootertext {
+	color: #3399CC;
+	font-family: verdana;
+	font-size: 10px;
+}
+
+td.footertopline {
+margin:0px;
+padding:0px;
+}
+
+td.footerbottomline {
+margin:0px;
+padding:0px;
+}
+
+/********************
+ *		misc 		*
+ *******************/
+
+a.skipnav {
+	display: none;
+	visibility: none;
+	font-size: 0.1em;
+	width: 0px;
+	height: 0px;
+	line-height: 1px;
+}
+
+td.orange { background-color: #FF6600; }
+td.purple { background-color: #663399; }
+td.green { background-color: #669900; }
