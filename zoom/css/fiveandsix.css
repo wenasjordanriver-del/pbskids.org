@@ -1,0 +1,217 @@
+/********************
+ ******************** 
+ *	season			*
+ * 	six				*
+ * 	redesign		*
+ *	styles			*
+ *		for 		*
+ *		older		*
+ *		pages		*
+ ******************** 
+ *******************/
+
+body,td,th, span, p {
+	font-family: verdana,helvetica,sans-serif;
+	font-size: 11px;
+}
+
+
+
+/* seems OPERA needs the underline for links set explicitly?*/
+
+a:link {
+text-decoration:underline;
+} 
+
+/*** KB 4/1: this is in pagesix.css but not here, and it affects the footer: **/
+td {
+margin:0px;
+padding:0px;
+}
+
+div.footer p {
+margin:0 0 4px 0;
+padding:0px;
+}
+
+span.kside {
+font-size:100%;
+}
+
+.subscript {
+font-size:75%;
+line-height:50%;
+vertical-align:sub;
+}
+
+/* td { */
+/* 	text-align: left; */
+/* } */
+
+body
+{
+	background-repeat: repeat;
+	background-attachment: fixed;
+}
+
+a.skipnav
+{
+	display: none;
+	visibility: none;
+	font-size: 0.1em;
+	width: 0px;
+	height: 0px;
+	line-height: 1px;
+}
+
+
+/******************** 
+ * 		main div	*
+ *		styles		*
+ *******************/
+div#main
+{
+	margin: 0px;
+	padding: 0px;
+	width: 745px;
+}
+
+div#nav
+{
+	margin: 0px 0px 0px 15px;
+	width: 730px;
+	padding: 0px;
+}
+
+div#printablenav {
+	display: none;
+}
+
+div#content {
+	margin: 10px 0px 0px 125px;
+	width: 540px;
+	padding: 0px;
+	z-index: 200;
+}
+
+div.footer {
+	margin: 20px 0px 20px 15px;
+	width: 715px;
+	padding: 0px;
+	font-family: verdana;
+	font-size: 11px;
+}
+
+/******************** 
+ * 		sidebar		*
+ *		styles		*
+ *******************/
+div#incidental
+{
+	width: 100px;
+	float: left;
+	position: absolute;
+	top: 200px;
+	left: 20px;
+	z-index: 2;
+	padding: 0px 50px 0px 0px;
+}
+
+div.sidebarbutton {
+	padding: 0px 0px 30px 0px;
+	margin-right:10px;
+	font-weight: bold;
+	width: 100px;
+	text-align: center;
+	font-size: 10px;
+}
+
+div.sidebarbutton p {
+margin:12px 0 0 0;
+font-size:100%;
+}
+
+div#related
+{
+	width: 50px;
+	float: left;
+	position: absolute;
+	top: 300px;
+	left: 605px;
+	z-index: 3;
+	padding: 0 0 0 50px;
+}
+
+div#extra
+{
+	display: none;
+}
+
+
+div#today span.presented {
+font-size:10px;
+}
+
+
+
+/******************** 
+ *		bucket		*
+ * 		page		*
+ *		styles		*
+ *******************/
+
+td.pink { background-color: #CC3399; }
+td.darkpink { background-color: #C36;}
+td.red { background-color: #990066; }
+td.orange { background-color: #FF6600; }
+td.paleorange { background-color: #FF6633; }
+td.notmango {background-color:#FF9900; }
+td.darkyellow {background-color:#FFAB00;}
+td.yellow { background-color: #FFCC00; }
+td.litegreen { background-color: #9C3; }
+td.green { background-color: #669900; }
+td.seagreen {background-color: #399;}
+td.turquoise { background-color: #3CC;}
+td.liteblue { background-color: #6CF;}
+td.medblue {background-color: #339;}
+td.blue { background-color: #069;}
+td.darkblue { background-color: #006;}
+td.purple { background-color: #663399; }
+td.mango { background-color: #FC3; }
+td.violet { background-color: #906; }
+
+.bgyel { background-color: #ffff66; }
+.bgltyel { background-color: #ffffcc; }
+.bgorg { background-color: #ff9966; }
+.bgltorg { background-color: #ffcccc; }
+.bgdkorg { background-color: #ff6633; }
+.bgblu { background-color: #99ccff; }
+.bggrn { background-color: #66cc66; }
+.bgltgrn { background-color: #ccffcc; }
+.bggry { background-color: #eeeeee; }
+
+
+
+
+/******************** 
+ * 		table		*
+ *		cell		*
+ *		alignment	*
+ *		styles		*
+ *******************/
+h2.printableheader {
+	display:none;
+}
+
+
+td.rightcell {
+	text-align: right;
+}
+
+td.centercell {
+	text-align: center;
+}
+
+td.leftcell {
+	text-align: left;
+}
