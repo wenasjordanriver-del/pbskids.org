@@ -1,0 +1,375 @@
+/********************
+ ******************** 
+ *		season		*
+ * 		six			*
+ * 		redesign	*
+ *		styles		*
+ ******************** 
+ *******************/
+
+body,td, span, p
+{
+	margin: 0px;
+	padding: 0px;
+	font-family: verdana,helvetica,sans-serif;
+	font-size: 11px;
+}
+
+div#content
+{
+	margin: 0px 0px 0px 15px;
+	width: 715px;
+	padding: 0px;
+}
+
+/************************ 
+ *		sidebar			*
+ *		styles			*
+ ***********************/
+div#incidental { display: none; }
+div#related { display: none; }
+div#extra { display: none; }
+
+td#relatedcolumn {
+	vertical-align: top;
+	text-align: left;
+}
+
+div.related {
+margin-top:90px;
+}
+
+td#incidentalcolumn {
+	vertical-align: top;
+	text-align: right;
+}
+
+td#headerimage { vertical-align: bottom; }
+
+/** db added margin-top */
+div#today
+{
+    margin-top: 50px;
+}
+
+div#today p
+{
+	padding: 0px 0px 5px 0px;
+	font-family: verdana;
+	font-size: 11px;
+	text-align: center;
+	color: #993300;
+}
+
+p.relatedchunk {
+	padding: 10px 0px 0px 0px;
+	width: 110px;
+	margin: 0px;
+}
+
+
+
+.incidentalorange
+{
+	background-image: url(/PBS-Kids-2006/zoom/images/bucket/tv_long_spacer.gif);
+	background-position: top;
+	background-repeat: repeat-y;
+	margin: 0px;
+}
+
+.incidentalgreen
+{
+	background-image: url(/PBS-Kids-2006/zoom/images/incidental/green_spacer_test.gif);
+	background-position: top;
+	background-repeat: repeat-y;
+	margin: 0px;
+}
+
+.incidentalgreen p { margin: 10px; }
+
+
+.relatedblue
+{
+	background-image: url(/PBS-Kids-2006/zoom/images/bucket/rl_spacer.gif);
+	background-position: top left;
+	background-repeat: repeat-y;
+/* 	margin: 0px; */
+}
+
+td.relatedblue {
+padding:0 10px 0 0;
+}
+
+.newcastblue {
+	background-image: url(/PBS-Kids-2006/zoom/images/related/sidebar/cast_spacer.gif);
+	background-position: top left;
+	background-repeat: repeat-y;
+	/* 	margin: 0px; */
+}
+
+.relatedpink {
+	background-image: url(/PBS-Kids-2006/zoom/images/related/sidebar/survey_spacer.gif);
+	background-position: top-
+	background-repeat: repeat-y;
+}
+
+.relatedpink ul
+{
+	text-align: left;
+	list-style-image: url(/PBS-Kids-2006/zoom/images/bullets/raspberry/orange_rsbry2.gif);  /* db changed graphic */
+	vertical-align: bottom;
+}
+
+.limelightbg
+{
+	background-image: url(/PBS-Kids-2006/zoom/images/incidental/limelight_bckgrnd.gif);
+	background-repeat: no-repeat;
+	margin: 0px;
+/*	background-color: #9C3; */
+	text-align:left;
+}
+
+.limebutton
+{
+	background-image: url(/PBS-Kids-2006/zoom/images/incidental/limelight_spacer.gif);
+	background-repeat: repeat-y;
+	margin: 0px;
+	background-color: #99CC33;
+	text-align: center;
+	vertical-align: top;
+}
+
+/* db added float right and margin top */
+div#zoinksdiv {
+	text-align: right;
+	float: right;	
+	margin-top  : 100px;
+}
+
+/* db added specifity to override img.sidebarbuttonimage */
+div#zoinksdiv img.sidebarbuttonimage 
+{
+	padding: 0px 0px 0px 10px;
+}
+
+div#limelight p
+{
+	padding: 5px 15px 5px 15px;
+	font-family: verdana;
+	font-size: 11px;
+	color: #336600;
+}
+
+div#limelight a
+{
+	text-decoration: underline;
+	font-family: verdana, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.submissioncount
+{
+	margin: 5px 0px 5px 0px;
+	font-weight: bold;
+	font-size: 13px;
+	display: block;
+}
+
+div#snail p
+{
+	padding: 0px 0px 0px 5px;
+	font-family: verdana;
+	font-size: 11px;
+}
+
+
+p.snailmail
+{
+	color: #FFFF66;
+	font-weight: bold;
+	text-align  : left;
+}
+
+p.greencopy {
+	color: #CF6;
+	text-align  : left;		
+}
+
+p.greenboldcopy
+{
+	color: #CCFF66;
+	text-align  : left;	
+	font-weight: bold;
+	padding: 0px 0px 0px 28px;
+	margin: 0 0 0 10px;
+}
+
+td.incidentalgreen ul.helpsubnav li a:link {
+	color:#fff;
+}
+
+td.incidentalgreen ul.helpsubnav li a:visited {
+	color: #cf6;
+}
+
+td.incidentalgreen ul.helpsubnav li a:hover {
+	color: #ff6;
+	text-decoration: none;
+}
+
+
+
+p.greenboldcopy a.inhelp:link {
+	color: #ff6;
+	text-decoration: none;
+}
+p.greenboldcopy a.inhelp:visited {
+	color: #ff6;
+	text-decoration: none;
+}
+
+
+p.greenboldcopy a:link {
+	color: #FFF;
+}
+
+p.greenboldcopy a:visited {
+	color: #CF6;
+}
+
+p.greenboldcopy a:hover {
+	color: #ff6;
+	text-decoration: none;
+}
+
+
+
+
+/************************ 
+ *		activities		*
+ *		from the		*
+ *		show			*
+ * 		index			*
+ * 		page			*
+ *		styles			*
+ ***********************/
+table#indexcolumns {
+/*	clear: left;*/
+	margin: 0px;
+	padding: 0px;
+}
+td.indexpagebackground { background-color: #99CC33; }
+
+div.linkcell /*table#indexcolumns */ {
+	padding: 0px 30px 0px 30px;
+	vertical-align: top;
+	/*width: 140px;*/
+}
+
+div.categorycell {
+
+	margin: 0px;
+/*	height: 20px;
+	padding: 0px -15px 0px -15px;*/
+	vertical-align: bottom;
+	width: 440px;
+}
+
+div#subnav {
+	font-family: verdana;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: 150%;
+	color: #39C;
+	margin: 0px 15px 0px 15px;
+	display: block;
+	width: 410px;
+}
+
+br.subnavbreak
+{
+	clear: left;
+	padding: 0px;
+	margin: 0px;
+}
+
+div.backtotop {
+	font-family: verdana;
+	font-size: 10px;
+	padding: 15px 0px 10px 30px;
+}
+
+/******************** 
+ *		bucket		*
+ * 		page		*
+ *		styles		*
+ *******************/
+
+td.pink { background-color: #CC3399; }
+td.darkpink { background-color: #C36;}
+td.red { background-color: #990066; }
+td.orange { background-color: #FF6600; }
+td.paleorange { background-color: #FF6633; }
+td.notmango {background-color:#FF9900; }
+td.darkyellow {background-color:#FFAB00;}
+td.yellow { background-color: #FFCC00; }
+td.litegreen { background-color: #9C3; }
+td.green { background-color: #669900; }
+td.seagreen {background-color: #399;}
+td.turquoise { background-color: #3CC;}
+td.liteblue { background-color: #6CF;}
+td.medblue {background-color: #339;}
+td.blue { background-color: #069;}
+td.darkblue { background-color: #006;}
+td.purple { background-color: #663399; }
+td.white { background-color: #FFFFFF; }
+td.mango { background-color: #FC3; }
+td.violet { background-color: #906; }
+
+div.bucketbutton {
+	margin:3px 0 0 0;
+	padding: 10px 0px 5px 0px;
+	clear: both;
+/*	 db added*/
+	width: 210px; 
+}
+
+ul.orangebulletonpurple {
+	list-style-image: url(/PBS-Kids-2006/zoom/images/bullets/purple/orange_purple.gif);
+}
+
+
+div.tozbutton
+{
+	padding: 5px;
+	clear: both;
+	width: 200px;
+}
+
+div.bucketbutton .title {
+/*	display : block;  
+ 	margin: 10px 0px 0px 0px;*/
+
+}
+
+
+img.bucketicon {
+/*	padding: 0px 0px 15px 0px;
+	margin: 0px 3px 0px 0px;*/
+	margin:0px 8px 0px 0px;
+	padding:0px 0px 2px 0px;
+}
+
+p.blockquote {
+	width: 100px;
+	padding: 10px 0px 0px 75px;
+}
+
+/* db added 03/23/04 : changed order **/
+ul.relatedlist
+{
+    margin     : 0 0 15px 0;
+    padding    : 0 8px 0 0;
+}
