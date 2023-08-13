@@ -1,0 +1,27 @@
+div#nav
+{
+	margin: 0px;
+	position: relative;
+	top: 0px;
+	left: 15px;
+	z-index: 1;
+}
+
+
+div#content
+{
+	/* screws up rollovers in NN4.x on the mac */
+	position: relative;
+	left: 125px;
+	/* end screw-up */
+	margin: 10px 0px 0px 0px;
+}
+
+div#footer
+{
+	margin: 20px 0px 0px 0px;
+	position: relative;
+	top: 0px;
+	left: 15px;
+	z-index: 1;
+}
