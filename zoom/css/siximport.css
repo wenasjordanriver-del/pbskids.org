@@ -1,0 +1,49 @@
+div#incidental
+{
+	color: #FFFFFF;
+	font-family: verdana;
+	font-size: 10px;
+}
+
+div#related {
+	color: #FFFFFF;
+	font-family: verdana;
+	font-size: 10px;
+}
+
+div#content
+{
+	/* screws up rollovers in NN4.x on the mac */
+	position: relative;
+	z-index: 100;
+/*	top: -10px;*/
+	top: -20px;
+	left: 15px;
+	/* end screw-up */
+	margin: 0px;
+}
+
+div.buttontext {
+	width :  104px;
+	float : left;
+	margin : 0px 0px 10px -10px;
+	padding:0 0 0 10px;
+}
+
+
+div.buttontext p { margin: 0px; }
+
+.bucketbullet {
+/*margin: 5px 0px 0px -10px;*/
+margin:5px 0px 0px 0px;
+float:left;
+padding:0;
+
+}
+
+div.subhead {
+padding:0;
+margin: 4px 0px 0px 0px;
+clear:left;
+width:104px;
+}
