@@ -1,0 +1,190 @@
+/***********
+* PRESENTZ *
+**********/
+
+div.pspace {
+
+padding:10px 30px 20px 30px;
+/*clear:all;*/
+vertical-align:center;
+}
+
+div.presentz {
+font-family:verdana,sans-serif;
+font-size:11px;
+color:#FF6;
+}
+
+div.presentz h2 {
+font-size:13px;
+font-weight:bold;
+margin:0px;
+}
+
+
+div.presentz a {
+color: #FFF;
+font-weight:bold;
+}
+
+div.presentz a:visited {
+color:#9FF;
+}
+
+div.presentz a:hover {
+color:#033;
+text-decoration:none;
+}
+
+
+img.presentz {
+float: left;
+margin-right:15px;
+}
+
+div.dots {
+text-align:center;
+color:#033;
+font-size:15px;
+letter-spacing:2px;
+margin:0px 0px 6px 0px;
+}
+
+div.note {
+color: #9FF;
+}
+
+
+
+/***********
+* PENDULUM *
+***********/
+
+div.penbody {
+font-family:verdana,sans-serif;
+font-size:11px;
+color:#FF6;
+margin:0px 15px 0px 15px;
+}
+
+div.penbody a {
+font-weight:bold;
+color:#FFF;
+}
+
+div.penbody a:visited {
+color:#900;
+}
+
+div.penbody a:hover {
+color:#FF6;
+text-decoration:none:
+}
+
+
+
+span.header {
+font-size:11px;
+color:#FF6;
+font-weight:bold;
+}
+
+
+div.navbar {
+font-size:10px;
+color:#C30;
+}
+
+div.navbar span.headerb {
+font-size:10px;
+color:#FFF;
+font-weight:bold;
+}
+
+div.navbar span.current {
+color:#FFF;
+font-weight:bold;
+font-size:10px;
+}
+
+div.navbar a {
+font-size:10px;
+}
+
+h2 {
+margin:0px 0px 0px 0px;
+}
+
+div.pendulum {
+margin:0px 15px 0px 15px;
+
+}
+
+div.center {
+text-align:center;
+}
+
+img.pendulum {
+float:left;
+}
+
+h3 {
+font-family:verdana,sans-serif;
+font-size:13px;
+color:#FF6;
+}
+
+div.penfooter {
+text-align:center;
+font-family:verdana,sans-serif;
+font-size:11px;
+margin:0px 15px 10px 15px;
+color:#0CF;
+}
+
+div.penfooter a {
+font-weight:bold;
+color:#9FF;
+}
+
+div.penfooter a:visited {
+color:#0CF;
+}
+
+div.penfooter a:hover {
+color:#FC0;
+text-decoration:none:
+}
+
+div#content {
+top: 0px;
+}
+
+
+/****************
+* WHOSE CHAIR?  *
+****************/
+
+div.wcoption {
+color:#009;
+margin:0px 10px 0px 10px;
+}
+
+div.wctitle {
+font-size:18px;
+color:#fff;
+}
+
+div.wcscore {
+color:#f63;
+font-size:16px;
+}
+
+div.wcresponse {
+color:#fc3;
+font-size:18px;
+}
+
+div.wcexplanation {
+color:#fff;
+}
