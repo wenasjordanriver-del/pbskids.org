@@ -1,0 +1,42 @@
+body
+{
+	background: #0874af url('/PBS-Kids-2006/misslori/images/bground.gif');
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+}
+
+#container
+{
+	margin: 0 auto;
+	text-align: center;
+	height: 100%;
+	width: 750px;
+}
+
+table#middlecontainer
+{
+	width: 750px;
+}
+
+table#middlecontainer td
+{
+	vertical-align: top;
+}
+
+.footer,
+.footer a:link,
+.footer a:visited,
+.footer a:hover,
+.footer a:active
+{
+	font: 11px verdana, sans-serif;
+	color: #fff;
+	margin-top: 50px;
+}
+
+.footercontainer
+{
+	margin: auto;
+	text-align: center;
+}
