@@ -1,0 +1,139 @@
+#container
+{
+	background-color: #3eea1b;
+}
+
+#top
+{
+	background: #fff200 url('/PBS-Kids-2006/misslori/images/index/index-top-bground.jpg') no-repeat;
+	height: 67px;
+	width: 750px;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+
+#top #programlist
+{
+	margin: 0 10px 0 138px;
+	padding: 7px 0 0 0;
+}
+
+#top #programlist img
+{
+	margin: 0 10px 0 0;
+}
+
+#top #pbskidslogo 
+{
+	float: left;
+	padding-top: 3px;
+}
+
+
+
+#indexhellowidget
+{
+	background-image: url('/PBS-Kids-2006/misslori/images/index/index-middle-hellobground.jpg');
+	width: 215px;
+	height: 106px;
+}
+
+#indexgameoftheday
+{
+	background-image: url('/PBS-Kids-2006/misslori/images/index/index-middle-godbground.jpg');
+	width: 326px;
+	height: 214px;
+}
+
+#indexgameoftheday #gameofthedaygutter
+{
+	padding: 18px 40px 0 48px;
+}
+
+#indexgameoftheday #gameofthedaylink img
+{
+	border: 5px #9de9ff solid;
+}
+
+#indexgameoftheday #moregameslink
+{
+	margin-top: 4px;
+	text-align: right;
+}
+
+
+
+#bottom
+{
+	padding: 10px;
+	text-align: left;
+}
+
+#bottom #localization
+{
+	float: left;
+	text-align: center;
+	font: 11px verdana, arial, sans-serif;
+	color: #fff;
+}
+
+#bottom #localization a:link,
+#bottom #localization a:visited,
+#bottom #localization a:hover,
+#bottom #localization a:active
+{
+	font: 11px verdana, arial, sans-serif;
+	color: #fff;
+}
+
+#bottom #localization a:hover
+{
+	text-decoration: none;
+}
+
+#bottom #localization img
+{
+	border: 10px #fff solid;
+	margin: 2px 0 2px 0;
+}
+
+#bottom #pbsparentspromonotlocalized,
+#bottom #pbsparentspromolocalized
+{
+	background-color: #39d812;
+	width: 300px;
+	padding: 10px;
+	font: 11px verdana, arial, sans-serif;
+	color: #fff;
+	text-align: left;
+}
+
+#bottom #pbsparentspromolocalized
+{
+	margin: 0 0 0 136px;
+}
+
+#bottom #pbsparentspromonotlocalized
+{
+	margin: 0;
+}
+
+#bottom h1#pbsparentstitle
+{
+	margin: 0 0 5px 0;
+	padding: 0;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+#bottom p#pbsparentsteaser
+{
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+
+#bottom #pbsparentsbutton
+{
+	text-align: right;
+}
