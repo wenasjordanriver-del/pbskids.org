@@ -1,0 +1,75 @@
+#container
+{
+	background-color: #3eea1b;	
+}
+
+.hostscontainer
+{
+	text-align: center;
+	margin: 0 auto;
+}
+
+.hostscontainer td
+{
+	vertical-align: top;
+}
+
+#ecardbutton
+{
+	text-align: center;
+	margin: 20px auto 0 auto;
+}
+
+#missloriinfocontainer,
+#hooperinfocontainer
+{
+	background-image: url('/web/20070106014629im_/http://pbskids.org/misslori/images/hosts/hosts-bgroundright-misslori.jpg');
+	background-repeat: no-repeat;
+	width: 411px;
+	vertical-align: top;
+	text-align: left;
+}
+
+#missloriinfocontainer
+{
+	background-image: url('/web/20070106014629im_/http://pbskids.org/misslori/images/hosts/hosts-bgroundright-misslori.jpg');
+}
+
+#hooperinfocontainer
+{
+	background-image: url('/web/20070106014629im_/http://pbskids.org/misslori/images/hosts/hosts-bgroundright-hooper.jpg');
+}
+
+#hostsinfo
+{
+	background-color: #ff8015;
+	width: 370px;
+	padding: 20px 0;
+}
+
+#hostsinfo h1#hostsname
+{
+	text-align: center;
+	margin: 0 auto 10px auto;
+	padding: 0;
+}
+
+#hostsinfo #faq
+{
+	font: 14px verdana, sans-serif;
+	color: #fff;
+	text-align: left;
+}
+
+#hostsinfo #faq ul
+{
+	list-style-type: none;
+	margin: 0 30px;
+	padding: 0;
+}
+
+#hostsinfo #faq li
+{
+	margin: 0 0 20px 0;
+	padding: 0;
+} 
