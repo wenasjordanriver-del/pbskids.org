@@ -279,7 +279,7 @@ a:hover.textwhite {
 }
 
 .body_noflash {
-	background-image: url(/web/20070107030923im_/http://pbskids.org/bigbigworld/img/background.jpg);
+	background-image: url(/PBS-Kids-2006/bigbigworld/img/background.jpg);
 	margin-left: 0px;
 	margin-top: 0px;
 	margin-right: 0px;
@@ -475,7 +475,7 @@ td.pbskidsbuttonsml a:hover {
 
 
 td.pbskidsbuttonsmlactive {
-	background-image: url(/web/20070107030923im_/http://pbskids.org/bigbigworld/img/btn_video02.jpg);
+	background-image: url(/PBS-Kids-2006/bigbigworld/img/btn_video02.jpg);
 	background-position: 1px 3px;
 	background-repeat: no-repeat;
 	width: 65px;
@@ -601,10 +601,10 @@ td.pbskidshelptextsml a:hover {
 	background-color: #FBFDB5;
 }
 .games_frame_left {
-	background-image: url(/web/20070107030923im_/http://pbskids.org/bigbigworld/img/games/frame_left.gif);
+	background-image: url(/PBS-Kids-2006/bigbigworld/img/games/frame_left.gif);
 }
 .games_frame_right {
-	background-image: url(/web/20070107030923im_/http://pbskids.org/bigbigworld/img/games/frame_right.gif);
+	background-image: url(/PBS-Kids-2006/bigbigworld/img/games/frame_right.gif);
 }
 a.textBodyNoBold {
 	font-family: Arial, Helvetica, sans-serif;
