@@ -1,0 +1,130 @@
+body#hm
+{
+	background-color: #F10;
+	background-image: url(/PBS-Kids-2006/);
+}
+
+#ftr-hm
+{
+	color: #FFF;
+	margin: 20px 0 0 0;
+}
+
+#ftr-hm a
+{
+	color: #FFD600;
+	text-decoration: underline;
+}
+
+#hm-content
+{
+	background-image: url(/PBS-Kids-2006/curiousgeorge/img/hm_box_bg.gif);
+	background-repeat: repeat-y;
+	height: 125px;
+}
+
+#hm-container
+{
+	width: 744px;
+	height: 342px;
+}
+
+#hm-copy
+{
+	clear: both;
+	padding: 25px 0 50px 0;
+	width: 600px;
+}
+
+#hm-copy p
+{
+	color: #6D0801;
+	font-size: 1em;
+}
+
+#hm-feature
+{
+	position: relative;
+	width: 497px;
+	float: right;
+	margin: -14px 0 0 0;
+}
+
+#hm-funders
+{
+	text-align: center;
+	color: #B50C00;
+	width: 550px;
+}
+
+#hm-funded-by
+{
+	float: left;
+	margin: 0 63px 0 0;
+}
+
+#hm-produced-by { float: left; }
+
+#hm-george
+{
+	position: absolute;
+	top: 0px;
+	left: 3px;
+}
+
+#hm-hl
+{
+	position: absolute;
+	top: 102px;
+	left: 30px;
+	width: 450px;
+}
+
+#hm-hl img
+{
+	width: 209;
+	height: 130;
+	margin:  0 7px 0 7px;
+}
+
+#hm-marquee
+{
+	background-image: url(/PBS-Kids-2006/curiousgeorge/img/bg_pattern.gif);
+	background-repeat: repeat;
+	height: 342px;
+}
+
+#hm-station-box
+{
+	height: 66px;
+	width: 400px;
+	float: right;
+	margin: 15px 50px 0 0;
+	text-align: center;
+	color: #01415B;
+}
+
+#hm-station-box a { color: #F10; }
+
+#hm-station-txt
+{
+	float: right;
+	width: 290px;
+	height: 60px;
+}
+
+#hm-station-logo
+{
+	float: right;
+	width: 100px;
+	height: 60px;
+}
+
+#nav { width: 760px; }
+
+#nav img#logo-cg-hm
+{
+	height: 91px;
+	width: 195px;
+	visibility: hidden;
+}
