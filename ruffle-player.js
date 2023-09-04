@@ -1,0 +1,1661 @@
+import { loadRuffle } from "./load-ruffle";
+import { ruffleShadowTemplate } from "./shadow-template";
+import { lookupElement } from "./register-element";
+import { DEFAULT_CONFIG } from "./config";
+import { swfFileName } from "./swf-utils";
+import { buildInfo } from "./build-info";
+import { text, textAsParagraphs } from "./i18n";
+import JSZip from "jszip";
+import { isExtension } from "./current-script";
+const RUFFLE_ORIGIN = "https://ruffle.rs";
+const DIMENSION_REGEX = /^\s*(\d+(\.\d+)?(%)?)/;
+let isAudioContextUnmuted = false;
+/**
+ * Converts arbitrary input to an easy to use record object.
+ *
+ * @param parameters Parameters to sanitize
+ * @returns A sanitized map of param name to param value
+ */
+function sanitizeParameters(parameters) {
+    if (parameters === null || parameters === undefined) {
+        return {};
+    }
+    if (!(parameters instanceof URLSearchParams)) {
+        parameters = new URLSearchParams(parameters);
+    }
+    const output = {};
+    for (const [key, value] of parameters) {
+        // Every value must be type of string
+        output[key] = value.toString();
+    }
+    return output;
+}
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    distanceTo(other) {
+        const dx = other.x - this.x;
+        const dy = other.y - this.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+}
+/**
+ * The ruffle player element that should be inserted onto the page.
+ *
+ * This element will represent the rendered and intractable flash movie.
+ */
+export class RufflePlayer extends HTMLElement {
+    /**
+     * Indicates the readiness of the playing movie.
+     *
+     * @returns The `ReadyState` of the player.
+     */
+    get readyState() {
+        return this._readyState;
+    }
+    /**
+     * The metadata of the playing movie (such as movie width and height).
+     * These are inherent properties stored in the SWF file and are not affected by runtime changes.
+     * For example, `metadata.width` is the width of the SWF file, and not the width of the Ruffle player.
+     *
+     * @returns The metadata of the movie, or `null` if the movie metadata has not yet loaded.
+     */
+    get metadata() {
+        return this._metadata;
+    }
+    /**
+     * Constructs a new Ruffle flash player for insertion onto the page.
+     */
+    constructor() {
+        super();
+        // Allows the user to permanently disable the context menu.
+        this.contextMenuForceDisabled = false;
+        // Whether the most recent pointer event was from a touch (or pen).
+        this.isTouch = false;
+        // Whether this device sends contextmenu events.
+        // Set to true when a contextmenu event is seen.
+        this.contextMenuSupported = false;
+        this.panicked = false;
+        this.rendererDebugInfo = "";
+        this.longPressTimer = null;
+        this.pointerDownPosition = null;
+        this.pointerMoveMaxDistance = 0;
+        /**
+         * Any configuration that should apply to this specific player.
+         * This will be defaulted with any global configuration.
+         */
+        this.config = {};
+        this.shadow = this.attachShadow({ mode: "open" });
+        this.shadow.appendChild(ruffleShadowTemplate.content.cloneNode(true));
+        this.dynamicStyles = (this.shadow.getElementById("dynamic_styles"));
+        this.container = this.shadow.getElementById("container");
+        this.playButton = this.shadow.getElementById("play_button");
+        this.playButton.addEventListener("click", () => this.play());
+        this.unmuteOverlay = this.shadow.getElementById("unmute_overlay");
+        this.splashScreen = this.shadow.getElementById("splash-screen");
+        this.virtualKeyboard = (this.shadow.getElementById("virtual-keyboard"));
+        this.virtualKeyboard.addEventListener("input", this.virtualKeyboardInput.bind(this));
+        this.saveManager = (this.shadow.getElementById("save-manager"));
+        this.saveManager.addEventListener("click", () => this.saveManager.classList.add("hidden"));
+        const modalArea = this.saveManager.querySelector("#modal-area");
+        if (modalArea) {
+            modalArea.addEventListener("click", (event) => event.stopPropagation());
+        }
+        const closeSaveManager = this.saveManager.querySelector("#close-modal");
+        if (closeSaveManager) {
+            closeSaveManager.addEventListener("click", () => this.saveManager.classList.add("hidden"));
+        }
+        const backupSaves = (this.saveManager.querySelector("#backup-saves"));
+        if (backupSaves) {
+            backupSaves.addEventListener("click", this.backupSaves.bind(this));
+            backupSaves.innerText = text("save-backup-all");
+        }
+        const unmuteSvg = (this.unmuteOverlay.querySelector("#unmute_overlay_svg"));
+        if (unmuteSvg) {
+            const unmuteText = (unmuteSvg.querySelector("#unmute_text"));
+            unmuteText.textContent = text("click-to-unmute");
+        }
+        this.contextMenuOverlay = this.shadow.getElementById("context-menu-overlay");
+        this.contextMenuElement = this.shadow.getElementById("context-menu");
+        window.addEventListener("pointerdown", this.checkIfTouch.bind(this));
+        this.addEventListener("contextmenu", this.showContextMenu.bind(this));
+        this.container.addEventListener("pointerdown", this.pointerDown.bind(this));
+        this.container.addEventListener("pointermove", this.checkLongPressMovement.bind(this));
+        this.container.addEventListener("pointerup", this.checkLongPress.bind(this));
+        this.container.addEventListener("pointercancel", this.clearLongPressTimer.bind(this));
+        this.addEventListener("fullscreenchange", this.fullScreenChange.bind(this));
+        this.addEventListener("webkitfullscreenchange", this.fullScreenChange.bind(this));
+        this.instance = null;
+        this.onFSCommand = null;
+        this._readyState = 0 /* ReadyState.HaveNothing */;
+        this._metadata = null;
+        this.lastActivePlayingState = false;
+        this.setupPauseOnTabHidden();
+    }
+    /**
+     * Setup event listener to detect when tab is not active to pause instance playback.
+     * this.instance.play() is called when the tab becomes visible only if the
+     * the instance was not paused before tab became hidden.
+     *
+     * See: https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API
+     * @ignore
+     * @internal
+     */
+    setupPauseOnTabHidden() {
+        document.addEventListener("visibilitychange", () => {
+            if (!this.instance) {
+                return;
+            }
+            // Tab just changed to be inactive. Record whether instance was playing.
+            if (document.hidden) {
+                this.lastActivePlayingState = this.instance.is_playing();
+                this.instance.pause();
+            }
+            // Play only if instance was playing originally.
+            if (!document.hidden && this.lastActivePlayingState === true) {
+                this.instance.play();
+            }
+        }, false);
+    }
+    /**
+     * @ignore
+     * @internal
+     */
+    connectedCallback() {
+        this.updateStyles();
+    }
+    /**
+     * @ignore
+     * @internal
+     */
+    static get observedAttributes() {
+        return ["width", "height"];
+    }
+    /**
+     * @ignore
+     * @internal
+     */
+    attributeChangedCallback(name, _oldValue, _newValue) {
+        if (name === "width" || name === "height") {
+            this.updateStyles();
+        }
+    }
+    /**
+     * @ignore
+     * @internal
+     */
+    disconnectedCallback() {
+        this.destroy();
+    }
+    /**
+     * Updates the internal shadow DOM to reflect any set attributes from
+     * this element.
+     */
+    updateStyles() {
+        if (this.dynamicStyles.sheet) {
+            if (this.dynamicStyles.sheet.rules) {
+                for (let i = 0; i < this.dynamicStyles.sheet.rules.length; i++) {
+                    this.dynamicStyles.sheet.deleteRule(i);
+                }
+            }
+            const widthAttr = this.attributes.getNamedItem("width");
+            if (widthAttr !== undefined && widthAttr !== null) {
+                const width = RufflePlayer.htmlDimensionToCssDimension(widthAttr.value);
+                if (width !== null) {
+                    this.dynamicStyles.sheet.insertRule(`:host { width: ${width}; }`);
+                }
+            }
+            const heightAttr = this.attributes.getNamedItem("height");
+            if (heightAttr !== undefined && heightAttr !== null) {
+                const height = RufflePlayer.htmlDimensionToCssDimension(heightAttr.value);
+                if (height !== null) {
+                    this.dynamicStyles.sheet.insertRule(`:host { height: ${height}; }`);
+                }
+            }
+        }
+    }
+    /**
+     * Determine if this element is the fallback content of another Ruffle
+     * player.
+     *
+     * This heuristic assumes Ruffle objects will never use their fallback
+     * content. If this changes, then this code also needs to change.
+     *
+     * @private
+     */
+    isUnusedFallbackObject() {
+        const element = lookupElement("ruffle-object");
+        if (element !== null) {
+            let parent = this.parentNode;
+            while (parent !== document && parent !== null) {
+                if (parent.nodeName === element.name) {
+                    return true;
+                }
+                parent = parent.parentNode;
+            }
+        }
+        return false;
+    }
+    /**
+     * Ensure a fresh Ruffle instance is ready on this player before continuing.
+     *
+     * @throws Any exceptions generated by loading Ruffle Core will be logged
+     * and passed on.
+     *
+     * @private
+     */
+    async ensureFreshInstance() {
+        var _a;
+        this.destroy();
+        if (this.loadedConfig &&
+            this.loadedConfig.splashScreen !== false &&
+            this.loadedConfig.preloader !== false) {
+            this.showSplashScreen();
+        }
+        if (this.loadedConfig && this.loadedConfig.preloader === false) {
+            console.warn("The configuration option preloader has been replaced with splashScreen. If you own this website, please update the configuration.");
+        }
+        if (this.loadedConfig &&
+            this.loadedConfig.maxExecutionDuration &&
+            typeof this.loadedConfig.maxExecutionDuration !== "number") {
+            console.warn("Configuration: An obsolete format for duration for 'maxExecutionDuration' was used, " +
+                "please use a single number indicating seconds instead. For instance '15' instead of " +
+                "'{secs: 15, nanos: 0}'.");
+        }
+        if (this.loadedConfig &&
+            typeof this.loadedConfig.contextMenu === "boolean") {
+            console.warn('The configuration option contextMenu no longer takes a boolean. Use "on", "off", or "rightClickOnly".');
+        }
+        const ruffleConstructor = await loadRuffle(this.loadedConfig || {}, this.onRuffleDownloadProgress.bind(this)).catch((e) => {
+            console.error(`Serious error loading Ruffle: ${e}`);
+            // Serious duck typing. In error conditions, let's not make assumptions.
+            if (window.location.protocol === "file:") {
+                e.ruffleIndexError = 2 /* PanicError.FileProtocol */;
+            }
+            else {
+                e.ruffleIndexError = 9 /* PanicError.WasmNotFound */;
+                const message = String(e.message).toLowerCase();
+                if (message.includes("mime")) {
+                    e.ruffleIndexError = 8 /* PanicError.WasmMimeType */;
+                }
+                else if (message.includes("networkerror") ||
+                    message.includes("failed to fetch")) {
+                    e.ruffleIndexError = 6 /* PanicError.WasmCors */;
+                }
+                else if (message.includes("disallowed by embedder")) {
+                    e.ruffleIndexError = 1 /* PanicError.CSPConflict */;
+                }
+                else if (e.name === "CompileError") {
+                    e.ruffleIndexError = 3 /* PanicError.InvalidWasm */;
+                }
+                else if (message.includes("could not download wasm module") &&
+                    e.name === "TypeError") {
+                    e.ruffleIndexError = 7 /* PanicError.WasmDownload */;
+                }
+                else if (e.name === "TypeError") {
+                    e.ruffleIndexError = 5 /* PanicError.JavascriptConflict */;
+                }
+                else if (navigator.userAgent.includes("Edg") &&
+                    message.includes("webassembly is not defined")) {
+                    // Microsoft Edge detection.
+                    e.ruffleIndexError = 10 /* PanicError.WasmDisabledMicrosoftEdge */;
+                }
+            }
+            this.panic(e);
+            throw e;
+        });
+        this.instance = await new ruffleConstructor(this.container, this, this.loadedConfig);
+        this.rendererDebugInfo = this.instance.renderer_debug_info();
+        const actuallyUsedRendererName = this.instance.renderer_name();
+        console.log("%c" +
+            "New Ruffle instance created (WebAssembly extensions: " +
+            (ruffleConstructor.is_wasm_simd_used() ? "ON" : "OFF") +
+            " | Used renderer: " +
+            (actuallyUsedRendererName !== null && actuallyUsedRendererName !== void 0 ? actuallyUsedRendererName : "") +
+            ")", "background: #37528C; color: #FFAD33");
+        // In Firefox, AudioContext.state is always "suspended" when the object has just been created.
+        // It may change by itself to "running" some milliseconds later. So we need to wait a little
+        // bit before checking if autoplay is supported and applying the instance config.
+        if (this.audioState() !== "running") {
+            this.container.style.visibility = "hidden";
+            await new Promise((resolve) => {
+                window.setTimeout(() => {
+                    resolve();
+                }, 200);
+            });
+            this.container.style.visibility = "";
+        }
+        this.unmuteAudioContext();
+        // On Android, the virtual keyboard needs to be dismissed as otherwise it re-focuses when clicking elsewhere
+        if (navigator.userAgent.toLowerCase().includes("android")) {
+            this.container.addEventListener("click", () => this.virtualKeyboard.blur());
+        }
+        // Treat invalid values as `AutoPlay.Auto`.
+        if (!this.loadedConfig ||
+            this.loadedConfig.autoplay === "on" /* AutoPlay.On */ ||
+            (this.loadedConfig.autoplay !== "off" /* AutoPlay.Off */ &&
+                this.audioState() === "running")) {
+            this.play();
+            if (this.audioState() !== "running") {
+                // Treat invalid values as `UnmuteOverlay.Visible`.
+                if (!this.loadedConfig ||
+                    this.loadedConfig.unmuteOverlay !== "hidden" /* UnmuteOverlay.Hidden */) {
+                    this.unmuteOverlay.style.display = "block";
+                }
+                this.container.addEventListener("click", this.unmuteOverlayClicked.bind(this), {
+                    once: true,
+                });
+                const audioContext = (_a = this.instance) === null || _a === void 0 ? void 0 : _a.audio_context();
+                if (audioContext) {
+                    audioContext.onstatechange = () => {
+                        if (audioContext.state === "running") {
+                            this.unmuteOverlayClicked();
+                        }
+                        audioContext.onstatechange = null;
+                    };
+                }
+            }
+        }
+        else {
+            this.playButton.style.display = "block";
+        }
+    }
+    /**
+     * Uploads the splash screen progress bar.
+     *
+     * @param bytesLoaded The size of the Ruffle WebAssembly file downloaded so far.
+     * @param bytesTotal The total size of the Ruffle WebAssembly file.
+     */
+    onRuffleDownloadProgress(bytesLoaded, bytesTotal) {
+        const loadBar = (this.splashScreen.querySelector(".loadbar-inner"));
+        const outerLoadbar = (this.splashScreen.querySelector(".loadbar"));
+        if (Number.isNaN(bytesTotal)) {
+            if (outerLoadbar) {
+                outerLoadbar.style.display = "none";
+            }
+        }
+        else {
+            loadBar.style.width = `${100.0 * (bytesLoaded / bytesTotal)}%`;
+        }
+    }
+    /**
+     * Destroys the currently running instance of Ruffle.
+     */
+    destroy() {
+        if (this.instance) {
+            this.instance.destroy();
+            this.instance = null;
+            this._metadata = null;
+            this._readyState = 0 /* ReadyState.HaveNothing */;
+            console.log("Ruffle instance destroyed.");
+        }
+    }
+    checkOptions(options) {
+        if (typeof options === "string") {
+            return { url: options };
+        }
+        const check = (condition, message) => {
+            if (!condition) {
+                const error = new TypeError(message);
+                error.ruffleIndexError = 4 /* PanicError.JavascriptConfiguration */;
+                this.panic(error);
+                throw error;
+            }
+        };
+        check(options !== null && typeof options === "object", "Argument 0 must be a string or object");
+        check("url" in options || "data" in options, "Argument 0 must contain a `url` or `data` key");
+        check(!("url" in options) || typeof options.url === "string", "`url` must be a string");
+        return options;
+    }
+    /**
+     * Gets the configuration set by the Ruffle extension
+     *
+     * @returns The configuration set by the Ruffle extension
+     */
+    getExtensionConfig() {
+        var _a;
+        return window.RufflePlayer &&
+            window.RufflePlayer.conflict &&
+            (window.RufflePlayer.conflict["newestName"] === "extension" ||
+                window.RufflePlayer["newestName"] === "extension")
+            ? (_a = window.RufflePlayer) === null || _a === void 0 ? void 0 : _a.conflict["config"]
+            : {};
+    }
+    /**
+     * Loads a specified movie into this player.
+     *
+     * This will replace any existing movie that may be playing.
+     *
+     * @param options One of the following:
+     * - A URL, passed as a string, which will load a URL with default options.
+     * - A [[URLLoadOptions]] object, to load a URL with options.
+     * - A [[DataLoadOptions]] object, to load data with options.
+     *
+     * The options will be defaulted by the [[config]] field, which itself
+     * is defaulted by a global `window.RufflePlayer.config`.
+     */
+    async load(options) {
+        var _a, _b;
+        options = this.checkOptions(options);
+        if (!this.isConnected || this.isUnusedFallbackObject()) {
+            console.warn("Ignoring attempt to play a disconnected or suspended Ruffle element");
+            return;
+        }
+        if (isFallbackElement(this)) {
+            // Silently fail on attempt to play a Ruffle element inside a specific node.
+            return;
+        }
+        try {
+            const extensionConfig = this.getExtensionConfig();
+            this.loadedConfig = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG), extensionConfig), ((_b = (_a = window.RufflePlayer) === null || _a === void 0 ? void 0 : _a.config) !== null && _b !== void 0 ? _b : {})), this.config), options);
+            // Pre-emptively set background color of container while Ruffle/SWF loads.
+            if (this.loadedConfig.backgroundColor &&
+                this.loadedConfig.wmode !== "transparent" /* WindowMode.Transparent */) {
+                this.container.style.backgroundColor =
+                    this.loadedConfig.backgroundColor;
+            }
+            await this.ensureFreshInstance();
+            if ("url" in options) {
+                console.log(`Loading SWF file ${options.url}`);
+                this.swfUrl = new URL(options.url, document.baseURI);
+                this.instance.stream_from(this.swfUrl.href, sanitizeParameters(options.parameters));
+            }
+            else if ("data" in options) {
+                console.log("Loading SWF data");
+                this.instance.load_data(new Uint8Array(options.data), sanitizeParameters(options.parameters), options.swfFileName || "movie.swf");
+            }
+        }
+        catch (e) {
+            console.error(`Serious error occurred loading SWF file: ${e}`);
+            const err = new Error(e);
+            if (err.message.includes("Error parsing config")) {
+                err.ruffleIndexError = 4 /* PanicError.JavascriptConfiguration */;
+            }
+            this.panic(err);
+            throw err;
+        }
+    }
+    /**
+     * Plays or resumes the movie.
+     */
+    play() {
+        if (this.instance) {
+            this.instance.play();
+            this.playButton.style.display = "none";
+        }
+    }
+    /**
+     * Whether this player is currently playing.
+     *
+     * @returns True if this player is playing, false if it's paused or hasn't started yet.
+     */
+    get isPlaying() {
+        if (this.instance) {
+            return this.instance.is_playing();
+        }
+        return false;
+    }
+    /**
+     * Returns the master volume of the player.
+     *
+     * @returns The volume. 1.0 is 100% volume.
+     */
+    get volume() {
+        if (this.instance) {
+            return this.instance.volume();
+        }
+        return 1.0;
+    }
+    /**
+     * Sets the master volume of the player.
+     *
+     * @param value The volume. 1.0 is 100% volume.
+     */
+    set volume(value) {
+        if (this.instance) {
+            this.instance.set_volume(value);
+        }
+    }
+    /**
+     * Checks if this player is allowed to be fullscreen by the browser.
+     *
+     * @returns True if you may call [[enterFullscreen]].
+     */
+    get fullscreenEnabled() {
+        return !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+    }
+    /**
+     * Checks if this player is currently fullscreen inside the browser.
+     *
+     * @returns True if it is fullscreen.
+     */
+    get isFullscreen() {
+        return ((document.fullscreenElement || document.webkitFullscreenElement) ===
+            this);
+    }
+    /**
+     * Exported function that requests the browser to change the fullscreen state if
+     * it is allowed.
+     *
+     * @param isFull Whether to set to fullscreen or return to normal.
+     */
+    setFullscreen(isFull) {
+        if (this.fullscreenEnabled) {
+            if (isFull) {
+                this.enterFullscreen();
+            }
+            else {
+                this.exitFullscreen();
+            }
+        }
+    }
+    /**
+     * Requests the browser to make this player fullscreen.
+     *
+     * This is not guaranteed to succeed, please check [[fullscreenEnabled]] first.
+     */
+    enterFullscreen() {
+        const options = {
+            navigationUI: "hide",
+        };
+        if (this.requestFullscreen) {
+            this.requestFullscreen(options);
+        }
+        else if (this.webkitRequestFullscreen) {
+            this.webkitRequestFullscreen(options);
+        }
+        else if (this.webkitRequestFullScreen) {
+            this.webkitRequestFullScreen(options);
+        }
+    }
+    /**
+     * Requests the browser to no longer make this player fullscreen.
+     */
+    exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+        else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+        else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        }
+    }
+    /**
+     * Called when entering / leaving fullscreen.
+     */
+    fullScreenChange() {
+        var _a;
+        (_a = this.instance) === null || _a === void 0 ? void 0 : _a.set_fullscreen(this.isFullscreen);
+    }
+    /**
+     * Prompt the user to download a file.
+     *
+     * @param blob The content to download.
+     * @param name The name to give the file.
+     */
+    saveFile(blob, name) {
+        const blobURL = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = blobURL;
+        link.style.display = "none";
+        link.download = name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobURL);
+    }
+    checkIfTouch(event) {
+        this.isTouch =
+            event.pointerType === "touch" || event.pointerType === "pen";
+    }
+    base64ToBlob(bytesBase64, mimeString) {
+        const byteString = atob(bytesBase64);
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([ab], { type: mimeString });
+        return blob;
+    }
+    /**
+     * @returns If the string represent a base-64 encoded SOL file
+     * Check if string is a base-64 encoded SOL file
+     * @param solData The base-64 encoded SOL string
+     */
+    isB64SOL(solData) {
+        try {
+            const decodedData = atob(solData);
+            return decodedData.slice(6, 10) === "TCSO";
+        }
+        catch (e) {
+            return false;
+        }
+    }
+    confirmReloadSave(solKey, b64SolData, replace) {
+        if (this.isB64SOL(b64SolData)) {
+            if (localStorage[solKey]) {
+                if (!replace) {
+                    const confirmDelete = confirm(text("save-delete-prompt"));
+                    if (!confirmDelete) {
+                        return;
+                    }
+                }
+                const swfPath = this.swfUrl ? this.swfUrl.pathname : "";
+                const swfHost = this.swfUrl
+                    ? this.swfUrl.hostname
+                    : document.location.hostname;
+                const savePath = solKey.split("/").slice(1, -1).join("/");
+                if (swfPath.includes(savePath) && solKey.startsWith(swfHost)) {
+                    const confirmReload = confirm(text("save-reload-prompt", {
+                        action: replace ? "replace" : "delete",
+                    }));
+                    if (confirmReload && this.loadedConfig) {
+                        this.destroy();
+                        replace
+                            ? localStorage.setItem(solKey, b64SolData)
+                            : localStorage.removeItem(solKey);
+                        this.load(this.loadedConfig);
+                        this.populateSaves();
+                        this.saveManager.classList.add("hidden");
+                    }
+                    return;
+                }
+                replace
+                    ? localStorage.setItem(solKey, b64SolData)
+                    : localStorage.removeItem(solKey);
+                this.populateSaves();
+                this.saveManager.classList.add("hidden");
+            }
+        }
+    }
+    /**
+     * Replace save from SOL file.
+     *
+     * @param event The change event fired
+     * @param solKey The localStorage save file key
+     */
+    replaceSOL(event, solKey) {
+        const fileInput = event.target;
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+            if (reader.result && typeof reader.result === "string") {
+                const b64Regex = new RegExp("data:.*;base64,");
+                const b64SolData = reader.result.replace(b64Regex, "");
+                this.confirmReloadSave(solKey, b64SolData, true);
+            }
+        });
+        if (fileInput &&
+            fileInput.files &&
+            fileInput.files.length > 0 &&
+            fileInput.files[0]) {
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+    /**
+     * Delete local save.
+     *
+     * @param key The key to remove from local storage
+     */
+    deleteSave(key) {
+        const b64SolData = localStorage.getItem(key);
+        if (b64SolData) {
+            this.confirmReloadSave(key, b64SolData, false);
+        }
+    }
+    /**
+     * Puts the local save SOL file keys in a table.
+     */
+    populateSaves() {
+        const saveTable = this.saveManager.querySelector("#local-saves");
+        if (!saveTable) {
+            return;
+        }
+        try {
+            if (localStorage === null) {
+                return;
+            }
+        }
+        catch (e) {
+            return;
+        }
+        saveTable.textContent = "";
+        Object.keys(localStorage).forEach((key) => {
+            const solName = key.split("/").pop();
+            const solData = localStorage.getItem(key);
+            if (solName && solData && this.isB64SOL(solData)) {
+                const row = document.createElement("TR");
+                const keyCol = document.createElement("TD");
+                keyCol.textContent = solName;
+                keyCol.title = key;
+                const downloadCol = document.createElement("TD");
+                const downloadSpan = document.createElement("SPAN");
+                downloadSpan.textContent = text("save-download");
+                downloadSpan.className = "save-option";
+                downloadSpan.addEventListener("click", () => {
+                    const blob = this.base64ToBlob(solData, "application/octet-stream");
+                    this.saveFile(blob, solName + ".sol");
+                });
+                downloadCol.appendChild(downloadSpan);
+                const replaceCol = document.createElement("TD");
+                const replaceInput = (document.createElement("INPUT"));
+                replaceInput.type = "file";
+                replaceInput.accept = ".sol";
+                replaceInput.className = "replace-save";
+                replaceInput.id = "replace-save-" + key;
+                const replaceLabel = (document.createElement("LABEL"));
+                replaceLabel.htmlFor = "replace-save-" + key;
+                replaceLabel.textContent = text("save-replace");
+                replaceLabel.className = "save-option";
+                replaceInput.addEventListener("change", (event) => this.replaceSOL(event, key));
+                replaceCol.appendChild(replaceInput);
+                replaceCol.appendChild(replaceLabel);
+                const deleteCol = document.createElement("TD");
+                const deleteSpan = document.createElement("SPAN");
+                deleteSpan.textContent = text("save-delete");
+                deleteSpan.className = "save-option";
+                deleteSpan.addEventListener("click", () => this.deleteSave(key));
+                deleteCol.appendChild(deleteSpan);
+                row.appendChild(keyCol);
+                row.appendChild(downloadCol);
+                row.appendChild(replaceCol);
+                row.appendChild(deleteCol);
+                saveTable.appendChild(row);
+            }
+        });
+    }
+    /**
+     * Gets the local save information as SOL files and downloads them as a single ZIP file.
+     */
+    async backupSaves() {
+        const zip = new JSZip();
+        const duplicateNames = [];
+        Object.keys(localStorage).forEach((key) => {
+            let solName = String(key.split("/").pop());
+            const solData = localStorage.getItem(key);
+            if (solData && this.isB64SOL(solData)) {
+                const blob = this.base64ToBlob(solData, "application/octet-stream");
+                const duplicate = duplicateNames.filter((value) => value === solName).length;
+                duplicateNames.push(solName);
+                if (duplicate > 0) {
+                    solName += ` (${duplicate + 1})`;
+                }
+                zip.file(solName + ".sol", blob);
+            }
+        });
+        const blob = await zip.generateAsync({ type: "blob" });
+        this.saveFile(blob, "saves.zip");
+    }
+    /**
+     * Opens the save manager.
+     */
+    openSaveManager() {
+        this.saveManager.classList.remove("hidden");
+    }
+    /**
+     * Fetches the loaded SWF and downloads it.
+     */
+    async downloadSwf() {
+        try {
+            if (this.swfUrl) {
+                console.log("Downloading SWF: " + this.swfUrl);
+                const response = await fetch(this.swfUrl.href);
+                if (!response.ok) {
+                    console.error("SWF download failed");
+                    return;
+                }
+                const blob = await response.blob();
+                this.saveFile(blob, swfFileName(this.swfUrl));
+            }
+            else {
+                console.error("SWF download failed");
+            }
+        }
+        catch (err) {
+            console.error("SWF download failed");
+        }
+    }
+    virtualKeyboardInput() {
+        const input = this.virtualKeyboard;
+        const string = input.value;
+        for (const char of string) {
+            for (const eventType of ["keydown", "keyup"]) {
+                this.dispatchEvent(new KeyboardEvent(eventType, {
+                    key: char,
+                    bubbles: true,
+                }));
+            }
+        }
+        input.value = "";
+    }
+    openVirtualKeyboard() {
+        // On Android, the Rust code that opens the virtual keyboard triggers
+        // before the TypeScript code that closes it, so delay opening it
+        if (navigator.userAgent.toLowerCase().includes("android")) {
+            setTimeout(() => {
+                this.virtualKeyboard.focus({ preventScroll: true });
+            }, 100);
+        }
+        else {
+            this.virtualKeyboard.focus({ preventScroll: true });
+        }
+    }
+    isVirtualKeyboardFocused() {
+        return this.shadow.activeElement === this.virtualKeyboard;
+    }
+    contextMenuItems() {
+        const CHECKMARK = String.fromCharCode(0x2713);
+        const items = [];
+        const addSeparator = () => {
+            // Don't start with or duplicate separators.
+            if (items.length > 0 && items[items.length - 1] !== null) {
+                items.push(null);
+            }
+        };
+        if (this.instance && this.isPlaying) {
+            const customItems = this.instance.prepare_context_menu();
+            customItems.forEach((item, index) => {
+                if (item.separatorBefore) {
+                    addSeparator();
+                }
+                items.push({
+                    // TODO: better checkboxes
+                    text: item.caption + (item.checked ? ` (${CHECKMARK})` : ``),
+                    onClick: () => { var _a; return (_a = this.instance) === null || _a === void 0 ? void 0 : _a.run_context_menu_callback(index); },
+                    enabled: item.enabled,
+                });
+            });
+            addSeparator();
+        }
+        if (this.fullscreenEnabled) {
+            if (this.isFullscreen) {
+                items.push({
+                    text: text("context-menu-exit-fullscreen"),
+                    onClick: () => { var _a; return (_a = this.instance) === null || _a === void 0 ? void 0 : _a.set_fullscreen(false); },
+                });
+            }
+            else {
+                items.push({
+                    text: text("context-menu-enter-fullscreen"),
+                    onClick: () => { var _a; return (_a = this.instance) === null || _a === void 0 ? void 0 : _a.set_fullscreen(true); },
+                });
+            }
+        }
+        if (this.instance &&
+            this.swfUrl &&
+            this.loadedConfig &&
+            this.loadedConfig.showSwfDownload === true) {
+            addSeparator();
+            items.push({
+                text: text("context-menu-download-swf"),
+                onClick: this.downloadSwf.bind(this),
+            });
+        }
+        if (window.isSecureContext) {
+            items.push({
+                text: text("context-menu-copy-debug-info"),
+                onClick: () => navigator.clipboard.writeText(this.getPanicData()),
+            });
+        }
+        this.populateSaves();
+        const localSaveTable = this.saveManager.querySelector("#local-saves");
+        if (localSaveTable && localSaveTable.textContent !== "") {
+            items.push({
+                text: text("context-menu-open-save-manager"),
+                onClick: this.openSaveManager.bind(this),
+            });
+        }
+        addSeparator();
+        items.push({
+            text: text("context-menu-about-ruffle", {
+                flavor: isExtension ? "extension" : "",
+                version: buildInfo.versionName,
+            }),
+            onClick() {
+                window.open(RUFFLE_ORIGIN, "_blank");
+            },
+        });
+        // Give option to disable context menu when touch support is being used
+        // to avoid a long press triggering the context menu. (#1972)
+        if (this.isTouch) {
+            addSeparator();
+            items.push({
+                text: text("context-menu-hide"),
+                onClick: () => (this.contextMenuForceDisabled = true),
+            });
+        }
+        return items;
+    }
+    pointerDown(event) {
+        this.pointerDownPosition = new Point(event.pageX, event.pageY);
+        this.pointerMoveMaxDistance = 0;
+        this.startLongPressTimer();
+    }
+    clearLongPressTimer() {
+        if (this.longPressTimer) {
+            clearTimeout(this.longPressTimer);
+            this.longPressTimer = null;
+        }
+    }
+    startLongPressTimer() {
+        const longPressTimeout = 800;
+        this.clearLongPressTimer();
+        this.longPressTimer = setTimeout(() => this.clearLongPressTimer(), longPressTimeout);
+    }
+    checkLongPressMovement(event) {
+        if (this.pointerDownPosition !== null) {
+            const currentPosition = new Point(event.pageX, event.pageY);
+            const distance = this.pointerDownPosition.distanceTo(currentPosition);
+            if (distance > this.pointerMoveMaxDistance) {
+                this.pointerMoveMaxDistance = distance;
+            }
+        }
+    }
+    checkLongPress(event) {
+        const maxAllowedDistance = 15;
+        if (this.longPressTimer) {
+            this.clearLongPressTimer();
+            // The pointerType condition is to ensure right-click does not trigger
+            // a context menu the wrong way the first time you right-click,
+            // before contextMenuSupported is set.
+        }
+        else if (!this.contextMenuSupported &&
+            event.pointerType !== "mouse" &&
+            this.pointerMoveMaxDistance < maxAllowedDistance) {
+            this.showContextMenu(event);
+        }
+    }
+    showContextMenu(event) {
+        var _a, _b, _c;
+        if (this.panicked || !this.saveManager.classList.contains("hidden")) {
+            return;
+        }
+        event.preventDefault();
+        if (event.type === "contextmenu") {
+            this.contextMenuSupported = true;
+            window.addEventListener("click", this.hideContextMenu.bind(this), {
+                once: true,
+            });
+        }
+        else {
+            window.addEventListener("pointerup", this.hideContextMenu.bind(this), { once: true });
+            event.stopPropagation();
+        }
+        if ([false, "off" /* ContextMenu.Off */].includes((_b = (_a = this.loadedConfig) === null || _a === void 0 ? void 0 : _a.contextMenu) !== null && _b !== void 0 ? _b : "on" /* ContextMenu.On */) ||
+            (this.isTouch &&
+                ((_c = this.loadedConfig) === null || _c === void 0 ? void 0 : _c.contextMenu) ===
+                    "rightClickOnly" /* ContextMenu.RightClickOnly */) ||
+            this.contextMenuForceDisabled) {
+            return;
+        }
+        // Clear all context menu items.
+        while (this.contextMenuElement.firstChild) {
+            this.contextMenuElement.removeChild(this.contextMenuElement.firstChild);
+        }
+        // Populate context menu items.
+        for (const item of this.contextMenuItems()) {
+            if (item === null) {
+                const menuSeparator = document.createElement("li");
+                menuSeparator.className = "menu_separator";
+                const hr = document.createElement("hr");
+                menuSeparator.appendChild(hr);
+                this.contextMenuElement.appendChild(menuSeparator);
+            }
+            else {
+                const { text, onClick, enabled } = item;
+                const menuItem = document.createElement("li");
+                menuItem.className = "menu_item";
+                menuItem.textContent = text;
+                this.contextMenuElement.appendChild(menuItem);
+                if (enabled !== false) {
+                    menuItem.addEventListener(this.contextMenuSupported ? "click" : "pointerup", onClick);
+                }
+                else {
+                    menuItem.classList.add("disabled");
+                }
+            }
+        }
+        // Place a context menu in the top-left corner, so
+        // its `clientWidth` and `clientHeight` are not clamped.
+        this.contextMenuElement.style.left = "0";
+        this.contextMenuElement.style.top = "0";
+        this.contextMenuOverlay.classList.remove("hidden");
+        const rect = this.getBoundingClientRect();
+        const x = event.clientX - rect.x;
+        const y = event.clientY - rect.y;
+        const maxX = rect.width - this.contextMenuElement.clientWidth - 1;
+        const maxY = rect.height - this.contextMenuElement.clientHeight - 1;
+        this.contextMenuElement.style.left =
+            Math.floor(Math.min(x, maxX)) + "px";
+        this.contextMenuElement.style.top =
+            Math.floor(Math.min(y, maxY)) + "px";
+    }
+    hideContextMenu() {
+        var _a;
+        (_a = this.instance) === null || _a === void 0 ? void 0 : _a.clear_custom_menu_items();
+        this.contextMenuOverlay.classList.add("hidden");
+    }
+    /**
+     * Pauses this player.
+     *
+     * No more frames, scripts or sounds will be executed.
+     * This movie will be considered inactive and will not wake up until resumed.
+     */
+    pause() {
+        if (this.instance) {
+            this.instance.pause();
+            this.playButton.style.display = "block";
+        }
+    }
+    audioState() {
+        if (this.instance) {
+            const audioContext = this.instance.audio_context();
+            return (audioContext && audioContext.state) || "running";
+        }
+        return "suspended";
+    }
+    unmuteOverlayClicked() {
+        if (this.instance) {
+            if (this.audioState() !== "running") {
+                const audioContext = this.instance.audio_context();
+                if (audioContext) {
+                    audioContext.resume();
+                }
+            }
+            this.unmuteOverlay.style.display = "none";
+        }
+    }
+    /**
+     * Plays a silent sound based on the AudioContext's sample rate.
+     *
+     * This is used to unmute audio on iOS and iPadOS when silent mode is enabled on the device (issue 1552).
+     */
+    unmuteAudioContext() {
+        // No need to play the dummy sound again once audio is unmuted.
+        if (isAudioContextUnmuted) {
+            return;
+        }
+        // TODO: Use `navigator.userAgentData` to detect the platform when support improves?
+        if (navigator.maxTouchPoints < 1) {
+            isAudioContextUnmuted = true;
+            return;
+        }
+        this.container.addEventListener("click", () => {
+            var _a;
+            if (isAudioContextUnmuted) {
+                return;
+            }
+            const audioContext = (_a = this.instance) === null || _a === void 0 ? void 0 : _a.audio_context();
+            if (!audioContext) {
+                return;
+            }
+            const audio = new Audio();
+            audio.src = (() => {
+                // Returns a seven samples long 8 bit mono WAVE file.
+                // This is required to prevent the AudioContext from desyncing and crashing.
+                const arrayBuffer = new ArrayBuffer(10);
+                const dataView = new DataView(arrayBuffer);
+                const sampleRate = audioContext.sampleRate;
+                dataView.setUint32(0, sampleRate, true);
+                dataView.setUint32(4, sampleRate, true);
+                dataView.setUint16(8, 1, true);
+                const missingCharacters = window
+                    .btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)))
+                    .slice(0, 13);
+                return `data:audio/wav;base64,UklGRisAAABXQVZFZm10IBAAAAABAAEA${missingCharacters}AgAZGF0YQcAAACAgICAgICAAAA=`;
+            })();
+            audio.load();
+            audio
+                .play()
+                .then(() => {
+                isAudioContextUnmuted = true;
+            })
+                .catch((err) => {
+                console.warn(`Failed to play dummy sound: ${err}`);
+            });
+        }, { once: true });
+    }
+    /**
+     * Copies attributes and children from another element to this player element.
+     * Used by the polyfill elements, RuffleObject and RuffleEmbed.
+     *
+     * @param element The element to copy all attributes from.
+     */
+    copyElement(element) {
+        if (element) {
+            for (const attribute of element.attributes) {
+                if (attribute.specified) {
+                    // Issue 468: Chrome "Click to Active Flash" box stomps on title attribute
+                    if (attribute.name === "title" &&
+                        attribute.value === "Adobe Flash Player") {
+                        continue;
+                    }
+                    try {
+                        this.setAttribute(attribute.name, attribute.value);
+                    }
+                    catch (err) {
+                        // The embed may have invalid attributes, so handle these gracefully.
+                        console.warn(`Unable to set attribute ${attribute.name} on Ruffle instance`);
+                    }
+                }
+            }
+            for (const node of Array.from(element.children)) {
+                this.appendChild(node);
+            }
+        }
+    }
+    /**
+     * Converts a dimension attribute on an HTML embed/object element to a valid CSS dimension.
+     * HTML element dimensions are unitless, but can also be percentages.
+     * Add a 'px' unit unless the value is a percentage.
+     * Returns null if this is not a valid dimension.
+     *
+     * @param attribute The attribute to convert
+     *
+     * @private
+     */
+    static htmlDimensionToCssDimension(attribute) {
+        if (attribute) {
+            const match = attribute.match(DIMENSION_REGEX);
+            if (match) {
+                let out = match[1];
+                if (!match[3]) {
+                    // Unitless -- add px for CSS.
+                    out += "px";
+                }
+                return out;
+            }
+        }
+        return null;
+    }
+    /**
+     * When a movie presents a new callback through `ExternalInterface.addCallback`,
+     * we are informed so that we can expose the method on any relevant DOM element.
+     *
+     * This should only be called by Ruffle itself and not by users.
+     *
+     * @param name The name of the callback that is now available.
+     *
+     * @internal
+     * @ignore
+     */
+    onCallbackAvailable(name) {
+        const instance = this.instance;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this[name] = (...args) => {
+            return instance === null || instance === void 0 ? void 0 : instance.call_exposed_callback(name, args);
+        };
+    }
+    /**
+     * Sets a trace observer on this flash player.
+     *
+     * The observer will be called, as a function, for each message that the playing movie will "trace" (output).
+     *
+     * @param observer The observer that will be called for each trace.
+     */
+    set traceObserver(observer) {
+        var _a;
+        (_a = this.instance) === null || _a === void 0 ? void 0 : _a.set_trace_observer(observer);
+    }
+    /**
+     * Get data included in any panic of this ruffle-player
+     *
+     * @returns A string containing all the data included in the panic.
+     */
+    getPanicData() {
+        let result = "\n# Player Info\n";
+        result += `Allows script access: ${this.loadedConfig ? this.loadedConfig.allowScriptAccess : false}\n`;
+        result += `${this.rendererDebugInfo}\n`;
+        result += this.debugPlayerInfo();
+        result += "\n# Page Info\n";
+        result += `Page URL: ${document.location.href}\n`;
+        if (this.swfUrl) {
+            result += `SWF URL: ${this.swfUrl}\n`;
+        }
+        result += "\n# Browser Info\n";
+        result += `User Agent: ${window.navigator.userAgent}\n`;
+        result += `Platform: ${window.navigator.platform}\n`;
+        result += `Has touch support: ${window.navigator.maxTouchPoints > 0}\n`;
+        result += "\n# Ruffle Info\n";
+        result += `Version: ${buildInfo.versionNumber}\n`;
+        result += `Name: ${buildInfo.versionName}\n`;
+        result += `Channel: ${buildInfo.versionChannel}\n`;
+        result += `Built: ${buildInfo.buildDate}\n`;
+        result += `Commit: ${buildInfo.commitHash}\n`;
+        result += `Is extension: ${isExtension}\n`;
+        result += "\n# Metadata\n";
+        if (this.metadata) {
+            for (const [key, value] of Object.entries(this.metadata)) {
+                result += `${key}: ${value}\n`;
+            }
+        }
+        return result;
+    }
+    /**
+     * Panics this specific player, forcefully destroying all resources and displays an error message to the user.
+     *
+     * This should be called when something went absolutely, incredibly and disastrously wrong and there is no chance
+     * of recovery.
+     *
+     * Ruffle will attempt to isolate all damage to this specific player instance, but no guarantees can be made if there
+     * was a core issue which triggered the panic. If Ruffle is unable to isolate the cause to a specific player, then
+     * all players will panic and Ruffle will become "poisoned" - no more players will run on this page until it is
+     * reloaded fresh.
+     *
+     * @param error The error, if any, that triggered this panic.
+     */
+    panic(error) {
+        var _a;
+        if (this.panicked) {
+            // Only show the first major error, not any repeats - they aren't as important
+            return;
+        }
+        this.panicked = true;
+        this.hideSplashScreen();
+        if (error instanceof Error &&
+            (error.name === "AbortError" ||
+                error.message.includes("AbortError"))) {
+            // Firefox: Don't display the panic screen if the user leaves the page while something is still loading
+            return;
+        }
+        const errorIndex = (_a = error === null || error === void 0 ? void 0 : error.ruffleIndexError) !== null && _a !== void 0 ? _a : 0 /* PanicError.Unknown */;
+        const errorArray = Object.assign([], {
+            stackIndex: -1,
+            avmStackIndex: -1,
+        });
+        errorArray.push("# Error Info\n");
+        if (error instanceof Error) {
+            errorArray.push(`Error name: ${error.name}\n`);
+            errorArray.push(`Error message: ${error.message}\n`);
+            if (error.stack) {
+                const stackIndex = errorArray.push(`Error stack:\n\`\`\`\n${error.stack}\n\`\`\`\n`) - 1;
+                if (error.avmStack) {
+                    const avmStackIndex = errorArray.push(`AVM2 stack:\n\`\`\`\n    ${error.avmStack
+                        .trim()
+                        .replace(/\t/g, "    ")}\n\`\`\`\n`) - 1;
+                    errorArray.avmStackIndex = avmStackIndex;
+                }
+                errorArray.stackIndex = stackIndex;
+            }
+        }
+        else {
+            errorArray.push(`Error: ${error}\n`);
+        }
+        errorArray.push(this.getPanicData());
+        const errorText = errorArray.join("");
+        const buildDate = new Date(buildInfo.buildDate);
+        const monthsPrior = new Date();
+        monthsPrior.setMonth(monthsPrior.getMonth() - 6); // 6 months prior
+        const isBuildOutdated = monthsPrior > buildDate;
+        // Create a link to GitHub with all of the error data, if the build is not outdated.
+        // Otherwise, create a link to the downloads section on the Ruffle website.
+        let actionTag;
+        if (!isBuildOutdated) {
+            let url;
+            if (document.location.protocol.includes("extension")) {
+                url = this.swfUrl.href;
+            }
+            else {
+                url = document.location.href;
+            }
+            // Remove query params for the issue title.
+            url = url.split(/[?#]/, 1)[0];
+            const issueTitle = `Error on ${url}`;
+            let issueLink = `https://github.com/ruffle-rs/ruffle/issues/new?title=${encodeURIComponent(issueTitle)}&template=error_report.md&labels=error-report&body=`;
+            let issueBody = encodeURIComponent(errorText);
+            if (errorArray.stackIndex > -1 &&
+                String(issueLink + issueBody).length > 8195) {
+                // Strip the stack error from the array when the produced URL is way too long.
+                // This should prevent "414 Request-URI Too Large" errors on GitHub.
+                errorArray[errorArray.stackIndex] = null;
+                if (errorArray.avmStackIndex > -1) {
+                    errorArray[errorArray.avmStackIndex] = null;
+                }
+                issueBody = encodeURIComponent(errorArray.join(""));
+            }
+            issueLink += issueBody;
+            actionTag = `<a target="_top" href="${issueLink}">${text("report-bug")}</a>`;
+        }
+        else {
+            actionTag = `<a target="_top" href="${RUFFLE_ORIGIN}#downloads">${text("update-ruffle")}</a>`;
+        }
+        // Clears out any existing content (ie play button or canvas) and replaces it with the error screen
+        let errorBody, errorFooter;
+        switch (errorIndex) {
+            case 2 /* PanicError.FileProtocol */:
+                // General error: Running on the `file:` protocol
+                errorBody = textAsParagraphs("error-file-protocol");
+                errorFooter = `
+                    <li><a target="_top" href="${RUFFLE_ORIGIN}/demo">${text("ruffle-demo")}</a></li>
+                    <li><a target="_top" href="${RUFFLE_ORIGIN}#downloads">${text("ruffle-desktop")}</a></li>
+                `;
+                break;
+            case 4 /* PanicError.JavascriptConfiguration */:
+                // General error: Incorrect JavaScript configuration
+                errorBody = textAsParagraphs("error-javascript-config");
+                errorFooter = `
+                    <li><a target="_top" href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle#javascript-api">${text("ruffle-wiki")}</a></li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 9 /* PanicError.WasmNotFound */:
+                // Self hosted: Cannot load `.wasm` file - file not found
+                errorBody = textAsParagraphs("error-wasm-not-found");
+                errorFooter = `
+                    <li><a target="_top" href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle#configuration-options">${text("ruffle-wiki")}</a></li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 8 /* PanicError.WasmMimeType */:
+                // Self hosted: Cannot load `.wasm` file - incorrect MIME type
+                errorBody = textAsParagraphs("error-wasm-mime-type");
+                errorFooter = `
+                    <li><a target="_top" href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle#configure-webassembly-mime-type">${text("ruffle-wiki")}</a></li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 11 /* PanicError.SwfFetchError */:
+                errorBody = textAsParagraphs("error-swf-fetch");
+                errorFooter = `
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 12 /* PanicError.SwfCors */:
+                // Self hosted: Cannot load SWF file - CORS issues
+                errorBody = textAsParagraphs("error-swf-cors");
+                errorFooter = `
+                    <li><a target="_top" href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle#configure-cors-header">${text("ruffle-wiki")}</a></li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 6 /* PanicError.WasmCors */:
+                // Self hosted: Cannot load `.wasm` file - CORS issues
+                errorBody = textAsParagraphs("error-wasm-cors");
+                errorFooter = `
+                    <li><a target="_top" href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle#configure-cors-header">${text("ruffle-wiki")}</a></li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 3 /* PanicError.InvalidWasm */:
+                // Self hosted: Cannot load `.wasm` file - incorrect configuration or missing files
+                errorBody = textAsParagraphs("error-wasm-invalid");
+                errorFooter = `
+                    <li><a target="_top" href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle#addressing-a-compileerror">${text("ruffle-wiki")}</a></li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 7 /* PanicError.WasmDownload */:
+                // Usually a transient network error or botched deployment
+                errorBody = textAsParagraphs("error-wasm-download");
+                errorFooter = `
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 10 /* PanicError.WasmDisabledMicrosoftEdge */:
+                // Self hosted: User has disabled WebAssembly in Microsoft Edge through the
+                // "Enhance your Security on the web" setting.
+                errorBody = textAsParagraphs("error-wasm-disabled-on-edge");
+                errorFooter = `
+                    <li><a target="_top" href="https://github.com/ruffle-rs/ruffle/wiki/Frequently-Asked-Questions-For-Users#edge-webassembly-error">${text("more-info")}</a></li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 5 /* PanicError.JavascriptConflict */:
+                // Self hosted: Cannot load `.wasm` file - a native object / function is overriden
+                errorBody = textAsParagraphs("error-javascript-conflict");
+                if (isBuildOutdated) {
+                    errorBody += textAsParagraphs("error-javascript-conflict-outdated", { buildDate: buildInfo.buildDate });
+                }
+                errorFooter = `
+                    <li>${actionTag}</li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            case 1 /* PanicError.CSPConflict */:
+                // General error: Cannot load `.wasm` file - a native object / function is overriden
+                errorBody = textAsParagraphs("error-csp-conflict");
+                errorFooter = `
+                    <li><a target="_top" href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle#configure-wasm-csp">${text("ruffle-wiki")}</a></li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+            default:
+                // Unknown error
+                errorBody = textAsParagraphs("error-unknown", {
+                    buildDate: buildInfo.buildDate,
+                    outdated: String(isBuildOutdated),
+                });
+                errorFooter = `
+                    <li>${actionTag}</li>
+                    <li><a href="#" id="panic-view-details">${text("view-error-details")}</a></li>
+                `;
+                break;
+        }
+        this.container.innerHTML = `
+            <div id="panic">
+                <div id="panic-title">${text("panic-title")}</div>
+                <div id="panic-body">${errorBody}</div>
+                <div id="panic-footer">
+                    <ul>${errorFooter}</ul>
+                </div>
+            </div>
+        `;
+        const viewDetails = (this.container.querySelector("#panic-view-details"));
+        if (viewDetails) {
+            viewDetails.onclick = () => {
+                const panicBody = (this.container.querySelector("#panic-body"));
+                panicBody.classList.add("details");
+                const panicText = document.createElement("textarea");
+                panicText.readOnly = true;
+                panicText.value = errorText;
+                panicBody.replaceChildren(panicText);
+                return false;
+            };
+        }
+        // Do this last, just in case it causes any cascading issues.
+        this.destroy();
+    }
+    displayRootMovieDownloadFailedMessage() {
+        var _a;
+        if (isExtension && window.location.origin !== this.swfUrl.origin) {
+            const url = new URL(this.swfUrl);
+            if ((_a = this.loadedConfig) === null || _a === void 0 ? void 0 : _a.parameters) {
+                const parameters = sanitizeParameters(this.loadedConfig.parameters);
+                Object.entries(parameters).forEach(([key, value]) => {
+                    url.searchParams.set(key, value);
+                });
+            }
+            this.hideSplashScreen();
+            const div = document.createElement("div");
+            div.id = "message_overlay";
+            div.innerHTML = `<div class="message">
+                ${textAsParagraphs("message-cant-embed")}
+                <div>
+                    <a target="_blank" href="${url}">${text("open-in-new-tab")}</a>
+                </div>
+            </div>`;
+            this.container.prepend(div);
+        }
+        else {
+            const error = new Error("Failed to fetch: " + this.swfUrl);
+            if (!this.swfUrl.protocol.includes("http")) {
+                error.ruffleIndexError = 2 /* PanicError.FileProtocol */;
+            }
+            else if (window.location.origin === this.swfUrl.origin) {
+                error.ruffleIndexError = 11 /* PanicError.SwfFetchError */;
+            }
+            else {
+                // This is a selfhosted build of Ruffle that tried to make a cross-origin request
+                error.ruffleIndexError = 12 /* PanicError.SwfCors */;
+            }
+            this.panic(error);
+        }
+    }
+    /**
+     * Show a dismissible message in front of the player.
+     *
+     * @param message The message shown to the user.
+     */
+    displayMessage(message) {
+        const div = document.createElement("div");
+        div.id = "message_overlay";
+        div.innerHTML = `<div class="message">
+            <p>${message}</p>
+            <div>
+                <button id="continue-btn">${text("continue")}</button>
+            </div>
+        </div>`;
+        this.container.prepend(div);
+        (this.container.querySelector("#continue-btn")).onclick = () => {
+            div.parentNode.removeChild(div);
+        };
+    }
+    debugPlayerInfo() {
+        return "";
+    }
+    hideSplashScreen() {
+        this.splashScreen.classList.add("hidden");
+        this.container.classList.remove("hidden");
+    }
+    showSplashScreen() {
+        this.splashScreen.classList.remove("hidden");
+        this.container.classList.add("hidden");
+    }
+    setMetadata(metadata) {
+        this._metadata = metadata;
+        // TODO: Switch this to ReadyState.Loading when we have streaming support.
+        this._readyState = 2 /* ReadyState.Loaded */;
+        this.hideSplashScreen();
+        this.dispatchEvent(new Event(RufflePlayer.LOADED_METADATA));
+        // TODO: Move this to whatever function changes the ReadyState to Loaded when we have streaming support.
+        this.dispatchEvent(new Event(RufflePlayer.LOADED_DATA));
+    }
+}
+/**
+ * Triggered when a movie metadata has been loaded (such as movie width and height).
+ *
+ * @event RufflePlayer#loadedmetadata
+ */
+RufflePlayer.LOADED_METADATA = "loadedmetadata";
+/**
+ * Triggered when a movie is fully loaded.
+ *
+ * @event RufflePlayer#loadeddata
+ */
+RufflePlayer.LOADED_DATA = "loadeddata";
+/**
+ * Returns whether a SWF file can call JavaScript code in the surrounding HTML file.
+ *
+ * @param access The value of the `allowScriptAccess` attribute.
+ * @param url The URL of the SWF file.
+ * @returns True if script access is allowed.
+ */
+export function isScriptAccessAllowed(access, url) {
+    if (!access) {
+        access = "sameDomain";
+    }
+    switch (access.toLowerCase()) {
+        case "always":
+            return true;
+        case "never":
+            return false;
+        case "samedomain":
+        default:
+            try {
+                return (new URL(window.location.href).origin ===
+                    new URL(url, window.location.href).origin);
+            }
+            catch (_a) {
+                return false;
+            }
+    }
+}
+/**
+ * Returns whether a SWF file should show the built-in context menu items.
+ *
+ * @param menu The value of the `menu` attribute.
+ * @returns True if the built-in context items should be shown.
+ */
+export function isBuiltInContextMenuVisible(menu) {
+    if (menu === null || menu.toLowerCase() === "true") {
+        return true;
+    }
+    return false;
+}
+/**
+ * Returns whether the given filename is a Youtube Flash source.
+ *
+ * @param filename The filename to test.
+ * @returns True if the filename is a Youtube Flash source.
+ */
+export function isYoutubeFlashSource(filename) {
+    if (filename) {
+        let pathname = "";
+        let hostname = "";
+        try {
+            // A base URL is required if `filename` is a relative URL, but we don't need to detect the real URL origin.
+            const url = new URL(filename, RUFFLE_ORIGIN);
+            pathname = url.pathname;
+            hostname = url.hostname;
+        }
+        catch (err) {
+            // Some invalid filenames, like `///`, could raise a TypeError. Let's fail silently in this situation.
+        }
+        // See https://wiki.mozilla.org/QA/Youtube_Embedded_Rewrite
+        if (pathname.startsWith("/v/") &&
+            /^(?:(?:www\.|m\.)?youtube(?:-nocookie)?\.com)|(?:youtu\.be)$/i.test(hostname)) {
+            return true;
+        }
+    }
+    return false;
+}
+/**
+ * Workaround Youtube mixed content if upgradeToHttps is true.
+ *
+ * @param elem The element to change.
+ * @param attr The attribute to adjust.
+ */
+export function workaroundYoutubeMixedContent(elem, attr) {
+    var _a, _b;
+    const value = elem.getAttribute(attr);
+    const config = (_b = (_a = window.RufflePlayer) === null || _a === void 0 ? void 0 : _a.config) !== null && _b !== void 0 ? _b : {};
+    if (value) {
+        try {
+            const url = new URL(value);
+            if (url.protocol === "http:" &&
+                window.location.protocol === "https:" &&
+                (!("upgradeToHttps" in config) ||
+                    config.upgradeToHttps !== false)) {
+                url.protocol = "https:";
+                elem.setAttribute(attr, url.toString());
+            }
+        }
+        catch (err) {
+            // Some invalid filenames, like `///`, could raise a TypeError. Let's fail silently in this situation.
+        }
+    }
+}
+/**
+ * Determine if an element is a child of a node that was not supported
+ * in non-HTML5 compliant browsers. If so, the element was meant to be
+ * used as a fallback content.
+ *
+ * @param elem The element to test.
+ * @returns True if the element is inside an <audio> or <video> node.
+ */
+export function isFallbackElement(elem) {
+    let parent = elem.parentElement;
+    while (parent !== null) {
+        switch (parent.tagName) {
+            case "AUDIO":
+            case "VIDEO":
+                return true;
+        }
+        parent = parent.parentElement;
+    }
+    return false;
+}
