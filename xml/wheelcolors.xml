@@ -1,0 +1,7 @@
+<wheelcolors>
+<wheelBackColor hex="0x80A300"/>
+<buttonLeftBackColor hex="0x80A300"/>
+<buttonRightBackColor hex="0x80A300"/>
+<sliceOddColor hex="0xBEEF0F"/>
+<sliceEvenColor hex="0x99CC00"/>
+</wheelcolors>
