@@ -10,7 +10,7 @@ if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; re
   let frames = _____WB$wombat$assign$function_____("frames");
   let opener = _____WB$wombat$assign$function_____("opener");
 
-var MM_FlashSnifferURL = "/includes/flash/detectFlash.swf";
+var MM_FlashSnifferURL = "/PBS-Kids-2006/includes/flash/detectFlash.swf";
 
 var MM_latestPluginRevision = new Object();
 MM_latestPluginRevision["10.0"] = new Object();
