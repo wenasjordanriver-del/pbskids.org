@@ -1,0 +1,17 @@
+
+		<title>Flash Check</title>
+		<script type="text/javascript" src="/PBS-Kids-2006/includes/flash/swfobject.js"></script>
+<script type="text/javascript" src="/PBS-Kids-2006/includes/flash/dispatcher.js"></script>
+<script language="VBScript" src="/PBS-Kids-2006/includes/flash/dispatcher.vbs"></script>
+<script type="text/javascript" src="/PBS-Kids-2006/includes/flash/pbsflash.js"></script>
+
+	</head>
+	<body bgcolor="#ffffff">
+ 
+		<script type="text/javascript">
+			for( var v=1; v<=10; v++ ) {
+				document.write("Do you have Flash v" + v + " (or greater)?: " + (PBS_FlashCanPlay(v) ? "yes" : "no") + "<br/>");
+			}
+		</script>
+	</body>
+</html>
