@@ -26,7 +26,7 @@ On Error Resume Next
 
 MM_FlashControlInstalled = False
 
-For i = 5 To 1 Step -1
+For i = 10 To 1 Step -1
    Set x = CreateObject("ShockwaveFlash.ShockwaveFlash." & i)
 
    MM_FlashControlInstalled = IsObject(x)
