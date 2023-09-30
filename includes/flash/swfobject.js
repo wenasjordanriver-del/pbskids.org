@@ -138,4 +138,55 @@ var FlashObject=deconcept.SWFObject;
 var SWFObject=deconcept.SWFObject;
 
 
+
+// start of PBS-specific functions
+
+
+/* PBS_get_mirror_base()
+ * takes the current window's location and
+ * returns an appropriate base url to use
+ * for objects coming from our content mirrors
+ * (currently hostnames appended with '-tc')
+*/ 
+function PBS_get_mirror_base() {
+  var protocol = window.location.protocol;
+  var host = window.location.host;
+  var pathname = window.location.pathname;
+
+  if ( host.match(/pbs(kids)?\.org$/i) ) {
+    var domains = host.split('\.');
+    if ( domains.length == 2 ) {
+      domains.unshift('www');
+    }
+    domains[0] += '-tc';
+    host = domains.join('.');
+  }
+
+  if ( pathname.match(/\.(php|html?)$/i) ) {
+    pathname = pathname.replace(/\/\w+\.\w{3,4}$/, '/');
+  }
+  var base = protocol + '//' + host + pathname;
+  return base;
+}
+
+/* PBS_get_mirror_url(path)
+ * takes a relative url
+ * and returns an appropriate url to use
+ * for content to be retrieved from mirrors
+ * (currently prepending the final file segment with '/mii')
+*/ 
+function PBS_get_mirror_url(path) {
+  if ( !path ) {
+    return undefined;
+  }
+  var segments = path.split('\/');
+  var file = segments.pop();
+  segments.push('enablecdn');
+  return ( segments.join('/') + '/' + file );
+}
+
+
+function PBS_enable_cdn(swfobj) {
+    swfobj.addParam('base', PBS_get_mirror_base());
+    swfobj.setAttribute('swf', PBS_get_mirror_url( swfobj.getAttribute('swf') ) );
 }
