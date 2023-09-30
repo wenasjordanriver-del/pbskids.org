@@ -94,7 +94,7 @@ function MM_FlashInfo()
 }
 
 
-var MM_FlashPluginsPage = "https://web.archive.org/web/20061229083800/http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash";
+var MM_FlashPluginsPage = "http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash";
 
 function MM_FlashDispatch(contentURL, contentVersion, requireLatestRevision,
 			  upgradeURL, install, installURL, altURL,
@@ -282,7 +282,3 @@ function MM_FlashDetectedSelf()
 {
     return (document.cookie.indexOf("MM_FlashDetectedSelf") != -1);
 }
-
-
-}
-/*
