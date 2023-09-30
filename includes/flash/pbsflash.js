@@ -60,7 +60,3 @@ function PBS_FlashCanPlay(PBScontentVersion) {
 var PBS_SWFObject = SWFObject;
 
 
-
-
-}
-/*
