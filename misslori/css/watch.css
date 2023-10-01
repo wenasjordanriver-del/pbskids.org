@@ -1,0 +1,85 @@
+
+table.videocontainer
+{
+	background-color: #ff8015;
+}
+
+td.cliplistcontainer
+{
+	vertical-align: top;
+}
+
+td.videoplayercontainer
+{
+	vertical-align: top;
+	background-image: url('/PBS-Kids-2006/misslori/images/watch/middle-bgroundleft.jpg');
+	background-repeat: no-repeat;
+}
+
+#video
+{
+	min-height: 395px;
+}
+
+table#videoplayer
+{
+	margin: 0 0 0 41px;
+	text-align: center;
+	vertical-align: middle;
+	height: 395px;
+	width: 352px;
+}
+
+
+table#videoplayer td#playercell
+{
+	background-color: #fef200;
+	text-align: center;
+	margin: 20px 0;
+	vertical-align: middle;
+}
+
+td.cliplistcontainer
+{
+	background-image: url('/PBS-Kids-2006/misslori/images/watch/middle-bgroundright.jpg');
+	background-repeat: no-repeat;
+	width: 359px;
+}
+
+#cliplist
+{
+	background-color: #3eea1a;
+	margin-top: 21px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	width: 315px;
+	text-align: center;
+}
+
+#cliplist #thumbnails
+{
+	width: 270px;
+	text-align: center;
+	margin: 10px auto;
+}
+
+#cliplist #thumbnails img
+{
+	border: 6px solid #fff;
+	margin: 5px;
+}
+
+#cliplist #clipmenu form
+{
+	margin: 0;
+	padding: 0;
+}
+
+#cliplist #clipmenu select
+{
+	font: 12px verdana, sans-serif;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
