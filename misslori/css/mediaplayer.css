@@ -1,0 +1,259 @@
+/* Controls the text and text labels (i.e. RealPlayer, Quicktime, Help...) */
+
+.pbskidsvideonav {
+color: #ff8015;
+font-size: 10px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+text-align: center;
+}
+
+.pbskidsvideonav a {
+color: #ff8015;
+}
+
+
+
+/* Controls the WHITE buttons for when there is only one version of Quicktime available and one version of RealPlayer available and one version of Windows Media available */
+
+td.pbskidsbuttonplayer {
+background-color: #ffcc33;
+font-size: 12px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #ff8015;
+text-align: center;
+
+}
+
+td.pbskidsbuttonplayer a {
+color: #ff8015;
+display: block;
+width: 96px;
+text-align:center;
+text-decoration: none;
+}
+
+td.pbskidsbuttonplayer a:link, td.pbskidsbuttonplayer a:visited, td.pbskidsbuttonplayer a:hover, td.pbskidsbuttonplayer a:active {
+text-decoration: none;
+}
+
+td.pbskidsbuttonplayerwm {
+background-color: #ffcc33;
+font-size: 12px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #000000;
+text-align: center;
+
+}
+
+td.pbskidsbuttonplayerwm a {
+color: #ff8015;
+display: block;
+width: 128px;
+text-align: center;
+text-decoration: none;
+}
+
+td.pbskidsbuttonplayerwm a:link, td.pbskidsbuttonplayerwm a:visited, td.pbskidsbuttonplayerwm a:hover, td.pbskidsbuttonplayerwm a:active {
+text-decoration: none;
+}
+
+
+
+/* Controls the YELLOW buttons for when there is only one version of Quicktime available and one version of RealPlayer and one version of Window Media available that are used to show what version of the video has been selected and is being viewed on the page */
+
+td.pbskidsbuttonplayeractive {
+color: #ff8015;
+font-size: 12px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+text-align: center;
+vertical-align: center;
+background-color: #fff;
+width: 96px;
+
+}
+
+td.pbskidsbuttonplayeractive a {
+font-weight: bold;
+color: #ff8015;
+display: block;
+width: 96px;
+text-align:center;
+text-decoration: none;
+}
+
+td.pbskidsbuttonplayeractive a:link, td.pbskidsbuttonplayeractive a:visited, td.pbskidsbuttonplayeractive a:hover, td.pbskidsbuttonplayeractive a:active {
+text-decoration: none;
+}
+
+td.pbskidsbuttonplayerwmactive {
+color: #ff8015;
+font-size: 12px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+text-align: center;
+vertical-align: center;
+background-color: #fff;
+width:128px;
+}
+
+td.pbskidsbuttonplayerwmactive a {
+color: #ff8015;
+display: block;
+width:128px;
+text-align:center;
+text-decoration: none;
+}
+
+td.pbskidsbuttonplayerwmactive a:link, td.pbskidsbuttonplayeractive a:visited, td.pbskidsbuttonplayeractive a:hover, td.pbskidsbuttonplayeractive a:active {
+text-decoration: none;
+}
+
+
+
+/* Controls the white BIG buttons */
+
+td.pbskidsbuttonbig {
+color: #ff8015;
+font-size: 12px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+text-align: center;
+background-color: #ffcc33;
+}
+
+td.pbskidsbuttonbig a {
+color: #ff8015;
+display: block;
+width: 56px;
+}
+
+td.pbskidsbuttonbig a:link, td.pbskidsbuttonbig a:visited, td.pbskidsbuttonbig a:active {
+text-decoration: none;
+}
+
+td.pbskidsbuttonbig a:hover {
+text-decoration: none;
+font-size: 16px;
+}
+
+
+
+/* Controls the yellow BIG buttons that are used to show what version of the video has been selected and is being viewed on the page */
+
+td.pbskidsbuttonbigactive {
+color: #000;
+font-size: 12px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+text-align: center;
+vertical-align: center;
+background-color: #fff;
+width: 56px;
+}
+
+td.pbskidsbuttonbigactive a {
+display: block;
+width: 56px;
+color: #000;
+}
+
+td.pbskidsbuttonbigactive a:link, td.pbskidsbuttonbigactive a:visited, td.pbskidsbuttonbigactive a:active {
+text-decoration: none;
+}
+
+td.pbskidsbuttonbigactive a:hover {
+text-decoration: none;
+font-size: 16px;
+}
+
+
+
+/* Controls the white SMALL buttons */
+
+td.pbskidsbuttonsml {
+color: #ff8015;
+font-size: 12px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+text-align: center;
+background-color: #ffcc33;
+}
+
+td.pbskidsbuttonsml a {
+color: #ff8015;
+display: block;
+width: 56px;
+}
+
+td.pbskidsbuttonsml a:link, td.pbskidsbuttonsml a:visited, td.pbskidsbuttonsml a:active   {
+text-decoration: none;
+}
+
+td.pbskidsbuttonsml a:hover {
+text-decoration: none;
+font-size: 9px;
+}
+
+
+
+/* Controls the yellow SMALL buttons that are used to show what version of the video has been selected and is being viewed on the page */
+
+td.pbskidsbuttonsmlactive {
+color: #000000;
+font-size: 12px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+text-align: center;
+vertical-align: center;
+background-color: #fff;
+width: 56px;
+}
+
+td.pbskidsbuttonsmlactive a {
+color: #000000;
+display: block;
+}
+
+td.pbskidsbuttonsmlactive a:link, td.pbskidsbuttonsmlactive a:visited, td.pbskidsbuttonsmlactive a:active {
+text-decoration: none;
+}
+
+td.pbskidsbuttonsmlactive a:hover {
+text-decoration: none;
+font-size: 9px;
+}
+
+
+/* Controls the text on the Help page */
+
+td.pbskidshelptext {
+color: #ff8015;
+font-size: 13px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.pbskidshelptext a {
+color: #ff8015;
+font-size: 13px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.pbskidshelptext a:hover {
+text-decoration: none;
+}
+
+td.pbskidshelptextsml {
+color: #ff8015;
+font-size: 11px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.pbskidshelptextsml a {
+color: #ff8015;
+font-size: 11px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.pbskidshelptextsml a:hover {
+text-decoration: none;
+}
