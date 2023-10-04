@@ -1,0 +1,277 @@
+
+
+	<title>Arthur . Games . Don't Wake Kate | PBS Kids</title>
+
+	<link rel="stylesheet" type="text/css" href="/PBS-Kids-2006/arthur/arthur.css"> 
+
+<script language="JavaScript">
+
+<!-- Image Rollover Script
+
+// intialize array variables to hold rollover state
+var current_over_array		= new Array("","","");
+var last_over_array			= new Array("","","");
+var stay_on_array			= new Array("games","","");
+
+// construct new rollover_item
+function rollover_item (img_name,whichSection,width,height) {
+	if (document.images) {
+		// set up image src's
+		if (whichSection == 0) {
+			img_prefix = "/PBS-Kids-2006/arthur/images/Inav/nav_" + img_name;
+		} else {
+			if (whichSection == 1) {
+				img_prefix = "/PBS-Kids-2006/arthur/games/images/subnav/" + img_name;
+			} else {
+				img_prefix = "/PBS-Kids-2006/arthur/games/images/rollovers/" + img_name;
+			}
+		}	
+		if (img_name == stay_on_array[whichSection]) {
+			this.img_off = new Image (width,height);
+			this.img_off.src = img_prefix + "_hit.gif";
+			this.img_on = new Image (width,height);
+			this.img_on.src = img_prefix + "_hit.gif";
+		} else {
+			this.img_off = new Image (width,height);
+			this.img_off.src = img_prefix + ".gif";
+			this.img_on = new Image (width,height);
+			this.img_on.src = img_prefix + "_roll.gif";
+		}
+
+		// set whichSection
+		this.whichSection = whichSection;
+	}
+}
+
+// new rollover_item
+function new_rollover_item (img_name,whichSection,width,height) {
+    rollover_item [img_name] = new rollover_item (img_name,whichSection,width,height);
+}
+
+// rollover image
+function rollover_mouseover (itemID) {
+	// get theSection
+	var theSection = rollover_item[itemID].whichSection;
+	
+	// rolled over image, swap in rollover state
+    current_over_array[theSection] = itemID;
+    if (current_over_array[theSection] != last_over_array[theSection]) {
+		document [current_over_array[theSection]].src = rollover_item [current_over_array[theSection]].img_on.src;
+		if (last_over_array[theSection] != "") {
+		        document.images [last_over_array[theSection]].src = rollover_item [last_over_array[theSection]].img_off.src;
+		}
+		last_over_array[theSection] = current_over_array[theSection];
+    }
+}
+
+// roll off image
+function rollover_mouseout (itemID) {
+	// get theSection
+	var theSection = rollover_item[itemID].whichSection;
+
+	// rolled off image, swap out rollover state
+	if (current_over_array[theSection] != "") {
+	    document.images [current_over_array[theSection]].src = rollover_item [current_over_array[theSection]].img_off.src;
+	}
+	current_over_array[theSection] = "";
+	last_over_array[theSection] = "";
+}
+
+new_rollover_item ("home",0,72,68);
+new_rollover_item ("friends",0,72,74);
+new_rollover_item ("games",0,72,67);
+new_rollover_item ("print",0,72,68);
+new_rollover_item ("find",0,72,66);
+new_rollover_item ("parentsteachers",0,72,42);
+//-->
+
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" link="#000099" alink="#FF0000" vlink="#990099" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" background="/PBS-Kids-2006/arthur/images/backgrounds/games_background.gif">
+ 
+	
+<table cellspacing="0" cellpadding="0" border="0" width="730">
+<tr>
+
+	<td width="87" align="left" valign="top">
+		<table cellspacing="0" cellpadding="0" border="0" width="87">
+		<tr>
+			<td width="87" height="1"><a href="#skipnav"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="1" height="1" alt="Skip Navigation" border="0"></a><a name="top"></a></td>
+		</tr>
+		<tr>
+			<td width="87" height="71" align="center"><a href="/PBS-Kids-2006/go/"><img src="/PBS-Kids-2006/arthur/images/Inav/nav_pbskids.gif" width="72" height="71" border="0" alt="PBS Kids"></a></td>
+		</tr>
+
+		<tr>
+			<td width="87" height="68" align="center"><a href="arthur/index.html" onmouseover="if (document.images) {rollover_mouseover ('home')}; window.status = 'Home'; return true;" onmouseout="if (document.images) {rollover_mouseout ('home')}; window.status = ''; return true;"><img src="/PBS-Kids-2006/arthur/images/Inav/nav_home.gif" width="72" height="68" name="home" border="0" alt="Home"></a></td>
+		</tr>
+	
+		<tr>
+			<td width="87" height="74" align="center"><a href="arthur/friends/index.html" onmouseover="if (document.images) {rollover_mouseover ('friends')}; window.status = 'Friends'; return true;" onmouseout="if (document.images) {rollover_mouseout ('friends')}; window.status = ''; return true;"><img src="/PBS-Kids-2006/arthur/images/Inav/nav_friends.gif" width="72" height="74" name="friends" border="0" alt="Friends"></a></td>
+		</tr>
+	
+		<tr>
+			<td width="87" height="67" align="center"><a href="arthur/games/index.html" onmouseover="window.status = 'Games'; return true;" onmouseout="window.status = ''; return true;"><img src="/PBS-Kids-2006/arthur/images/Inav/nav_games_hit.gif" width="72" height="67" name="games" border="0" alt="Games"></a></td>
+		</tr>
+	
+		<tr>
+			<td width="87" height="68" align="center"><a href="arthur/print/index.html" onmouseover="if (document.images) {rollover_mouseover ('print')}; window.status = 'Print'; return true;" onmouseout="if (document.images) {rollover_mouseout ('print')}; window.status = ''; return true;"><img src="/PBS-Kids-2006/arthur/images/Inav/nav_print.gif" width="72" height="68" name="print" border="0" alt="Print"></a></td>
+		</tr>
+	
+		<tr>
+			<td width="87" height="66" align="center"><a href="arthur/find/index.html" onmouseover="if (document.images) {rollover_mouseover ('find')}; window.status = 'Find'; return true;" onmouseout="if (document.images) {rollover_mouseout ('find')}; window.status = ''; return true;"><img src="/PBS-Kids-2006/arthur/images/Inav/nav_find.gif" width="72" height="66" name="find" border="0" alt="Find"></a></td>
+		</tr>
+	
+		<tr>
+			<td width="87" height="22" align="center"><a href="arthur/parentsteachers/index.html" onmouseover="if (document.images) {rollover_mouseover ('parentsteachers')}; window.status = 'Parents &amp; Teachers'; return true;" onmouseout="if (document.images) {rollover_mouseout ('parentsteachers')}; window.status = ''; return true;"><img src="/PBS-Kids-2006/arthur/images/Inav/nav_parentsteachers.gif" width="72" height="42" name="parentsteachers" border="0" alt="Parents &amp; Teachers"></a></td>
+		</tr>
+	
+		<tr>
+			<td width="87" height="1"><a name="skipnav"><img src="arthur/images/1px.gif" width="1" height="1" alt=""></a></td>
+		</tr>
+		</table>
+	</td>
+
+	<td width="643" align="left" valign="top">
+<!-- end bbinclude -->
+
+<!-- Game Content Table Starts Here -->
+<!-- #bbinclude "::games:(includes):games_content_header.incl" #background_color#="#FFFFFF" #corner_image#="window_corner_white.gif" -->
+<table cellspacing="0" cellpadding="0" border="0" width="643">
+<!-- background strip -->
+<tr>
+	<td height="1" width="643"><a name="top">&nbsp;</a></td>
+</tr>
+<!-- top of content box -->
+<tr>
+	<td>
+		<table border="0" width="643" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="622" height="6" bgcolor="#66CCCC"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="1" height="1" alt=""></td>
+			<td rowspan="2" width="21" align="left" valign="top" height="20"><img src="/PBS-Kids-2006/arthur/games/images/window_corner_white.gif" width="21" height="20" hspace="0" vspace="0" border="0" align="left" alt=""></td>
+		</tr>
+		<tr>
+			<td width="622" height="14" bgcolor="#FFFFFF" align="center"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="10" height="14" alt=""></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<!-- content -->
+<tr>
+	<td bgcolor="#FFFFFF">
+		<table border="0" width="643" cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="center" valign="top" bgcolor="#FFFFFF">
+			<!-- game content starts here -->
+<!-- end bbinclude -->
+
+				<map name="dwk_splash">
+				<area shape="rect" alt="you'll need a free plug-in called Flash to play this game" coords="129,386,494,402" href="arthur/parentsteachers/help/answers/tech_shockwave.html?cat=techsupport" tabindex="3">
+				<area shape="rect" alt="play the game with audio description. You may need to click on the game with your mouse in order for the keyboard commands to work." coords="416,260,563,354" href="dontwakekate_acc.html" tabindex="1">
+				<area shape="rect" alt="play the game without audio description" coords="417,137,563,233" href="dontwakekate.html" tabindex="2">
+				</map>
+
+				<img src="/PBS-Kids-2006/arthur/games/dontwakekate/images/dwk_splashpage.gif" alt="Don't Wake Kate" width="619" height="419" border="0" usemap="#dwk_splash">
+				
+				<span style="font-size: 10px;">Music within by: Ray Fabi (SOCAN) 
+				&copy; Les &Eacute;ditions de la rue St-Andr&eacute; (SOCAN)/ Great Blue Hills Music (ASCAP)</span> 
+				<br/>
+				<br/>
+<!-- #bbinclude "::games:(includes):games_content_footer.incl" #teaser_URL#="../../friends/dw/" #teaser_image#="morewithdw.gif" #teaser_alt#="More with D.W." #background_color#="#FFFFFF" -->
+			<!-- game content ends here -->
+			</td>
+			<td width="6" bgcolor="#66CCCC"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="6" alt=""></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<!-- navigation -->
+<tr>
+	<td>
+		<table border="0" width="643" cellspacing="0" cellpadding="0">
+		<tr>
+			<td bgcolor="#FFFFFF" valign="bottom" align="center" width="508">
+				<br><img src="/web/20060902084336im_/http://pbskids.org/arthur/images/1px.gif" width="508" height="15" alt="">
+			</td>
+			<td bgcolor="#FFFFFF" valign="bottom" align="right" width="129" height="145"><a href="/PBS--Kids-2006/arthur/friends/dw/"><img src="/PBS-Kids-2006/arthur/games/images/teasers/morewithdw.gif" width="129" height="135" border="0" align="right" alt="More with D.W." hspace="0" vspace="0"></a></td>
+			<td width="6" height="145"><img src="/PBS-Kids-2006/arthur/games/images/teaser_button_right.gif" width="6" height="145" alt=""></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<!-- bottom of content box -->
+<tr>
+	<td>
+		<table border="0" width="643" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="508" height="1" bgcolor="#66CCCC"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="508" height="6" border="0" alt=""></td>
+			<td width="135" height="6"><img src="/PBS-Kids-2006/arthur/games/images/teaser_button_bottom.gif" width="135" height="6" border="0" alt=""></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<!-- end bbinclude -->
+<!-- Game Content Table Ends Here -->
+
+
+<!-- #bbinclude "footer.pl" #section#="games" -->
+		<table cellspacing="0" cellpadding="0" border="0" width="643">
+		<tr>
+			<td width="15" height="30"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="15" height="30" alt=""></td>
+			<td width="20" height="30"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="20" height="30" alt=""></td>
+			<td width="573" height="30"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="573" height="30" alt=""></td>
+			<td width="20" height="30"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="20" height="30" alt=""></td>
+			<td width="15" height="30"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="15" height="30" alt=""></td>
+		</tr>
+		<tr>
+			<td width="15"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="15" height="1" alt=""></td>
+			<td width="20" height="127"><img src="/PBS-Kids-2006/arthur/images/footers/games_left.gif" width="20" height="127" alt=""></td>
+			<td width="573" bgcolor="#CC99CC" align="center">
+				<table cellspacing="0" cellpadding="0" border="0" width="573" bgcolor="#CC99CC">
+				<tr>
+					<td align="center" height="5"><img src="/PBS-Kidds-2006/arthur/images/1px.gif" height="5" border="0" alt=""></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="arthur/index.html">Home</a> / <a href="arthur/friends/index.html">Friends</a> / <a href="arthur/games/index.html">Games</a> / <a href="arthur/print/index.html">Print</a> / <a href="arthur/find/index.html">Find</a> / <a href="arthur/parentsteachers/index.html">Parents &amp; Teachers</a> / <a href="arthur/parentsteachers/help/">Need Help?</a></td>
+				</tr>
+				<tr>
+					<td align="center" height="5"><img src="/PBS-Kids-2006/arthur/images/1px.gif" height="5" border="0" alt=""></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="buster/">Visit POSTCARDS FROM BUSTER</a></td>
+				</tr>
+				<tr>
+					<td align="center" height="20"><img src="/PBS-Kids-2006/arthur/images/1px.gif" height="20" border="0" alt=""></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<span class="copyright">All characters and underlying materials (including artwork) &copy; Marc Brown.<br>
+						&quot;Arthur&quot; and &quot;D.W.&quot; and all of the ARTHUR characters are trademarks of Marc Brown.<br>
+						<a href="arthur/parentsteachers/site/copyright.html">&copy; 2006 WGBH</a></span> 
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><img src="/PBS-Kids-2006/arthur/images/1px.gif" height="5" alt=""></td>
+				</tr>
+				</table>
+			</td>
+			<td width="20" height="127"><img src="/PBS-Kids-2006/arthur/images/footers/games_right.gif" width="20" height="127" alt=""></td>
+			<td width="15"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="15" height="1" alt=""></td>
+		</tr>
+		<tr>
+			<td width="15" height="10"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="15" height="10" alt=""></td>
+			<td width="20" height="10"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="20" height="10" alt=""></td>
+			<td width="573" height="10"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="573" height="10" alt=""></td>
+			<td width="20" height="10"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="20" height="10" alt=""></td>
+			<td width="15" height="10"><img src="/PBS-Kids-2006/arthur/images/1px.gif" width="15" height="10" alt=""></td>
+		</tr>
+
+		</table>
+	</td>
+</tr>
+</table>
+</body>
+</html>
