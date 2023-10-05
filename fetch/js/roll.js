@@ -96,23 +96,3 @@ function changescore(score,replace) {
 }
 
 }
-/*
-     FILE ARCHIVED ON 02:50:14 Jul 04, 2006 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 22:26:28 Oct 04, 2023.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
-*/
-/*
-playback timings (ms):
-  captures_list: 94.773
-  exclusion.robots: 0.063
-  exclusion.robots.policy: 0.055
-  cdx.remote: 0.054
-  esindex: 0.01
-  LoadShardBlock: 61.136 (3)
-  PetaboxLoader3.datanode: 161.438 (4)
-  load_resource: 183.298
-  PetaboxLoader3.resolve: 60.062
-*/
