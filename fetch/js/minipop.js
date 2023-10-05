@@ -28,23 +28,3 @@ function MomentWithRuff() {
 }
 
 }
-/*
-     FILE ARCHIVED ON 02:37:28 Sep 04, 2006 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 22:26:28 Oct 04, 2023.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
-*/
-/*
-playback timings (ms):
-  captures_list: 67.912
-  exclusion.robots: 0.184
-  exclusion.robots.policy: 0.164
-  cdx.remote: 0.127
-  esindex: 0.019
-  LoadShardBlock: 37.369 (3)
-  PetaboxLoader3.datanode: 82.035 (4)
-  load_resource: 86.186
-  PetaboxLoader3.resolve: 30.474
-*/
