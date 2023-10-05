@@ -1,0 +1,322 @@
+/*
+* {
+	margin:0;
+	padding:0;
+	border:0;
+//	vertical-align:top;
+//	font-size:1em;
+}
+*/
+
+body, div, ul, table, td, tr, li, p, img, form, object, embed
+{
+	margin:0;
+	padding:0;
+	border:0;
+/*	font-size:1em; */
+}
+
+li {
+	list-style:none;
+}
+
+div {
+/*border:1px solid red;*/
+}
+
+img {
+vertical-align:top;
+}
+
+
+td {
+vertical-align:top;
+}
+
+td.bottom {
+vertical-align:bottom;
+}
+
+td.middle {
+vertical-align:middle;
+}
+
+td.cent {
+text-align:center;
+}
+
+td.left {
+text-align:left;
+}
+
+td.right {
+text-align:right;
+}
+
+img.cap {
+vertical-align:bottom;
+}
+
+
+
+body {
+/*	font:x-small/1em Verdana,Arial,Helvetica;*/
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:74%;
+	line-height:1.2em;
+	background-color:#BD9200
+}
+
+
+a {
+	font-weight:bold;
+	color:#006;
+}
+
+a:hover {
+	text-decoration:none;
+}
+
+
+.clear {
+clear:both;
+}
+
+
+/*             BOTTOM NAV
+******************************************* */
+
+div#bottomnav li a {
+	color:#FFC;
+}
+
+ul.nav {
+	margin-bottom:10px;
+}
+
+ul.sub {
+	font-size:1em;
+}
+
+ul.nav li.first a {
+	border:none;
+	padding-left:0;
+}
+
+ul.nav li.first span.onpage {
+	border:none;
+	padding-left:0;
+}
+
+ul.nav li span.onpage {
+	font-weight:bold;
+	border-left:2px solid;
+	padding-left:6px;
+	padding-right:4px;
+}
+
+ul.nav li {
+	list-style:none;
+	display:inline;
+}
+
+ul.nav li a {
+	border-left:2px solid;
+	padding-left:6px;
+	padding-right:4px;
+}
+
+
+div#bottomnav li a:visited {
+	color:#930;
+}
+
+div#bottomnav li a:hover {
+	color:#FFF;
+}
+
+
+/*            PBS LOGGED-IN TOP BAR
+************************************************* */
+div#pbsloginbar {
+/*border-bottom:3px solid #fff;
+background-color:#99CF16;
+padding:2px 10px 2px 10px;*/
+/*display:none;*/
+}
+
+div#loginbar {
+border-bottom:3px solid #fff;
+}
+
+span#loginwelcome {
+	margin-right:8px;
+}
+
+
+/*            TOP NAV
+*************************************************  */
+
+img#gologo {
+
+	margin-right:20px;
+/*	margin-top:4px;
+
+
+	position:absolute;
+	top:-10px;
+	left:0;
+*/
+}
+
+div#navhdr {
+float:left;
+}
+
+div#innerheader {
+width:780px;
+}
+
+div#pth {
+left:520px;
+top:95px;
+position:absolute;
+margin-top:-4px;
+width:280px;
+
+/* was 242px */
+}
+
+img#help_btn {
+margin-left:36px;
+}
+
+img#sitemap_btn {
+margin-left:26px;
+}
+
+/*        SIDE BAR
+**************************************************  */
+
+div.sidebartext {
+	background-image:url("https://web.archive.org/web/20070307021325im_/http://pbskids.org/fetch/i/login/sidebar_spacer.gif");
+	background-repeat:repeat-y;
+	width:176px;
+	font-size:10px;
+}
+
+div.sidebartext p {
+	margin-left:28px;
+	margin-right:14px;
+	text-align:right;
+	color:#336;
+}
+
+
+div.sidebartext div.pstyle {
+	margin:0 14px 0 28px;
+	color:#336;
+	padding-bottom:12px; /* this seems necessary to keep IE6 from adding a break?? */
+}
+
+div.sidebartext form {
+	margin-left:28px;
+	margin-right:10px;
+
+}
+
+div.sidebartext p.left {
+text-align:left;
+padding-bottom:8px;
+}
+
+
+div.sidebartext p.ruff {
+text-align:left;
+padding-bottom:8px;
+}
+
+div.sidebartext p.cent {
+text-align:center;
+
+}
+
+div.sidebartext p.error {
+	font-size:10px;
+	color:#C75300;
+	text-align:left;
+	margin-bottom:6px;
+}
+
+form#loginform input {
+	border:2px inset #99DBFD; /*was 53A7D4 */
+/*	background-color:#FFA366;*/
+
+
+}
+
+form#loginform input.txt {
+	width:130px;
+}
+
+form#loginform input.subbtn {
+border:2px outset #99DBFD;
+margin-top:.5em;
+padding:0 4px 0 4px;
+font-family:verdana;
+background-color:#FFFFFF;
+}
+
+div.sidebartext a {
+	color:#39C;
+
+}
+
+img#join_btn {
+margin-top:.5em;
+}
+
+div.sidebartext a.forgot {
+	font-size:10px;
+	color:#fff;
+	font-weight:normal;
+}
+
+div.score {
+	top:-24px;
+/*	margin-left:28px;
+	margin-right:14px; */
+	position:relative;
+	font-size:26px;
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+}
+
+div.sideuser {
+font-size:10px;
+font-weight:bold;
+color:#39C;
+margin-left:28px;
+margin-right:14px;
+}
+/*
+     FILE ARCHIVED ON 02:13:25 Mar 07, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 22:26:28 Oct 04, 2023.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 110.958
+  exclusion.robots: 0.158
+  exclusion.robots.policy: 0.141
+  cdx.remote: 0.107
+  esindex: 0.013
+  LoadShardBlock: 76.55 (3)
+  PetaboxLoader3.datanode: 84.903 (4)
+  load_resource: 66.67
+  PetaboxLoader3.resolve: 27.489
+*/

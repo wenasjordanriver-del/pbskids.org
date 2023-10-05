@@ -1,0 +1,339 @@
+body {
+
+	}
+
+div#page {
+/*background-color:#E6B500;*/
+}
+
+
+div#header {
+	top:0;
+	left:0;
+	width:100%;
+	background-image:url("https://web.archive.org/web/20070307021457im_/http://pbskids.org/fetch/i/com/curtain.gif");
+	background-repeat:repeat-x;
+	background-position:0 0;
+	height:126px;
+	position:relative;
+	z-index:1;
+}
+
+
+
+div#backwall {
+	width:100%;
+	background-color:#E6B500;
+	height:450px;
+}
+
+div#central {
+/*min-width:740px;*/
+	height:360px;
+	background-color:#E6B500;
+	background-image:url("https://web.archive.org/web/20070307021457im_/http://pbskids.org/fetch/i/home/homepage_circle.gif");
+	background-position:185px 4px;
+	background-repeat:no-repeat;
+
+	position:absolute;
+/*	top:105px;*/
+ top: 130px; 
+	left:0px;
+	width:100%;
+	}
+
+div#innercent {
+width:780px;
+height:360px;	
+position:absolute;
+}
+
+div#backspacer {
+/*height:100px;
+border:1px solid red;*/
+}	
+
+a {
+	color:#ff9;
+}
+
+a:hover {
+	color:#fff;
+}
+
+a:visited {
+
+}
+
+div#loginsidebar {
+	width:185px;
+	height:480px;
+	background-image:url("https://web.archive.org/web/20070307021457im_/http://pbskids.org/fetch/i/home/homepage_plug.gif");
+	background-position:0px 250px;
+	background-repeat:no-repeat;
+}
+
+div#copy {
+	position:absolute;
+	top:0px;
+	left:185px;
+	width:580px;
+	font-size:.92em;
+	color:#339;
+}
+
+
+table#f3k {
+	width:580px;
+}
+
+/*   DAILY CHALLENGE    
+******************************* */
+
+td#dctd {
+	background-image:url("https://web.archive.org/web/20070307021457im_/http://pbskids.org/fetch/i/home/dailychallenge_spacer.gif");
+	background-repeat:repeat-y;
+	background-position:0 0;
+}
+
+div#dchal {
+	margin:0 26px 0 32px;
+text-align:center;
+}
+
+div#dchal form {
+	
+}
+
+
+div#dcresp {
+margin-top:4px;
+font-weight:bold;
+color:#339;
+}
+
+div#dcans {
+margin-top:4px;
+color:#36C;
+font-weight:bold;
+}
+
+div#dcback {
+margin-top:6px;
+font-size:.8em;
+color:#36C;
+}
+
+span.dchalq {
+	font-weight:bold;
+	color:#339;
+}
+
+ul.dchalqs {
+	text-align:left;
+}
+
+ul.dchalqs li {
+	list-style:none;
+	margin-top:4px;
+	margin-left:20px;
+	color:#36C;
+	text-align:left;
+}
+
+table#chaltbl {
+	width:260px;
+}
+
+form#challenge {
+	padding-top:1em;
+	text-align:left;
+}
+
+div#spotlight {
+/*	background-image:url("/web/20070307021457im_/http://pbskids.org/fetch/i/home/spotlight_spacer.gif");
+	background-repeat:repeat-y;
+	background-position:0 0;
+*/
+color:#6CF;
+
+}
+
+div#spotlight p {
+margin-right:24px;
+text-align:center;
+
+}
+
+
+div#spotlight p a {
+	color:#fff;
+}
+
+div#spotlight p a:visited {
+color:#6CF;
+}
+
+
+td#sptd {
+	background-image:url("https://web.archive.org/web/20070307021457im_/http://pbskids.org/fetch/i/home/spotlight_spacer.gif");
+	background-repeat:repeat-y;
+	background-position:0 0;
+}
+
+div#copy a {
+color:#C75300; /* rust */
+}
+
+div#copy a:visited {
+color:#4B64C7; /* blue */
+}
+
+
+
+/*          LOCALIZATION
+************************************ */
+
+div#localized {
+	font-size:10px;
+	color:#fff;
+	text-align:left;
+	width:273px;
+	float:left;
+	margin-left:12px;
+}
+
+
+
+div#findanother {
+text-align:center;
+background-image:url("https://web.archive.org/web/20070307021457im_/http://pbskids.org/fetch/i/home/localization_pole.gif");
+background-position:240px 0px;
+background-repeat:no-repeat;
+padding-bottom:2px;
+}
+
+div#pole {
+background-image:url("https://web.archive.org/web/20070307021457im_/http://pbskids.org/fetch/i/home/localization_pole.gif");
+background-position:30px 0px;
+background-repeat:no-repeat;
+}
+
+div#findanother a {
+color:#600;
+font-weight:normal;
+
+}
+
+div#findanother a:hover {
+color:#F90;
+}
+
+div#presented {
+background-color:#930;
+width:273px;
+}
+
+div#presented p {
+width:180px;
+float:left;
+text-align:center;
+margin:2px 0 2px 2px;
+}
+
+div#nonloc {
+background-color:#930;
+width:273px;
+height:30px;
+}
+
+div#nonloc p {
+padding-top:6px;
+text-align:center;
+}
+
+table#localtbl td{
+border:1px solid red;
+}
+
+img#statlogo {
+/*float:right;*/
+margin:2px 2px 2px 6px;
+}
+
+
+
+div#middle {
+/*	background-color:#E6B500;
+clear:both;*/
+}
+
+
+
+div#floor {
+	background-color:#BD9200;
+}
+
+img#plug {
+margin-top:0px;
+}
+
+div#footer {
+	background-color:#BD9200;
+	font-size:.82em;
+	width:740px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+
+
+div#funders {
+	color:#846600;
+	margin-top:2em;
+	margin-bottom:40px;
+	text-align:center;
+	font-size:.82em;
+}
+
+#funders p {
+	text-align:left;
+	margin-top:1em;
+	display:block;
+}
+
+#funders img {
+	margin-bottom:1em;
+}
+
+
+div#bottomnav {
+	text-align:center;
+}
+
+
+div#bottomnav li a {
+	border-color:#E6B600;
+}
+
+/*
+     FILE ARCHIVED ON 02:14:57 Mar 07, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 22:26:28 Oct 04, 2023.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 106.656
+  exclusion.robots: 0.112
+  exclusion.robots.policy: 0.1
+  cdx.remote: 0.079
+  esindex: 0.014
+  LoadShardBlock: 68.685 (3)
+  PetaboxLoader3.datanode: 69.743 (4)
+  load_resource: 99.257
+  PetaboxLoader3.resolve: 53.508
+*/
