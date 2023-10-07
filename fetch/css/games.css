@@ -1,0 +1,259 @@
+
+/*      GAMES
+******************************************** */
+div.gamebox {
+	background-color:#990;
+	text-align:center;
+}
+
+.gamegreen {
+background-color:#990;
+}
+
+td#gamehilite {
+height:130px;
+}
+
+
+div#loginsidebar {
+	background-image:url("/PBS-Kids-2006/fetch/i/com/plug_basketoftoys.gif");
+}
+
+
+div.nocat div#loginsidebar {
+	background-image:url("/PBS-Kids-2006/fetch/i/com/plug_plant.gif");
+}
+
+/*     INDEX
+******************************* */
+
+div#games {
+background-color:#990;
+color:#CF0;
+}
+
+a {
+color:#fff;
+}
+
+a:visited {
+color:#4C4C00;
+}
+
+a:hover {
+color:#ff9;
+}
+
+div.inner {
+margin-left:10px;
+}
+
+table#gamelist {
+width:561px;
+font-size:.95em;
+padding-top:14px;
+
+}
+
+table#gamelist td {
+text-align:center;
+padding-bottom:20px;
+width:187px;
+
+}
+
+span.yourpts {
+color:#CF0;
+}
+
+span.maxpts {
+font-weight:bold;
+color:#CF0;
+}
+
+span.hilitetitle {
+font-weight:bold;
+color:#fff;
+font-size:1.1em;
+}
+
+div.gamelisting {
+background-color:#990;
+padding:0 10px 0 10px;
+}
+
+div.gameblurb {
+margin-top:4px;
+color:#CF0;
+}
+
+div.gamelisting img {
+display:block;
+}
+
+td img {
+vertical-align:top;
+}
+
+div#activities {
+	margin-left:10px;
+}
+
+div.activitylisting {
+	margin-top:6px;
+	text-align:left;
+	font-size:.9em;
+	margin-left:10px;
+}
+
+div.activitylisting a {
+	color:#fff;
+}
+
+div.activitylisting li {
+	margin-bottom:.75em;
+}
+
+span.pdf {
+	font-weight:normal;
+	color:#CF0;
+}
+
+
+/*     GAME SPLASH PAGE
+***************************** */
+
+div.bluebox {
+	background-image:url("/PBS-Kids-2006/fetch/i/games/games_spacer.gif");
+	background-repeat:repeat-y;
+
+}
+
+table.mainbox {
+	width:550px;
+	margin-left:15px;
+	text-align:left;
+	margin-right:15px;
+}
+
+table.mainbox td {
+	text-align:left;
+	margin:0;
+	padding:0;
+}
+
+
+img#maxpts {
+margin:15px 0 9px 0;
+}
+
+img#yourpts {
+margin:8px 0 9px 0;
+}
+
+ul#topfive {
+	width:172px;
+	font-size:10px;
+	font-weight:bold;
+	padding:0;
+	left:0;
+	top:-6px;
+	position:relative;
+}
+
+img.dots {
+margin-top:6px;
+margin-bottom:6px;
+}
+
+div#topfive {
+	text-align:left;
+	width:172px;
+}
+
+div#topfive div.fivebox {
+width:172px;
+background-image:url("/PBS-Kids-2006/fetch/i/games/top5_spacer.gif");
+	background-repeat:repeat-y;
+}	
+
+
+div#maxscore {
+background-image:url("/PBS-Kids-2006/fetch/i/games/maxpoints.gif");
+background-repeat:no-repeat;
+height:39px;
+margin-top:9px;
+
+}
+
+div#maxscore span {
+display:block;
+font-family:verdana,arial,sans-serif;
+font-size:18px;
+font-weight:bold;
+/*margin-left:14px;*/
+padding-top:10px;
+margin-right:106px;
+text-align:right;
+}
+/*
+div {
+border:1px solid red;
+}
+
+td {
+border:1px solid yellow;
+}
+*/
+div#yourscore {
+background-image:url("/PBS-Kids-2006/fetch/i/games/yourbestscore.gif");
+background-repeat:no-repeat;
+height:39px; /* was 48px */
+margin-top:0;
+}
+
+div#yourscore span {
+display:block;
+font-family:verdana,arial,sans-serif;
+font-size:18px;
+font-weight:bold;
+/*margin-left:14px;*/
+padding-top:10px;
+margin-right:106px;
+text-align:right;
+}
+
+div#logremind {
+width:172px;
+color:#AAC6F9;
+}
+
+div#logremind p {
+	font-size:smaller;
+	margin-left:12px;
+	margin-top:4px; /* was 12 pix! */
+}
+
+div#logremind a {
+color:#fff;
+}
+
+
+ul#topfive li {
+
+color:#36C;
+}
+
+span.score {
+margin:0 10px 0 10px;
+float:left;
+color:#333399;
+width:4em;
+text-align:right;
+}
+
+
+span.req {
+color:#CF0;
+font-size:.93em;
+}
