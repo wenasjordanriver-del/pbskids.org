@@ -1,0 +1,401 @@
+body {
+
+	}
+
+
+
+.mini {
+font-size:1em;
+}
+
+div#page {
+/*background-color:#E6B500;*/
+}
+
+div#header {
+	top:0;
+	left:0;
+	width:100%;
+/*background-color:#E6B500;*/
+	background-image:url("/PBS-Kids-2006/fetch/i/com/curtain.gif");
+	background-repeat:repeat-x;
+	background-position:0 0;
+	height:126px;
+	position:relative;
+	z-index:1;
+	margin-bottom:2px; /* will this fix Mac IE? */
+}
+
+
+img#gologo {
+	position:absolute;
+	top:0px;
+	left:0;
+	margin:0;
+}
+
+img#fetchlogo {
+
+	display:inline;
+/*
+	float:left;
+	position:absolute;
+	top:0;
+	left:0;
+*/}
+
+img#games_btn {
+margin-left:80px;
+}
+
+div#central {
+/*min-width:740px;*/
+/* margin-top:-34px; */
+	height:360px;
+	background-color:#E6B500;
+	background-image:url("/PBS-Kids-2006/fetch/i/com/circle.gif");
+	background-position:136px 0px;
+	background-repeat:no-repeat;
+
+/*	position:absolute;
+	top:105px;
+ top: 130px; 
+	left:0px;
+*//*
+clear:left;  ? */
+
+	width:100%;
+margin-top:-34px;
+	}
+
+div#central.rightspot {
+	background-position:350px 0px; 
+	background-repeat:no-repeat;
+}
+
+div#central.leftspot {
+	background-position:136px 0px; 
+	background-repeat:no-repeat;
+}
+
+div#innercent {
+width:780px;
+height:360px;
+position:absolute;
+margin-top:20px;
+}
+
+
+div {
+/*border:1px solid red;*/
+}
+
+
+a {
+	color:#ff9;
+}
+
+a:hover {
+	color:#fff;
+}
+
+a:visited {
+
+}
+
+
+div#backspacer {
+/*height:280px;*/
+
+}
+
+div#backwall {
+	width:100%;
+	background-color:#E6B500;
+}
+
+img#plug {
+	margin-top:-30px;
+}
+
+div#loginsidebar {
+	width:185px;
+	height:480px;
+	background-image:url("/PBS-Kids-2006/fetch/i/com/plug.gif"); /* PUT THIS BACK! */
+	background-position:0px 348px;
+	background-repeat:no-repeat;
+	padding-top:20px;
+}
+
+div#copy {
+	position:absolute;
+	top:0px;
+	left:185px;
+	width:580px;
+	font-size:1.1em;
+	color:#339;
+
+}
+
+div#footer {
+	background-color:#BD9200;
+	font-size:1em;
+}
+
+
+div#funders {
+	color:#846600;
+	text-align:center;
+	margin-top:2em;
+}
+
+#funders p {
+	margin-top:1em;
+	display:block;
+}
+
+
+div#bottomnav {
+	margin-top:2em;
+	text-align:center;
+}
+
+
+div#bottomnav li a {
+	border-color:#E6B600;
+}
+
+
+div.totop {
+font-size:1em;
+}
+
+
+
+/*          AD BAR
+******************************************** */
+
+div#adbar {
+	margin-top:20px;
+}
+
+div.brownad {
+	background-image:url("/PBS-Kids-2006/fetch/i/com/adbar_spacer.gif");
+	background-repeat:repeat-y;
+	background-position:0 0;
+}
+
+div.orange {
+background-color:#f90;
+border:3px solid #fff;
+margin-left:28px;
+width:121px;
+top:-14px;
+position:relative;
+}
+
+div.orange div {
+margin:6px;
+text-align:center;
+font-size:11px;
+font-weight:bold;
+color:#A3310D;
+}
+
+/* if it's an image */
+div.brownad img {
+display:block;
+margin-top:-14px;
+margin-bottom:4px;
+}
+
+div.brownad p {
+width:123px;
+margin-left:28px;
+text-align:center;
+font-size:1em;
+}
+
+div#adbar div.brownad a {
+color:#E6B600;
+}
+
+div.brownad a:visited {
+color:#F90;
+}
+
+div.brownad a:hover {
+color:#FFF;
+}
+
+div#adbar div.orange a {
+	color:#ff9;
+}
+
+div#adbar div.orange a:visited {
+	color:#ff9;
+}
+
+div#adbar div.orange a:hover {
+	color:#fff;
+}
+
+/*      GAMES
+******************************************** */
+div.gamebox {
+	background-color:#990;
+	text-align:center;
+}
+
+
+
+/*    FOR TALL PAGES
+************************ */
+
+/* 
+height of sidebar is 4 more than height of central
+background position is height - 80px
+
+
+div#central.high {
+height:576px;
+}
+
+div#central.high div#loginsidebar {
+	background-position:0px 500px;
+	height:580px;
+}
+
+
+div#central.vhigh {
+	height:746px;
+}
+
+div#central.vhigh div#innercent {
+	height:746px;
+}
+
+div#central.vhigh div#loginsidebar {
+	background-position:0px 674px;
+	height:750px;
+}
+*/
+
+
+/* 
+height of sidebar is 70px less than height of backwall
+background position is 82px less than sidebar height
+but 248px is as low as it goes?
+*/
+
+
+
+
+div.waylow {
+	height:470px;
+}
+
+div#backwall.waylow div#loginsidebar {
+	background-position:0px 242px;
+	height:400px;
+}
+
+
+div.low {
+	height:480px;
+}
+
+div#backwall.low div#loginsidebar {
+	background-position:0px 252px;
+	height:410px;
+}
+
+
+div.med {
+	height:580px;
+}
+
+div#backwall.med div#loginsidebar {
+	background-position:0px 352px;
+	height:510px;
+}
+
+
+div.vidbg {
+	height:560px;
+}
+
+div#backwall.vidbg div#loginsidebar {
+	background-position:0px 332px;
+	height:490px;
+}
+
+
+div.high {
+	height:680px;
+}
+
+div#backwall.high div#loginsidebar {
+	background-position:0px 452px;
+	height:610px;
+}
+
+
+div.high1 {
+	height:780px;
+}
+
+div#backwall.high1 div#loginsidebar {
+	background-position:0px 552px;
+	height:710px;
+}
+
+
+div.high2 {
+	height:980px;
+}
+
+div#backwall.high2 div#loginsidebar {
+	background-position:0px 752px;
+	height:910px;
+}
+
+/* start at 1180 */
+div.vhigh {
+	height:1180px;
+}
+
+div#backwall.vhigh div#loginsidebar {
+	background-position:0px 952px;
+	height:1110px;
+}
+
+
+div.uhigh {
+	height:1480px;
+}
+
+div#backwall.uhigh div#loginsidebar {
+	background-position:0px 1252px;
+	height:1410px;
+}
+
+
+
+div.shigh {
+	height:2080px;
+}
+
+div#backwall.shigh div#loginsidebar {
+	background-position:0px 1852px;
+	height:2010px;
+}
+
+div.whigh {
+	height:2580px;
+}
+
+div#backwall.whigh div#loginsidebar {
+	background-position:0px 2352px;
+	height:2510px;
+}
