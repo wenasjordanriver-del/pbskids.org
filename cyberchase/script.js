@@ -35,23 +35,3 @@ function openWindow(url, name) {
   }
 
 }
-/*
-     FILE ARCHIVED ON 19:27:43 Jul 13, 2006 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 14:54:59 Oct 09, 2023.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
-*/
-/*
-playback timings (ms):
-  captures_list: 78.61
-  exclusion.robots: 0.069
-  exclusion.robots.policy: 0.06
-  cdx.remote: 0.054
-  esindex: 0.009
-  LoadShardBlock: 54.737 (3)
-  PetaboxLoader3.datanode: 60.684 (4)
-  load_resource: 65.607
-  PetaboxLoader3.resolve: 39.522
-*/
