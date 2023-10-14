@@ -8,3 +8,5 @@ https://thecartoondude.github.io/downloads/flashplayer32_0r0_371_win.exe
 
 Adobe Shockwave
 https://thecartoondude.github.io/downloads/sw_lic_full_installer.msi
+
+Credit to PBS and PBS Kids for everything.
