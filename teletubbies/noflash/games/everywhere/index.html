@@ -1,0 +1,260 @@
+
+
+		<meta name="robots" content="index, follow">
+		<meta name="description" content="The official Teletubbies website for the U.S.">
+		<meta name="keywords" content="Teletubby, Teletubbies, Tinky, Tinky Winky, Noo Noo, Dipsy, Po, Laa Laa, custard, toast, PBS, kids, games, children">
+		<meta http-equiv="content-type" content="text/html">
+
+		<title>Teletubbies . Non-Flash . Teletubbies Everywhere - PBS Kids</title>
+
+		<link rel="stylesheet" href="/PBS-Kids-2006/teletubbies/noflash/styles/styles.css" type="text/css">
+		<script language="javascript" src="/PBS-Kids-2006/teletubbies/noflash/scripts/global.js"></script>
+		<script language="javascript" src="/PBS-Kids-2006/teletubbies/noflash/scripts/activeXControls.js"></script>
+		<script language="javascript" src="/PBS-Kids-2006/teletubbies/noflash/scripts/compatibility.js"></script>
+
+		<!--
+			Core game functionality
+		-->
+		<script language="javascript">
+			<!--
+				var newIndex, oldIndex;
+
+				//initialise global state
+				initInternalState();
+
+				//page specific state
+				var delay = 500;
+
+				//perform preload operations
+				function preload()
+				{
+					//alert("preload called");
+					preloadImage("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/back_button.gif", "backButton");
+					preloadImage("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/back_button_over.gif", "backButtonOver");
+					preloadImage("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/blank.gif", "blank");
+					preloadImage("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/dy.gif", "dipsy");
+					preloadImage("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/ll.gif", "laalaa");
+					preloadImage("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/po.gif", "po");
+					preloadImage("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/tw.gif", "tinkywinky");
+				}
+
+				function loadFirstTubby()
+				{
+					var row = Math.floor(Math.random()*3);
+					var column;
+
+					if(row == 2)
+					{
+						column = 1 + Math.floor(Math.random()*8);
+					}
+					else
+					{
+						column = Math.floor(Math.random()*9);
+					}
+
+					//alert(row + "," + column);
+
+					block(1000, "alterSquare('_" + row + column + "')");
+				}
+
+				//alter the quare we just clicked on
+				function alterSquare(squareID)
+				{
+					if(document.images[squareID] != null &&
+						document.images[squareID].src == imgArray['blank'].src)
+					{
+						playSound("pop");
+
+						var newIndex = Math.floor(Math.random()*4);
+						while(newIndex == oldIndex)
+						{
+							newIndex = Math.floor(Math.random()*4);
+						}
+
+						oldIndex = newIndex;
+
+						switch(newIndex)
+						{
+							case 0:
+								swapImage(squareID, "dipsy");
+								delayInvoke("playSound", delay, new Array("dipsyA"));
+								break;
+							case 1:
+								swapImage(squareID, "laalaa");
+								delayInvoke("playSound", delay, new Array("laalaaA"));
+								break;
+							case 2:
+								swapImage(squareID, "po");
+								delayInvoke("playSound", delay, new Array("poA"));
+								break;
+							case 3:
+								swapImage(squareID, "tinkywinky");
+								delayInvoke("playSound", delay, new Array("tinkywinkyA"));
+								break;
+						}
+					}
+					else
+					{
+						if(document.images[squareID].src == imgArray['dipsy'].src)
+						{
+							playSound("dipsyB");
+						}
+						else if(document.images[squareID].src == imgArray['laalaa'].src)
+						{
+							playSound("laalaaB");
+						}
+						else if(document.images[squareID].src == imgArray['po'].src)
+						{
+							playSound("poB");
+						}
+						else if(document.images[squareID].src == imgArray['tinkywinky'].src)
+						{
+							playSound("tinkywinkyB");
+						}
+
+						if(isSoundCapable())
+						{
+							delayInvoke("playSound", delay+1300, new Array("pop"));
+							delayInvoke("swapImage", delay+1300, new Array(squareID, "blank"));
+						}
+						else
+						{
+							swapImage(squareID, "blank");
+						}
+					}
+				}
+
+				preload();
+			//-->
+		</script>
+	</head>
+
+	<body onload="documentLoaded('loadFirstTubby()');">
+ 
+		<center>
+			<table width="750px" cellspacing="0" cellpadding="0" border="0" align="center">
+				<tr>
+					<td width="100%">
+						<table width="100%" height="60px" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td><a href="/PBS-Kids-2006/"><img src="/PBS-Kids-2006/teletubbies/noflash/images/pbslogo_.gif" border="0" width="60px" height="60px" alt="PBS Kids"></a></td>
+								<td align="right"><a href="/PBS-Kids-2006/teletubbies/index.html"><img src="/PBS-Kids-2006/teletubbies/noflash/images/teletubbieslogo.gif" border="0" width="170px" height="60px" alt="Teletubbies"></a></td>
+							</tr>
+						</table>
+
+						<table width="750px" cellspacing="0" cellpadding="0" border="0" background="/PBS-Kids-2006/teletubbies/noflash/games/landscape.gif">
+							<tr>
+								<td align="center" valign="top">
+									<!--
+										Create a 9x3 grid, make sure it is centered, not optimal yet
+									-->
+									<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+										<tr height="110">
+											<script language="javascript">
+												<!--
+													var i = 0;
+													for(i=0;i<=8;i++)
+													{
+														var imgObj = buildImageObject("_0" + i, "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/blank.gif", "interactive", 60, 110, 0);
+														var spacerObjL = buildImageObject("_0" + i + "_l", "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/trans.gif", "interactive", 11, 110, 0);
+														var spacerObjR = buildImageObject("_0" + i + "_r", "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/trans.gif", "interactive", 11, 110, 0);
+														document.write("<td width='82' align='center' valign='middle' background='/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/blank.gif'>");
+														buildHotspot(spacerObjL, "process('alterSquare', new Array('_0" + i + "'));");
+														buildHotspot(imgObj, "process('alterSquare', new Array('_0" + i + "'));");
+														buildHotspot(spacerObjR, "process('alterSquare', new Array('_0" + i + "'));");
+														document.write("</td>");
+													}
+												//-->
+											</script>
+										</tr>
+										<tr height="110">
+											<script language="javascript">
+												<!--
+													var i = 0;
+													for(i=0;i<=8;i++)
+													{
+														var imgObj = buildImageObject("_1" + i, "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/blank.gif", "interactive", 60, 110, 0);
+														var spacerObjL = buildImageObject("_1" + i + "_l", "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/trans.gif", "interactive", 11, 110, 0);
+														var spacerObjR = buildImageObject("_1" + i + "_r", "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/trans.gif", "interactive", 11, 110, 0);
+														document.write("<td width='82' align='center' valign='middle' background='/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/blank.gif'>");
+														buildHotspot(spacerObjL, "process('alterSquare', new Array('_1" + i + "'));");
+														buildHotspot(imgObj, "process('alterSquare', new Array('_1" + i + "'));");
+														buildHotspot(spacerObjR, "process('alterSquare', new Array('_1" + i + "'));");
+														document.write("</td>");
+													}
+												//-->
+											</script>
+										</tr>
+										<tr height="110">
+											<!-- Back Button -->
+                      <td colspan="2" align="left" valign="bottom" background="/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/blank.gif">
+												<a href="/PBS-Kids-2006/teletubbies/noflash/index.html">
+													<img name="_20" border="0" src="/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/back_button.gif" alt="Exit Game"/>
+												</a>
+											</td>
+											<script language="javascript">
+												<!--
+													var i = 0;
+													for(i=1;i<=7;i++)
+													{
+														var imgObj = buildImageObject("_2" + i, "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/blank.gif", "interactive", 60, 110, 0);
+														var spacerObjL = buildImageObject("_2" + i + "_l", "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/trans.gif", "interactive", 11, 110, 0);
+														var spacerObjR = buildImageObject("_2" + i + "_r", "/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/trans.gif", "interactive", 11, 110, 0);
+														document.write("<td width='82' align='center' valign='middle' background='/PBS-Kids-2006/teletubbies/noflash/games/everywhere/images/blank.gif'>");
+														buildHotspot(spacerObjL, "process('alterSquare', new Array('_2" + i + "'));");
+														buildHotspot(imgObj, "process('alterSquare', new Array('_2" + i + "'));");
+														buildHotspot(spacerObjR, "process('alterSquare', new Array('_2" + i + "'));");
+														document.write("</td>");
+													}
+												//-->
+											</script>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+
+						<table width="100%" height="50px" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td valign="top"><div>&copy; Ragdoll Limited 2004.</div></td>
+								<td valign="top" align="center"><div>If you are experiencing problems with this game, click <a href="/PBS-Kids-2006/teletubbies/noflash/tips.html">here</a>.</div></td>
+								<td valign="top" align="right">
+									<a href="/PBS-Kids-2006/teletubbies/parentsteachers/index.html">Parents &amp; Teachers</a><br>
+								</td>
+							</tr>
+
+							<tr><td height="10px"></td></tr>
+
+							<tr>
+								<td colspan="3" align="center">
+									<div>
+										<a href="/PBS-Kids-2006/teletubbies/index.html">Teletubbies</a> |
+										<a href="/PBS-Kids-2006/teletubbies/parentsteachers/index.html">Parents &amp; Teachers</a> |
+										<a href="/PBS-Kids-2006/teletubbies/noflash/index.html">Teletubbies (Non-Flash)</a>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</center>
+
+		<!--
+			Embed our sounds
+		-->
+		<script language="javascript">
+			<!--
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/pop.wav", "pop", false);
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/dipsy_ehoh.wav", "dipsyA", false);
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/dipsy_byebye.wav", "dipsyB", false);
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/laalaa_ehoh.wav", "laalaaA", false);
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/laalaa_byebye.wav", "laalaaB", false);
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/po_ehoh.wav", "poA", false);
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/po_byebye.wav", "poB", false);
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/tinkywinky_ehoh.wav", "tinkywinkyA", false);
+				embedSound("/PBS-Kids-2006/teletubbies/noflash/games/everywhere/sounds/tinkywinky_byebye.wav", "tinkywinkyB", false);
+			//-->
+		</script>
+	</body>
+</html>
