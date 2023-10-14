@@ -610,7 +610,7 @@ function embedSound(src, name, shouldLoop)
 			}
 			else if(audioPlayer == "QuickTime")
 			{
-				document.write('<object id="'+name+'" name="'+name+'" classid="clsid:'+audioPlayerClsID+'" codebase="https://web.archive.org/web/20070207131532/http://www.apple.com/qtactivex/qtplugin.cab" width="'+width+'" height="'+height+'">');
+				document.write('<object id="'+name+'" name="'+name+'" classid="clsid:'+audioPlayerClsID+'" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="'+width+'" height="'+height+'">');
 				document.write('<param name="src" value="'+src+'">');
 				document.write('<param name="autoplay" value="false">');
 				document.write('<param name="controller" value="false">');
@@ -997,6 +997,4 @@ function getResource(res, key)
 function getNumberOfResources(res)
 {
 	return resources[res].length;
-}
-
 }
