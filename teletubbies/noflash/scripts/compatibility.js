@@ -9,4 +9,3 @@ setMinimumRequiredBrowserVersion(NETSCAPE, 4.0);
 setMinimumRequiredBrowserVersion(OPERA, 7.0);
 setMinimumRequiredBrowserVersion(MOZILLA, 1.6);
 
-}
