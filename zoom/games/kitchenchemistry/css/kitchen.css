@@ -1,0 +1,191 @@
+td.copy
+{
+	font-family: verdana, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	padding: 0px 0px 0px 5px;
+}
+
+td.CO2copy
+{
+	font-family: verdana, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	padding: 0px 0px 0px 5px;
+	line-height: 16px;
+}
+
+
+td.pie
+{
+	font-family: verdana, sans-serif;
+	font-size: 0.8em;
+	color: #FFFFFF;
+/* 	padding: 10px 0px 10px 0px; */
+padding:10px 8px 10px 0px;
+}
+
+
+td.graphlabels
+{
+	font-family: verdana, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+/* 	padding: 4px; */
+	padding:0px 0px 6px 4px;
+	margin-bottom:6px;
+}
+
+
+A:link
+{
+	font-family: verdana, sans-serif;
+	color: #333399;
+	text-decoration: underline;
+}
+
+A:visited
+{
+	font-family: verdana, sans-serif;
+	color: #99CC66;
+	text-decoration: underline;
+}
+
+A:hover
+{
+	font-family: verdana, sans-serif;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+A.nav:link
+{
+	font-family: verdana, sans-serif;
+	color: #333399;
+	text-decoration: underline;
+}
+
+A.nav:active
+{
+	font-family: verdana, sans-serif;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+A.nav:visited
+{
+	font-family: verdana, sans-serif;
+	color: #99CC66;
+	text-decoration: underline;
+}
+
+A.nav:hover
+{
+	font-family: verdana, sans-serif;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+span.subscript
+{
+	font-size: 8px;
+}
+
+span.nav
+{
+	font-size: 11px;
+	font-family: verdana, sans-serif;
+	color: #FFFFFF;
+}
+
+span.subnav
+{
+	font-size: 10px;
+	font-family: verdana, sans-serif;
+	color: #FFFFFF;
+}
+
+span.headline
+{
+	font-size: 14px;
+	font-family: verdana, sans-serif;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+img.noborder {
+	border-style: none;
+}
+
+img.whiteborder
+{
+	border-color: #FFFFFF;
+	border-style: dotted;
+}
+
+span.minthilite
+{
+	color: #99FFFF;
+	font-weight: bold;
+}
+
+span.tealhilite
+{
+	color: #003333;
+}
+
+.bold
+{
+	font-weight: bold;
+}
+
+span.navpipe
+{
+	color: #333399;
+	font-family: verdana, sans-serif;
+	font-size: 11px;
+
+}
+
+span.bigwhite
+{
+	color: #FFFFFF;
+	font-family: verdana, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+img.cell
+{
+	display: block;
+	margin: 0px;
+	border-style: none;
+	padding: 0px;
+}
+
+img.label
+{
+	border-style: none;
+	padding: 5px 0px 0px 0px;
+}
+
+.score
+{
+	font-family: verdana, sans-serif;
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #FF6633;
+	padding: 7px 0px 0px 5px;
+}
+
+/* div.list { */
+/* 	margin: 0em; */
+/* 	padding: 0em; */
+/* 	width: 100%; // maybe remove this? */
+/* } */
+/*  */
+
+div#content {
+width:590px;
+left:75px;
+}
