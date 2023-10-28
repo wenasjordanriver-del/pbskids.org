@@ -1,0 +1,21 @@
+* {
+margin:0;
+padding:0;
+}
+
+body {
+/*background-image:url("/PBS-Kids-2006/fetch/i/home/ruff_moment.gif");*/
+
+font-family:verdana;
+
+}
+
+div.moment {
+position:absolute;
+left:180px;
+top:130px;
+width:205px;
+font-size:11px;
+font-weight:bold;
+color:#E6B600;
+}
