@@ -59,8 +59,11 @@ function ButtonObject(ID,divname,OutPath,OverPath,Height,Width) {
 		this.key = document.all[this.key];
 	}
 	else if (document.layers) {
-		this.key = document.layers[this.layer].document[this.key];
-		alert(document.layers[this.layer].document[this.key].name + "\n");
+	//alert("key: " + this.key + ", divname: " + this.layer);
+// KB deleted	this.key = document.layers[this.layer].document[this.key];
+//		alert(document.layers[this.layer].document[this.key].name + "\n");
+	//	alert(document[this.key].name);
+		this.key=document[this.key];
 	}
 	else {
 		this.key = document.getElementById(this.key);
@@ -82,7 +85,9 @@ function ButtonObjectOver() {
 		this.key.src = this.OverImgPath.getImage();
 	}
 	else if (document.layers) {
-		document.layers[divname].document[this.key].src = this.OverImgPath.getImage();
+// KB deleted		document.layers[divname].document[this.key].src = this.OverImgPath.getImage();
+// 
+this.key.src=this.OverImgPath.getImage(); // KB replacement
 	}
 	else {
 		this.key.src = this.OverImgPath.getImage();
@@ -97,8 +102,9 @@ function ButtonObjectOut() {
             this.key.src = this.OutImgPath.getImage();
         }
         else if (document.layers) {
-            document.layers[divname].document[this.key].src = this.OutImgPath.getImage();
-        }
+ // KB deleted           document.layers[divname].document[this.key].src = this.OutImgPath.getImage();
+ this.key.src=this.OutImgPath.getImage(); // KB replaced
+ }
         else {
             this.key.src = this.OutImgPath.getImage();
         }
@@ -115,7 +121,3 @@ function ButtonObjectOut() {
 function MakeButton(ID,divname,OutPath,OverPath,Height,Width) {
 	return new ButtonObject(ID,divname,OutPath,OverPath,Height,Width);
  }
-
-
-
-}
