@@ -62,5 +62,3 @@ function pbsprivate_open_survey(inviteurl, cookiename, frequency) {
 
 pbsprivate_open_survey('/survey/200510/?return='+window.location.pathname, 'pbsol.survey.2005', 10);
 */
-
-}
