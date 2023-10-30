@@ -13,7 +13,7 @@ function LoadNav() {
 	NavButtons.gamesnav = MakeButton("gamesnav",'nav',"/PBS-Kids-2006/zoom/images/nav/common/games_off.gif","/PBS-Kids-2006/zoom/images/nav/common/games_over.gif",82,31);
 	NavButtons.shownav = MakeButton("shownav",'nav',"/PBS-Kids-2006/zoom/images/nav/common/scenes_off.gif","/PBS-Kids-2006/zoom/images/nav/common/scenes_over.gif",110,42);
 	NavButtons.printablesnav = MakeButton("printablesnav",'nav',"/PBS-Kids-2006/zoom/images/nav/common/printables_off.gif","/PBS-Kids-2006/zoom/images/nav/common/printables_over.gif",98,31);
-	NavButtons.grownupsnav = MakeButton("grownupsnav",'nav',"/PBS-Kids-2006/zoom/images/nav/common/grownups_off.gif","/zoom/images/nav/common/grownups_over.gif",95,36);
+	NavButtons.grownupsnav = MakeButton("grownupsnav",'nav',"/PBS-Kids-2006/zoom/images/nav/common/grownups_off.gif","/PBS-Kids-2006/zoom/images/nav/common/grownups_over.gif",95,36);
 	NavButtons.arrownav = MakeButton("arrownav",'nav',"/PBS-Kids-2006/zoom/images/nav/common/sendit_off.gif","/PBS-Kids-2006/zoom/images/nav/common/sendit_over.gif",65,75);
 	NavButtons.envelopenav = MakeButton("envelopenav",'nav',"/PBS-Kids-2006/zoom/images/nav/common/sendit_off.gif","/PBS-Kids-2006/zoom/images/nav/common/sendit_over.gif",65,75);
 }
