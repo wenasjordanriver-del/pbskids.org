@@ -5,7 +5,7 @@ function hideVideoPlayer()
 }
 function showVideoPlayer() 
 {
-	document.getElementById('videoframe').src = "/wordgirl/adventures/videoloader.html"; 
+	document.getElementById('videoframe').src = "/PBS-Kids-2006/wordgirl/adventures/videoloader.html"; 
 	document.getElementById('videoPlayer').style.visibility = "visible";
 }
 
@@ -25,7 +25,6 @@ function loadShell(deepPath)
 {
 	var so = new SWFObject('/PBS-Kids-2006/wordgirl/parent.swf', 'wg_parent', '775', '500', '8', '#1277C9');
 	so.addParam('allowScriptAccess','always');
-	PBS_enable_cdn(so);
 	so.addParam('wmode', 'transparent');
 	so.addParam('menu', 'false');
 	so.addVariable("sitePath", "/wordgirl/");
