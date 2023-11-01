@@ -1,0 +1,264 @@
+body
+{
+	background: #6eb41e url('/PBS-Kids-2006/images/gmc/gmc_bground.gif');
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.container
+{
+	width: 760px;
+	margin: 0 auto;
+}
+
+
+/* G/M/C Global Tags */
+
+.gmccontainer
+{
+	background-image: url('/PBS-Kids-2006/images/gmc/container_bground.gif');
+	background-repeat: no-repeat;
+	width: 760px;
+	height: 420px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.gmccontainer .pbskidslogo
+{
+	width: 94px;
+	height: 420px;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+.gmccontainer .activities
+{
+	width: 646px;
+	height: 393px;
+	margin-left: 94px;
+	padding: 16px 9px 0 8px;
+}
+
+.gmccontainer .activities .games,
+.gmccontainer .activities .music,
+.gmccontainer .activities .coloring
+{
+	width: 513px;
+	height: 381px;
+	margin-right: -5px;
+	float: left;
+}
+
+.gmccontainer .activities .activitynav
+{
+	margin: 0;
+	padding: 0;
+}
+
+.gmccontainer .activities .programlink
+{
+	margin: 0 21px 4px 0;
+	padding: 0;
+	text-align: right;
+}
+
+
+/* G/M/C Big Feature Styles */
+
+.gmccontainer .activities .features
+{
+	margin: 0 0 1px 0;
+	padding: 14px 0 0 5px;
+}
+
+.gmccontainer .activities .featuregutter
+{
+	width: 492px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.gmccontainer .activities .features .feature
+{
+	display: inline;
+	display: inline-table;
+	display: inline-block;
+	width: 236px;
+	/* Only adds the bottom margin properly in IE */
+	margin: 0 6px 3px 0;
+}
+
+.gmccontainer .activities .features .feature .featuregraphic
+{
+	width: 236px;
+	height: 141px;
+}
+
+.gmccontainer .activities .features .feature .featuregraphic img
+{
+	margin: 3px 4px 5px 4px;
+}
+
+.gmccontainer .activities .features .feature > .featuregraphic
+{
+	display: table-row;
+}
+
+
+/* G/M/C Sub Features */
+
+.gmccontainer .activities .subfeatures
+{
+	width: 456px;
+	height: 235px;
+	margin: 18px auto 0 auto;
+	text-align: center;
+	padding: 14px 0px 0 16px;
+}
+
+.gmccontainer .activities .subfeatures .subfeaturegutter
+{
+	width: 380px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* This table is used as a container to dynamically center the sub features */
+
+.gmccontainer .activities .subfeatures .subfeaturegutter table.subfeaturescenteringcontainer
+{
+	height: 235px;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+.gmccontainer .activities .subfeatures .subfeaturegutter table.subfeaturescenteringcontainer td
+{
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+}
+
+.gmccontainer .activities .subfeatures .subfeature
+{
+	display: inline;
+	display: inline-table;
+	display: inline-block;
+	font: 12px verdana, sans-serif;
+	width: 104px;
+	margin: 0 20px 0 0;
+}
+
+.gmccontainer .activities .subfeatures .subfeature a:link,
+.gmccontainer .activities .subfeatures .subfeature a:visited,
+.gmccontainer .activities .subfeatures .subfeature a:hover,
+.gmccontainer .activities .subfeatures .subfeature a:active
+{
+	text-decoration: none;
+}
+
+.gmccontainer .activities .subfeatures .subfeature .subfeaturegraphic
+{
+	margin: 0 auto;
+	padding: 0;
+	width: 104px;
+	height: 58px;
+	text-align: center;
+}
+
+.gmccontainer .activities .subfeatures .subfeature .subfeaturegraphic img
+{
+	margin: 3px 0 0 0;
+}
+
+.gmccontainer .activities .subfeatures .subfeature .subfeaturetitle
+{
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+}
+
+.gmccontainer .activities .subfeatures .subfeature .subfeaturetitle p
+{
+	margin: 0;
+	padding: 2px 0 0 0;
+	width: 104px;
+	height: 50px;
+}
+
+.gmccontainer .activities .subfeatures .subfeature > .subfeaturegraphic,
+.gmccontainer .activities .subfeatures .subfeature > .subfeaturetitle
+{
+	display: table-row;
+}
+
+/* G/M/C Section Nav */
+
+.gmccontainer .activities .gmcnav
+{
+	width: 130px;
+	margin: 0 0 0 513px;
+	padding: 18px 0 0 0;
+}
+
+.gmccontainer .activities .gmcnav img
+{
+	margin: 0 0 12px 0;
+	padding: 0;
+}
+
+/* Non-flash section navigation */
+
+.gmccontainer form#sectionnavnoflash
+{
+	margin: 18px 0 0 0;
+	padding: 0;
+}
+
+.gmccontainer form#sectionnavnoflash select
+{
+	font-size: 22px;
+	margin: 0 0 8px 0;
+}
+
+/* PBS KIDS Global Footer */
+
+.pbskidsfooter
+{
+	margin-top: 10px;
+	clear: both;
+}
+
+.pbskidsfooter a:link,
+.pbskidsfooter a:visited,
+.pbskidsfooter a:hover,
+.pbskidsfooter a:active
+{
+	color: #000;
+}
+
+/* IE Hacks - remove when IE 7 comes out */
+
+* html .gmccontainer .activities .features .feature,
+* html .gmccontainer .activities .subfeatures .subfeature
+{
+	float: none;
+	display: inline;
+}
+
+* html .gmccontainer .activities .gmcnav
+{
+	height: 1%;
+	margin-left: 0;
+}
+
+* html .gmccontainer .activities .programlink
+{
+	margin-bottom: -3px;
+}
