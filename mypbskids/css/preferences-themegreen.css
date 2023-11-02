@@ -1,0 +1,147 @@
+/*
+------------------------------------------------------ 
+PBS KIDS Preferences CSS
+------------------------------------------------------
+*/
+
+/*
+======================================================
+Preferences - Global Styles - themegreen
+======================================================
+*/
+
+body
+{
+background: #B0DD3A;
+margin: 0 auto 5px auto;
+text-align: center;
+color: #000;
+}
+
+.pageheader
+{
+background-color: #14C5E2;
+width: 650px;
+height: 80px;
+text-align: left;
+margin: 0 auto 10px auto;
+}
+
+.boxsmall
+{
+padding: 10px 0 10px 0;
+background-color: #A4DB2A;
+width: 275px;
+text-align: center;
+margin-bottom: 20px;
+}
+
+.boxbig
+{
+padding: 10px 0 10px 0;
+background-color: #A4DB2A;
+width: 315px;
+text-align: center;
+margin-bottom: 20px;
+}
+
+.newfav, .newfav a:link, .newfav a:visited, .newfav a:hover, .newfav a:active
+{
+color: #629926;
+}
+
+.newfav a:hover
+{
+text-decoration: none;
+}
+
+.featuretext
+{
+color: #fff;
+}
+
+.featuretext td
+{
+vertical-align: middle;
+}
+
+.featuretext a:link, .featuretext a:visited, .featuretext a:hover, .featuretext a:active
+{
+color: #fff;
+font-weight: bold;
+text-decoration: none;
+}
+
+.welcomebig
+{
+color: #74B836;
+font-size: 22px;
+font-weight: bold;
+}
+
+.welcomesmall
+{
+color: #74B836;
+font-size: 12px;
+text-decoration: none;
+}
+
+.welcomesmall a:link, .welcomesmall a:visited, .welcomesmall a:active, .welcomesmall a:hover
+{
+color: #74B836;
+font-size: 12px;
+text-decoration: underline;
+}
+
+.swatch
+{
+border: 1px solid white;
+margin-right: 10px;
+}
+
+.gameform
+{
+margin: 10px 0;
+}
+
+.gamelist
+{
+font: 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+.mainbox
+{
+background-color: #D4FF1D;
+margin: auto;
+}
+
+.changeform
+{
+color: #fff;
+font-weight: bold;
+font: 12px;
+text-decoration: none;
+}
+
+.changeform input, select
+{
+margin: 5px;
+}
+
+.errortext
+{
+background-color: FF0000;
+padding: 5px;
+margin: 10px 0;
+text-align: center;
+width: auto;
+}
+
+.messagetext
+{
+background-color: 00FFFC;
+padding: 5px;
+margin: 10px 0;
+text-align: center;
+width: auto;
+}
