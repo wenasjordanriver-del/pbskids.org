@@ -1,0 +1,42 @@
+/*
+------------------------------------------------------ 
+PBS KIDS Preferences CSS
+------------------------------------------------------
+*/
+
+
+/*
+======================================================
+Hybrid Page - Global Styles
+======================================================
+*/
+
+body, td
+{
+font: 11px Verdana, Arial, Helvetica, sans-serif;
+}
+
+td
+{
+vertical-align: top;
+}
+
+.fineprint, .fineprint a:link, .fineprint a:visited, .fineprint a:hover, .fineprint a:active
+{
+color: #000;
+}
+
+.fineprint a:link, .fineprint a:visited, .fineprint a:active
+{
+text-decoration: underline;
+}
+
+.fineprint a:hover
+{
+text-decoration: none;
+}
+
+.notext
+{
+display: none;
+}
