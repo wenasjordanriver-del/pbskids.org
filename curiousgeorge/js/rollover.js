@@ -60,5 +60,3 @@ function initRollovers()
 }
 
 window.onload = initRollovers;
-
-}
