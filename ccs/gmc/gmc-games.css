@@ -1,0 +1,34 @@
+/* Games specific styles */
+
+.gmccontainer .activities .games
+{
+	background-image: url('/PBS-Kids-2006/images/gmc/games/games_bground.gif');
+	background-repeat: no-repeat;
+}
+
+.gmccontainer .activities .games .features .feature .featuregraphic
+{
+	background-image: url('/PBS-Kids-2006/images/gmc/games/games_bigfeature_bground.gif');
+	background-repeat: no-repeat;
+}
+
+.gmccontainer .activities .games .subfeatures
+{
+	background-image: url('/PBS-Kids-2006/images/gmc/games/games_sublevel_bground.gif');
+	background-repeat: no-repeat;
+}
+
+.gmccontainer .activities .games .subfeatures .subfeature,
+.gmccontainer .activities .games .subfeatures .subfeature a:link,
+.gmccontainer .activities .games .subfeatures .subfeature a:visited,
+.gmccontainer .activities .games .subfeatures .subfeature a:hover,
+.gmccontainer .activities .games .subfeatures .subfeature a:active
+{
+	color: #fff;
+}
+
+.gmccontainer .activities .games .subfeatures .subfeature .subfeaturegraphic
+{
+	background-image: url('/PBS-Kids-2006/images/gmc/games/games_smallfeature_bground.gif');
+	background-repeat: no-repeat;
+}
