@@ -22,28 +22,12 @@
 	<body bgcolor="#1277C9" text="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
  
 		<script type="text/javascript">
-var GA_setvar;
-(function() {
- var getCookie = function(c_name) {
-     if (document.cookie.length>0) {
-         c_start=document.cookie.indexOf(c_name + "=");
-         if (c_start!=-1) {
-             c_start=c_start + c_name.length+1;
-             c_end=document.cookie.indexOf(";",c_start);
-             if (c_end==-1) c_end=document.cookie.length;
-             return unescape(document.cookie.substring(c_start,c_end));
-         }
-     }
-     return "";
- };
+var GA_env = { ua_list: "UA-4005067-1,UA-4005001-1,UA-3968372-1,UA-3999648-1,ET-3999648-2" };
 
- var pbskids_wested = getCookie('pbskids.wested');
+GA_env.vars = { localized: 0 };
 
- if(pbskids_wested){
-     GA_setvar = {pbskids_wested: pbskids_wested};
- }
-})();
-
+var GA_jshost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + GA_jshost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 
 <script type="text/javascript">
