@@ -1,6 +1,6 @@
 var HomeNavButtons = new Object();
 function LoadHomeNav() {
-	HomeNavButtons.pbskidsnav = MakeButton("pbskidsnav",'nav',"/PBS-Kids-2006/zoom/images/nav/homepage/pbskids_boy.gif","/PBS-Kids-2006/zoom/images/nav/homepage/pbskids_girl.gif",75,130);
+	HomeNavButtons.pbskidsnav = MakeButton("pbskidsnav",'nav',"/PBS-Kids-2006/zoom/images/nav/homepage/pbskids_boy.gif","/PBS-Kids-2006/zoom/images/nav/homepage/pbskids_gril.gif",75,130);
 	HomeNavButtons.activitiesnav = MakeButton("activitiesnav",'nav',"/PBS-Kids-2006/zoom/images/nav/homepage/activities_off.gif","/PBS-Kids-2006/zoom/images/nav/homepage/activities_over.gif",145,42);
 	HomeNavButtons.fromyounav = MakeButton("fromyounav",'nav',"/PBS-Kids-2006/zoom/images/nav/homepage/fromyou_off.gif","/PBS-Kids-2006/zoom/images/nav/homepage/fromyou_over.gif",68,73);
 	HomeNavButtons.castnav = MakeButton("castnav",'nav',"/PBS-Kids-2006/zoom/images/nav/common/cast_off.gif","/PBS-Kids-2006/zoom/images/nav/common/cast_over.gif",70,42);
