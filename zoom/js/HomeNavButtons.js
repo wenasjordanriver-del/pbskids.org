@@ -15,8 +15,7 @@ function LoadHomeNav() {
 //db : dummy function because body onload calls this
 var PageButtons = new Object();
 function LoadPage() {
-}
-	PageButtons.tv = MakeButton('tv','today','/PBS-Kids-2006/zoom/images/homepage/toz_hdr_off.gif','/PBS-Kids-2006/zoom/images/homepage/toz_hdr_over.gif',90,105);
+        PageButtons.tv = MakeButton('tv','today','/PBS-Kids-2006/zoom/images/homepage/toz_hdr_off.gif','/PBS-Kids-2006/zoom/images/homepage/toz_hdr_over.gif',90,105);
 }
 
 //db : call to initialize (instead of onload)
