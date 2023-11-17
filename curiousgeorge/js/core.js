@@ -53,6 +53,3 @@
 	ewindow = window.open(URL,type,windowFeatures);   
 	ewindow.focus();
 }
-
-
-}
