@@ -1,0 +1,9 @@
+.smallwhite {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #FFFFFF ;}
+a.smallwhite:link {color: #FFFFFF; text-decoration: none}
+a.smallwhite:visited {color: #FFFFFF; text-decoration: none}
+a.smallwhite:hover {color: #FFFFFF; text-decoration: underline}
+
+.smallwhiteitalic {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #FFFFFF; font-style: italic;}
+a.smallwhiteitalic:link {color: #FFFFFF; text-decoration: none}
+a.smallwhiteitalic:visited {color: #FFFFFF; text-decoration: none}
+a.smallwhiteitalic:hover {color: #FFFFFF; text-decoration: underline}
