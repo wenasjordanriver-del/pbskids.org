@@ -12,22 +12,6 @@ a.white11 {
 	font-size: 11px;
 	color : #ffffff;
 	}	
-a.footer {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color : #990033;
-	}
-a.footer:hover {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color : #003399;
-	font-style: none;
-	}	
-.footer {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color : #990033;
-	}
 .copyright {
 	font-family : Verdana, Arial, Helvetica, sans-serif;
 	font-size: 11px;
@@ -155,3 +139,26 @@ a.y {font-weight : bold; color : #FFFF00;}
 	font-size: 10px;
 	color : #ffffff;
 	}				
+	
+.funder {
+	font-family : verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color : #6666cc;
+	}			
+#footer a {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	color : #ccccff;
+}
+#footer a:hover {
+	color : #ffffff;
+   }
+.footer {
+	text-align : center;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 15px;
+	color : #ffcccc;
+   }  
+   
