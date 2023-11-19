@@ -1,0 +1,163 @@
+
+
+<title>TV Times | PBS KIDS</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="/PBS-Kids-2006/hybrid/tvschedules.css">
+<link rel="stylesheet" type="text/css" media="print" href="/PBS-Kids-2006/hybrid/tvschedules-print-new.css">
+</head>
+
+<body>
+ 
+<!-- HEADER -->
+<div class="pageheader">
+<a href="/PBS-Kids-2006/go/"><img src="/PBS-Kids-2006/hybrid/hybrid-logo-go-lblue.gif" border="0" width="93" height="80" alt="PBS KIDS GO!"/></a><a href="/PBS-Kids-2006/tvschedules"><img src="/PBS-Kids-2006/hybrid/hybrid-header-tvtimes-lblue.gif" border="0" width="477" height="80" alt="TV Times"/></a><a href="javascript:history.go(-1)"><img src="/PBS-Kids-2006/hybrid/hybrid-back-lblue.gif" border="0" height="80" width="80" alt="back" id="backarrow"/></a></div><!-- END HEADER -->
+
+<!-- CONTENT -->
+  <!-- STATION FINDER JAVASCRIPT --><script language="JavaScript">
+  function PBSFindStationCheckZip() {
+    var strError = "";
+    if ((document.forms["stationfinderzip"].zipcode.value.length < 5) || (! document.forms["stationfinderzip"].zipcode.value.match(/^\d+$/))) {
+      strError = "Please re-type your 5-digit ZIP code.";
+    }
+    if (strError.length != 0) {
+      alert(strError);
+      return false;
+    } else {
+      return true;
+    }
+  }
+  function PBSFindStationOpenHelpWindow(URL) {
+    window.open(URL,"HelpWindow","toolbar=0,scrollbars=1,location=0,statusbar=1,menubar=0,resizable=1,width=475,height=475");
+  }
+</script><!-- END STATION FINDER JAVASCRIPT -->
+
+<!-- CONTENT -->
+<div id="tvschedules">
+<table border="0" cellpadding="20" cellspacing="0" class="container">
+<tr><td class="sidebar">
+
+<div id="stationchannelscontainer">
+<!-- YOUR STATION -->
+<table border="0" cellpadding="0" cellspacing="0" id="stationlogo">
+<tr><td><img src="/PBS-Kids-2006/tvschedules/images/station-tv-top.gif" width="111" height="15" border="0" alt=""/></td></tr>
+<tr><td><img src="/PBS-Kids-2006/tvschedules/images/station-tv-left.gif" width="37" height="47" border="0" alt=""/><a href=""><img src="http://www-tc.pbs.org/images/stations/standard/default_kids.gif" border="0" alt="default_kids"/></a><img src="/PBS-Kids-2006/tvschedules/images/station-tv-right.gif" border="0" width="17" height="47" alt=""/></td></tr>
+<tr><td><img src="/PBS-Kids-2006/tvschedules/images/station-tv-bottom.gif" width="111" height="26" border="0" alt=""/></td></tr></table><!-- END YOUR STATION --></div>
+<!-- BACK TO PROGRAM -->
+<div id="backtoprogram"><img src="/PBS-Kids-2006/tvschedules/images/backtoprogram-top.gif" border="0" width="130" height="14" alt=""/><a href="/PBS-Kids-2006/go"><img src="/PBS-Kids-2006/images/programs/small-default_go.gif" border="0" alt="PBS KIDS GO!"/></a><div id="link">Go back to<br/> <a href="/PBS-Kids-2006/go">PBS KIDS GO!</a></div>
+<img src="/PBS-Kids-2006/tvschedules/images/backtoprogram-bottom.gif" border="0" width="130" height="14" alt=""/></div>
+<!-- END BACK TO PROGRAM -->
+</td>
+<td class="maincontent">
+<!-- SCHEDULE INFORMATION -->
+<img src="/PBS-Kids-2006/tvschedules/images/title-wheredoyoulive.gif" border="0" alt="Where do you live?"/>
+<!-- STATE SELECTION -->
+<div class="stationfinder">
+<div id="selectstate">
+<form name="stationfinderstate" method="get" action="/PBS-Kids-2006/tvschedules/localizer.html" xonsubmit="return validateStationfinderstate(this);" style="margin: 0; padding: 95px 0 0 0;">
+<input type="hidden" name="dest" value="/PBS-Kids-2006/tvschedules/localizer.html">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="edit_st" value="y">
+<input type="hidden" name="back_image" value="default_go">
+<input type="hidden" name="back_title" value="PBS KIDS GO!">
+<input type="hidden" name="backtoprogramlink" value="/PBS-Kids-2006/go">
+<input type="hidden" name="nola" value="">
+<input type="hidden" name="title_id" value="">
+
+
+        <select name="state" id="statelist">
+          <option value="" selected>Pick a State or Territory
+          <option value="AL">Alabama
+          <option value="AK">Alaska
+          <option value="AS">American Samoa
+          <option value="AZ">Arizona
+          <option value="AR">Arkansas
+          <option value="CA">California
+          <option value="CO">Colorado
+          <option value="CT">Connecticut
+          <option value="DE">Delaware
+          <option value="DC">District Of Columbia
+          <option value="FL">Florida
+          <option value="GA">Georgia
+          <option value="GU">Guam
+          <option value="HI">Hawaii
+          <option value="ID">Idaho
+          <option value="IA">Iowa
+          <option value="IL">Illinois
+          <option value="IN">Indiana
+          <option value="KS">Kansas
+          <option value="KY">Kentucky
+          <option value="LA">Louisiana
+          <option value="ME">Maine
+          <option value="MD">Maryland
+          <option value="MA">Massachusetts
+          <option value="MI">Michigan
+          <option value="MN">Minnesota
+          <option value="MS">Mississippi
+          <option value="MO">Missouri
+          <option value="MT">Montana
+          <option value="NE">Nebraska
+          <option value="NV">Nevada
+          <option value="NH">New Hampshire
+          <option value="NJ">New Jersey
+          <option value="NM">New Mexico
+          <option value="NY">New York
+          <option value="NC">North Carolina
+          <option value="ND">North Dakota
+          <option value="OH">Ohio
+          <option value="OK">Oklahoma
+          <option value="OR">Oregon
+          <option value="PA">Pennsylvania
+          <option value="PR">Puerto Rico
+          <option value="RI">Rhode Island
+          <option value="SC">South Carolina
+          <option value="SD">South Dakota
+          <option value="TN">Tennessee
+          <option value="TX">Texas
+          <option value="UT">Utah
+          <option value="VT">Vermont
+          <option value="VI">Virgin Islands
+          <option value="VA">Virginia
+          <option value="WA">Washington
+          <option value="WV">West Virginia
+          <option value="WI">Wisconsin
+          <option value="WY">Wyoming
+        </select>&nbsp;
+      <input type="image" src="/PBS-Kids-2006/tvschedules/images/button-go.gif" alt="Go" value="next"/>
+      </form></div><!-- END STATE SELECTION -->
+<img src="/PBS-Kids-2006/tvschedules/images/title-or.gif" border="0" alt="or"/>
+<!-- ZIPCODE FORM -->
+<div id="selectzipcode">
+<div id="form">
+<form name="stationfinderzip" method="get" action="/PBS-Kids-2006/tvschedules/localizer.html" onsubmit="return PBSFindStationCheckZip(this);">
+        <input type="hidden" name="dest" value="/PBS-Kids-2006/tvschedules/localizer.html">
+        <input type="hidden" name="step" value="2">
+        <input type="hidden" name="jumptoch" value="">
+        <input type="hidden" name="edit_st" value="y">
+		<input type="hidden" name="back_image" value="default_go">
+<input type="hidden" name="back_title" value="PBS KIDS GO!">
+<input type="hidden" name="backtoprogramlink" value="/PBS-Kids-2006/go">
+<input type="hidden" name="nola" value="">
+<input type="hidden" name="title_id" value="">
+        <img src="/PBS-Kids-2006/tvschedules/images/title-enterzipcode.gif" border="0" alt="Enter Your Zip Code"/>&nbsp;<input type="text" name="zipcode" value="" size="5" maxlength="5"/>&nbsp;
+        <input type="image" src="/PBS-Kids-2006/tvschedules/images/button-go.gif" alt="Go" value="next"/>
+      </form></div></div>
+<!-- END ZIPCODE FORM -->
+</div>
+<!-- PBS INFO -->
+<div id="whatispbs">
+<img src="/PBS-Kids-2006/tvschedules/images/title-whatispbs.gif" border="0" width="265" height="15" alt="Do you know what PBS stands for?"/>
+<p>It's the Public Broadcasting Service—the "Service" is made up of public television stations all across the U.S. These local stations choose which PBS programs to show on TV and what time to show them.</p>
+<p>Public television stations do more than just broadcast television programs. Some produce local TV shows and plan activities for kids, parents and teachers in their community. PBS stations start kids' clubs, run story contests, invite PBS characters to your town, and much more!</p></div>
+<!-- END PBS INFO -->
+<!-- END SCHEDULE INFORMATION -->
+<!-- END CONTENT -->
+</td></tr></table></div>
+<!-- FOOTER -->
+<div class="fineprint" align="center"><a href="/PBS-Kids-2006/tvschedules/" class="fineprint">TV Times</a> | <a href="/PBS-Kids-2006/help/" class="fineprint">Help</a><br>
+<a href="/PBS-Kids-2006/" class="fineprint">PBS KIDS</a> | <a href="/PBS-Kids-2006/go/" class="fineprint">PBS KIDS GO!</a><br><br>
+Copyright &copy; 1995 - 2006 Public Broadcasting Service (PBS). All rights reserved.</div>
+<!-- END FOOTER -->
+
+</body>
+
+</html>
