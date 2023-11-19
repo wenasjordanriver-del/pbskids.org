@@ -5,7 +5,10 @@
 <link rel="stylesheet" type="text/css" href="/PBS-Kids-2006/cyberchase/style.css">
 </head>
 <body bgcolor="#FFFFFF">
- 
+ <script type="text/javascript" src="/PBS-Kids-2006/includes/flash/swfobject.js"></script>
+<script type="text/javascript" src="/PBS-Kids-2006/includes/flash/dispatcher.js"></script>
+<script language="VBScript" src="/PBS-Kids-2006/includes/flash/dispatcher.vbs"></script>
+<script type="text/javascript" src="/PBS-Kids-2006/includes/flash/pbsflash.js"></script>
 
 
 
@@ -65,9 +68,10 @@
 	
 
 
-<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="https://web.archive.org/web/20060902223648oe_/http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="550" height="400">
- <param name="movie" value="percent.swf"> <param name="quality" value="high"> <param name="bgcolor" value="#FFFFFF"> <embed src="/PBS-Kids-2006/cyberchase/games/percent/percent.swf" quality="high" bgcolor="#FFFFFF" width="550" height="400" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
-</object>
+<div id="flashcontent">Whoops! This game needs something called a FLASH PLUGIN in order to play it. FLASH lets you see cool animations and play games. It's free, but if you haven't heard of FLASH you might need a computer-smart friend or adult to help you put it on your computer. </div>
+<script type="text/javascript">
+    var so = new PBS_SWFObject("percent.swf", "550", "400", "6", "#ffffff");
+    so.write("flashcontent");
 
 	
 	</td>
