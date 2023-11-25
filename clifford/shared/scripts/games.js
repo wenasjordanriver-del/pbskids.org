@@ -1,7 +1,7 @@
 // arrays for game function
 
 // ****** the following 3 arrays need to included on the actual page -- these are just examples
-// var path = "/PBS-Kids-2006/shared/images/games/tbone/clifford/";  // universal path to these images
+// var path = "/PBS-Kids-2006/clifford/shared/images/games/tbone/clifford/";  // universal path to these images
 // var arrImgNames = new Array("emily","tbone","clifford"); // names of images on page in img tags
 // var arrImgFiles = new Array("emily_house", "tbone_house", "clifford_house");  // base names of image files
 // ******
@@ -46,7 +46,7 @@ function goNext(url) {
 **********
 Example of how function is written into page:
 
-<a href="javascript:rollClick(0,'C',false)" onmouseover="rollClick(0,'A',null)" onmouseout="rollClick(0,'B',null)"><img name="emily" src="/PBS-Kids-2006/shared/images/games/tbone/clifford/emily_house.gif" border=0></a>
+<a href="javascript:rollClick(0,'C',false)" onmouseover="rollClick(0,'A',null)" onmouseout="rollClick(0,'B',null)"><img name="emily" src="/PBS-Kids-2006/clifford/shared/images/games/tbone/clifford/emily_house.gif" border=0></a>
 
 **********
 */
