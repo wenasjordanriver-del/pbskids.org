@@ -63,7 +63,3 @@ function Taglines(elem) {
 function imgRollover2() {this.src = this.overimg;doshow(this.showit);} 
 function imgRollout2() {this.src = this.offimg;unshow(this.showit);} 
 
-
-
-
-}
