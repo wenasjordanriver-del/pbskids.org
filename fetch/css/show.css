@@ -1,0 +1,666 @@
+div.nocat div#loginsidebar {
+	background-image:url("/PBS-Kids-2006/fetch/i/com/plug_plant.gif");
+}
+
+
+div.show {
+background-color:#990;
+color:#CF0;
+font-size:1em;
+}
+
+div.show a {
+color:#fff;
+}
+
+div.show a:visited {
+color:#4C4C00;
+}
+
+div.show a:hover {
+color:#ff9;
+}
+
+div.show div.inner {
+/*padding:2px 20px 2px 20px;*/
+margin-left:10px;
+}
+
+table#showlist {
+background-color:#990;
+width:561px;
+font-size:.95em;
+padding-top:14px;
+
+
+}
+
+table#showlist td {
+text-align:center;
+padding-bottom:20px;
+width:187px;
+}
+
+div.showlisting {
+background-color:#990;
+color:#CF0;
+padding:0 10px 0 10px;
+}
+
+div.showlisting span.showlink {
+
+}
+
+div.showblurb {
+margin-top:4px;
+}
+
+div.showlisting img {
+	display:block;
+}
+
+div#central {
+	background-position:350px 0px;
+}
+
+div#backwall.low  div#central {
+	height:380px;
+	}
+
+
+div#central.leftspot {
+	background-position:136px 0px; 
+	background-repeat:no-repeat;
+	height:490px;
+}
+
+
+div#tagline {
+background-image:url("/PBS-Kids-2006/fetch/i/show/screen_btm.gif");
+width:377px;
+height:26px;
+text-align:center;
+color:#fff;
+font-size:12px;
+font-weight:bold;
+}
+
+div#tagline p {
+margin-left:28px;
+padding-top:4px;
+}
+
+
+
+/*      QTVR
+**************************************** */
+
+div#qtvr {
+padding:20px;
+background-color:#990;
+color:#cf0;
+}
+
+div#emb {
+text-align:center;
+}
+
+div#emb img {
+vertical-align:bottom;
+}
+
+div#display {
+background-image:url("/PBS-Kids-2006/fetch/i/show/vr/spacer.gif");
+background-repeat:repeat-y;
+width:354px;
+text-align:center;
+}
+
+div#qt {
+border:2px solid #fff;
+width:320px;
+margin:auto;
+}
+
+div#tips h1 {
+font-weight:bold;
+font-size:1em;
+color:#339;
+margin-top:1em;
+margin-bottom:1em;
+padding:0 15px 0 15px;
+}
+
+div#tips p {
+margin-top:1em;
+padding:0 15px 0 15px;
+}
+
+/*              CONTESTANTS
+****************************************************** */
+
+div.cast {
+	background-color:#4864C7;
+}
+
+div.cast div.inner {
+	padding:2px 20px 2px 20px;
+}
+
+div.cast table#cast {
+	width:540px;
+}
+
+div.cast table#cast td {
+	width:180px;
+}
+
+div.profile {
+	font-size:.9em;
+	margin-right:19px;
+	color:#ADE3FF;
+}
+
+div.profile h3 {
+	font-size:1em;
+	font-weight:bold;
+	color:#fff;
+	margin-bottom:0;
+}
+
+form#othercast {
+	margin-bottom:6px;
+	margin-top:6px;
+}
+
+/*              GALLERY
+***************************************************** */
+div#gallery {
+	padding:20px;
+	background-color:#990;
+	color:#cf0;
+}
+
+div#gallery div#emb div {
+	background-image:url("/PBS-Kids-2006/fetch/i/show/gallery/spacer.gif");
+	background-repeat:repeat-y;
+	width:354px;
+	text-align:center;
+}
+
+div#gallside {
+	margin-left:12px;
+}
+
+
+div#gallside p {
+	clear:both;
+	padding-top:1em;
+	font-weight:bold;
+}
+
+div#gallside img {
+	display:block;
+}
+
+div#gallside div.bk {
+	text-align:center;
+}
+
+div#gallside div.nx {
+	text-align:center;
+}
+
+div#gallside div.bn {
+	margin-top:12px;
+}
+
+
+
+/*              CHALLENGES
+***************************************************** */
+div#challenges {
+	padding:0 20px 20px 20px;
+	background-color:#990;
+	color:#cf0;
+}
+
+div.back img {
+display:block;
+float:left;
+margin-top:-20px;
+}
+
+div.back {
+float:left;
+}
+
+div.back p {
+margin-left:49px;
+}
+
+div.next {
+float: right;
+}
+
+div.next img {
+float: right;
+margin-top:-20px;
+}
+
+
+ul#challist {
+width:540px;
+margin-top:20px;
+}
+
+ul#challist img {
+float:left;
+margin-top:-6px;
+margin-right:12px;
+margin-bottom:8px;
+}
+
+ul#challist li {
+clear:both;
+padding-top:12px;
+
+}
+
+div.show img.hdr {
+margin-bottom:12px;
+}
+
+
+
+div#chalside {
+/*float:left;*/
+margin-left:14px;
+width:167px;
+}
+
+div#chalside div.inner {
+	padding:0 20px 0 20px;
+	margin:0;
+	background-image:url("/PBS-Kids-2006/fetch/i/show/challenges/sidebar_spacer.gif");
+	background-repeat:repeat-y;
+	text-align:center;
+}
+
+
+table#triumph {
+display:none;
+}
+
+a#triumphlink {
+display:block;
+padding-top:6px;
+padding-bottom:6px;
+font-size:.9em;
+}
+
+
+td.tally {
+	text-align:center;
+	font-size:15px;
+	font-weight:bold;
+	color:#339;
+	background-color:#9C0;
+	width:60px;
+	vertical-align:middle;
+}
+
+
+td.tally div {
+/*	background-color:#9C0;
+	width:60px;
+	vertical-align:middle;
+*/}
+
+
+div#chalmain {
+background-color:#990;
+width:390px;
+float:right;
+}
+
+div#chalmain h1 {
+font-size:1.2em;
+margin-bottom:1em;
+margin-right:20px;
+color:#FF9;
+}
+
+div#chalmain p {
+margin-bottom:1em;
+margin-right:20px;
+}
+
+
+ul#dailysc {
+
+}
+
+
+table#dailysc td {
+	width:60px;
+	text-align:center;
+	font-size:19px;
+	font-weight:bold;
+	color:#339;
+	vertical-align:bottom;
+	padding-bottom:10px;
+	margin-bottom:10px;
+	}
+
+
+table#dailysc td img {
+	vertical-align:bottom;
+	margin-bottom:6px;
+}
+
+
+div.chalnav {
+margin:20px 20px 20px 20px;
+}
+
+div.bk {
+float:left;
+}
+div.nx {
+float:right;
+text-align:right;
+}
+
+
+/*         THE SCOOP
+******************************************* */
+div#scoop {
+background-color:#990;
+}
+
+div#scoop div.inner a {
+color:#990;
+}
+
+div#scoop div.inner a:visited {
+color:#36C;
+}
+
+div#scoop div.inner a:hover {
+color:#660;
+}
+
+div#scoop div.inner {
+	background-image:url("/PBS-Kids-2006/fetch/i/show/scoop/spacer.gif");
+	background-repeat:repeat-y;
+	margin:0 19px 0 20px;
+}
+
+div#scoop p {
+	margin-bottom:1em;
+	font-size:.92em;
+}
+
+div#scoop ol {
+margin:12px 0 12px 10px;
+padding:0 20px 0 20px;
+font-weight:bold;
+}
+
+div#scoop ol li {
+list-style-type:decimal;
+margin:0 0 4px 0;
+}
+
+div#scoop div.scoophdr {
+	background-color:#fff;
+	padding:0 20px 0 20px;
+
+}
+
+div#scoop div.scooptext {
+width:340px;
+margin-left:20px;
+}
+
+div#scoop img.sidebar {
+float:right;
+margin-top:10px;
+}
+
+blockquote.lyric {
+font-style:italic;
+}
+
+/*              VIDEOS 
+************************************************ */
+
+
+div#showside {
+/*	float:right; */
+	width:167px;
+	margin-left:10px;
+}
+
+div.showsidebg {
+	background-image:url("/PBS-Kids-2006/fetch/i/show/vid/sidebar_spacer.gif");
+	background-repeat:repeat-y;
+}
+
+div#showside p {
+font-size:10px;
+margin:0 14px 0 14px;
+padding:0 0 1em 0;
+}
+
+table.vid {
+margin-left:10px;
+margin-right:10px;
+font-size:.92em;
+}
+
+div.viddesc {
+	width:187px;
+	margin-left:10px;
+}
+
+div#vidplayer {
+	background-image:url("/PBS-Kids-2006/fetch/i/show/vid/video_spacer.gif");
+}
+
+div.viddesc ul {
+	margin-left:20px;
+	margin-top:6px;
+}
+
+span.length {
+	font-weight:bold;
+}
+
+
+
+div.viddesc ul li {
+	margin-bottom:6px;
+}
+
+div#vidplayer div#contain table {
+	margin:0 auto 0 auto;
+	text-align:center;
+}
+
+div#vidplayer div#contain td {
+/*	border:3px solid black; */
+}
+
+div#vidplayer td {
+	text-align:center;
+	color:#fff;
+}
+
+
+div#vidbuttons {
+	background-color:#E6E899;
+	font-size:.85em;
+}
+
+div#vidbuttons p.centtxt {
+	text-align:center;
+}
+
+div#vidbuttons p {
+	font-size:1em;
+	color:#C75300;
+	margin:0 40px 1em 40px;
+}
+
+div#vidbuttons a {
+	color:#660;
+}
+
+div#vidbuttons a:visited {
+	color:#660;
+}
+
+div#vidbuttons a:hover {
+	color:#BD9200;
+}
+
+/* MEDIA PLAYER CLASSES
+********************** */
+
+div.pbskidsvideonav {
+	font-size:.92em;
+	font-weight:bold;
+	color:#CCFF00;
+	width:150px;
+	text-align:center;
+}
+
+
+
+div#vidnav {
+	padding-top:10px;
+	text-align:center;
+}
+
+div#vidnav ul.nav {
+	margin-top:4px;
+	font-size:.85em;
+	margin-bottom:10px;
+}
+
+div#vidnav ul.nav a {
+	border-color:#CCFF00;
+	border-width:1px;
+}
+
+div#vidbuttons {
+	background-color:#7F7F00;
+	padding:10px 0 10px 0;
+	width:472px;
+	margin:0 auto 0 auto;
+}
+
+div#vidbuttons td {
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+
+}
+
+div#vidbuttons td table {
+	margin:0 auto 0 auto;
+}
+
+td.pbskidsbuttonbig {
+	background-repeat:no-repeat;
+	background-position:0 0;
+	background-image:url("/PBS-Kids-2006/fetch/i/show/vid/btn_off.gif");
+	color:#660;
+	}
+
+td.pbskidsbuttonbigactive {
+	background-image:url("/PBS-Kids-2006/fetch/i/show/vid/btn_on.gif");
+	background-repeat:no-repeat;
+	background-position:0 0;
+	color:#660;
+	}
+
+td.pbskidsbuttonsml {
+	background-image:url("/PBS-Kids-2006/fetch/i/show/vid/btn_off.gif");
+	background-repeat:no-repeat;
+	background-position:6px 0;
+	padding-left:6px;
+	color:#660;
+	}
+
+td.pbskidsbuttonsmlactive {
+	background-image:url("/PBS-Kids-2006/fetch/i/show/vid/btn_on.gif");
+	background-repeat:no-repeat;
+	background-position:0 0;
+	color:#660;
+	}
+	
+div#vidbuttons td a {
+	text-decoration:none;
+	color:#660;
+}
+
+div#vidbuttons td a:visited {
+	color:#660;
+}
+
+
+div#vidbuttons td a:hover {
+	color:#fff;
+}
+
+div.vidhelplink {
+	font-size:.9em;
+	margin-top:30px;
+}
+
+div#vidhelp {
+	text-align:center;
+}
+
+div#vidhelp p {
+	width:440px;
+	margin:0 auto 0 auto;
+	text-align:left;
+}
+
+td.pbskidshelptext img {
+margin-bottom:4px;
+}
+
+
+/* overridde the buttons for the help screen */
+
+
+
+div#downloadbtns {
+text-align:center;
+}
+
+div#downloadbtns table {
+font-size:.9em;
+margin:10px auto 10px auto;
+}
+
+div#downloadbtns td {
+	padding:0 6px 0 6px;
+}
+
+div#downloadbtns td a {
+	color:#660;
+}
+
+div#downloadbtns td a:visited {
+	color:#660;
+}
+
+div#downloadbtns td a:hover {
+	color:#ff9;
+}
