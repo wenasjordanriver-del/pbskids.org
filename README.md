@@ -10,7 +10,7 @@ https://thecartoondude.github.io/downloads/flashplayer32_0r0_371_win.exe
 Adobe Shockwave
 https://thecartoondude.github.io/downloads/sw_lic_full_installer.msi
 
-After that. Head to the site at https://thecartoondude.github.io/PBS-Kids-2006/
+After that. Head to the site at https://wenasjordanriver-del.github.io/pbskids.org/
 
 _macos people_
 
